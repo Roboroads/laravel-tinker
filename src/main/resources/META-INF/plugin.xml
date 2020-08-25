@@ -1,19 +1,36 @@
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>Template</name>
-    <vendor>JetBrains</vendor>
+    <id>nl.deschepers.laraveltinker</id>
+    <name>Laravel Tinker</name>
+    <version></version>
+    <vendor>Robbin Schepers</vendor>
+    <change-notes><![CDATA[
+      First version - no changes yet.
+    ]]></change-notes>
+    <description><![CDATA[
+      <p>Adds a way to write php and run it directly in Laravels artisan tinker.</p>
+      <ul>
+        <li><a href="https://github.com/Roboroads/laravel-tinker/issues">Github issues</a>: feature requests and bug reports</li>
+      </ul>
+    ]]></description>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.jetbrains.php</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
-        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
-    </extensions>
+<!--    <extensions defaultExtensionNs="com.intellij">-->
+<!--        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>-->
+<!--        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>-->
+<!--    </extensions>-->
 
-    <projectListeners>
-        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </projectListeners>
+<!--    <projectListeners>-->
+<!--        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"-->
+<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
+<!--    </projectListeners>-->
+
+    <actions>
+        <action id="StartLaravelTinkerAction" class="nl.deschepers.laraveltinker.action.StartLaravelTinkerAction">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
