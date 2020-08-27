@@ -1,32 +1,12 @@
 <idea-plugin require-restart="true">
     <id>nl.deschepers.laraveltinker</id>
     <name>Laravel Tinker</name>
-    <version>0.0.1-ALPHA</version>
-    <vendor>Robbin Schepers</vendor>
-    <change-notes><![CDATA[
-      First version - no changes yet.
-    ]]></change-notes>
-    <description><![CDATA[
-      <p>Adds a way to write php and run it directly in Laravels artisan tinker.</p>
-      <ul>
-        <li><a href="https://github.com/Roboroads/laravel-tinker/issues">Github issues</a>: feature requests and bug reports</li>
-      </ul>
-    ]]></description>
+    <vendor>Robbin "Roboroads" Schepers</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.jetbrains.php</depends>
-
-<!--    <extensions defaultExtensionNs="com.intellij">-->
-<!--        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>-->
-<!--        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>-->
-<!--    </extensions>-->
-
-<!--    <projectListeners>-->
-<!--        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"-->
-<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
-<!--    </projectListeners>-->
 
     <actions>
         <action id="OpenTinkerConsoleAction" class="nl.deschepers.laraveltinker.action.OpenRunTinkerConsoleAction" text="Open/Run Tinker Console" description="Opens or runs Tinker Console" icon="/icons/laravel-tinker-icon16.svg">
