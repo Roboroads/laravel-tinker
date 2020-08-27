@@ -1,6 +1,5 @@
 package nl.deschepers.laraveltinker.toolwindow
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.wm.ToolWindow
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -13,22 +12,23 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
     fun setTinkerOutput(tinkerOutput: List<String>) {
         this.tinkerOutput!!.text = "<html>" +
-                "<head>" +
-                "<style>.output{padding:5px;} .header{font-weight:bold;}</style>" +
-                "</head>" +
-                "<body>" +
-                "<div class=\"header\">" +
-                "// Laravel Tinker Output at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +
-                "</div>" +
-                "<div class=\"output\">" +
-                tinkerOutput.joinToString("") +
-                "</div>" +
-                "</body>" +
-                "</html>"
+            "<head>" +
+            "<style>.output{padding:5px;} .header{font-weight:bold;}</style>" +
+            "</head>" +
+            "<body>" +
+            "<div class=\"header\">" +
+            "// Laravel Tinker Output at " +
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +
+            "</div>" +
+            "<div class=\"output\">" +
+            tinkerOutput.joinToString("") +
+            "</div>" +
+            "</body>" +
+            "</html>"
 
-        System.out.println(this.tinkerOutput!!.text);
+        System.out.println(this.tinkerOutput!!.text)
 
-        toolWindow.show();
+        toolWindow.show()
     }
 
     fun getContent(): JPanel? {
