@@ -39,6 +39,7 @@ repositories {
 }
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.11.0")
+    detektPlugins("commons-io:commons-io:2.7")
 }
 
 // Configure gradle-intellij-plugin plugin.
@@ -53,7 +54,7 @@ intellij {
 //  Plugin Dependencies:
 //  https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
 //
-  setPlugins("com.jetbrains.php:202.6397.94")
+  setPlugins("com.jetbrains.php:202.6397.115")
 }
 
 // Configure detekt plugin.
@@ -73,7 +74,7 @@ tasks {
     // Set the compatibility versions to 1.8
     withType<JavaCompile> {
         sourceCompatibility = "1.8"
-        targetCompatibility = "1.8"
+        targetCompatibility = "1.8 "
     }
     listOf("compileKotlin", "compileTestKotlin").forEach {
         getByName<KotlinCompile>(it) {
