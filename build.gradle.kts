@@ -100,7 +100,8 @@ tasks {
 
                     if (!containsAll(listOf(start, end))) {
                         throw GradleException(
-                            "Plugin description section not found in README.md file:\n$start ... $end")
+                            "Plugin description section not found in README.md file:\n$start ... $end"
+                        )
                     }
                     subList(indexOf(start) + 1, indexOf(end))
                 }.joinToString("\n").run { markdownToHTML(this) }
