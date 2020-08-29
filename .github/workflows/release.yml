@@ -26,7 +26,7 @@ jobs:
       - name: Publish Plugin
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        run: ./gradlew publishPlugin --scan
+        run: ./gradlew publishPlugin
 
   # Patch changelog, commit and push to the current repository
   changelog:

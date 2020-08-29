@@ -17,7 +17,7 @@ class TinkerEditor(project: Project) {
         val lvf = LightVirtualFile(
             "Tinker Console",
             PhpFileType.INSTANCE,
-            "<?php\n// Tinker away!\necho 'PHP Artisan Tinker';"
+            "<?php\n// Tinker away!\n"
         )
         fileEditorManager.openFile(lvf, true)
         openFiles.add(lvf)

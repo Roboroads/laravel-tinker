@@ -1,4 +1,4 @@
-<idea-plugin require-restart="true">
+<idea-plugin>
     <id>nl.deschepers.laraveltinker</id>
     <name>Laravel Tinker</name>
     <vendor>Robbin "Roboroads" Schepers</vendor>
