@@ -6,7 +6,6 @@ runs-on: self-hosted
 on:
   release:
     types: [prereleased, released]
-
 jobs:
 
   # Prepare and publish the plugin to the Marketplace repository
