@@ -23,10 +23,11 @@ class PhpProcessListener : ProcessListener {
     }
 
     override fun processTerminated(event: ProcessEvent) {
-        ApplicationManager.getApplication().invokeLater({
-            TinkerOutputToolWindowFactory
-                .tinkerOutputToolWindow?.addOutput("\n\n*** Execution finished ***")
-        },
+        ApplicationManager.getApplication().invokeLater(
+            {
+                TinkerOutputToolWindowFactory
+                    .tinkerOutputToolWindow?.addOutput("\n\n*** Execution finished ***")
+            },
             ModalityState.NON_MODAL
         )
     }
@@ -53,9 +54,8 @@ class PhpProcessListener : ProcessListener {
 
         if (capturing) {
             processOutput.add(capText)
-            ApplicationManager.getApplication().invokeLater({
-                TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(capText)
-            },
+            ApplicationManager.getApplication().invokeLater(
+                { TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(capText) },
                 ModalityState.NON_MODAL
             )
         }

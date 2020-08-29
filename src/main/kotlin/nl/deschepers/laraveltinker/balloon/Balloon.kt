@@ -19,11 +19,14 @@ open class Balloon(private val project: Project) {
         val notification: Notification
 
         if (title != null) {
-            notification = notificationGroup.createNotification(title!!, content,
+            notification = notificationGroup.createNotification(
+                title!!,
+                content,
                 if (isError) NotificationType.ERROR else NotificationType.INFORMATION
             )
         } else {
-            notification = notificationGroup.createNotification(content,
+            notification = notificationGroup.createNotification(
+                content,
                 if (isError) NotificationType.ERROR else NotificationType.INFORMATION
             )
         }

@@ -29,9 +29,12 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
     fun addOutput(tinkerOutput: String) {
         outputText += tinkerOutput
-        outputText = outputText.replace(Regex("<aside(.*?)</aside>",
-            setOf(RegexOption.MULTILINE, RegexOption.DOT_MATCHES_ALL)
-        ), ""
+        outputText = outputText.replace(
+            Regex(
+                "<aside(.*?)</aside>",
+                setOf(RegexOption.MULTILINE, RegexOption.DOT_MATCHES_ALL)
+            ),
+            ""
         )
         this.updateView()
     }

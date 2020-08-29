@@ -77,15 +77,18 @@ class PhpArtisanTinker(private val project: Project, private val phpCode: String
 
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.resetOutput()
 
-        ProgressManager.getInstance().run(object : Backgroundable(project,
-            LaravelTinkerBundle.message("lt.running")
-        ) {
-            override fun run(progressIndicator: ProgressIndicator) {
-                processHandler.startNotify()
-                if (!processHandler.waitFor()) {
-                    ProcessWaitErrorBalloon(project).show()
+        ProgressManager.getInstance().run(
+            object : Backgroundable(
+                project,
+                LaravelTinkerBundle.message("lt.running")
+            ) {
+                override fun run(progressIndicator: ProgressIndicator) {
+                    processHandler.startNotify()
+                    if (!processHandler.waitFor()) {
+                        ProcessWaitErrorBalloon(project).show()
+                    }
                 }
             }
-        })
+        )
     }
 }
