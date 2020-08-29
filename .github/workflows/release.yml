@@ -2,6 +2,7 @@
 # with the Build workflow. Running the publishPlugin task requires the PUBLISH_TOKEN secret provided.
 
 name: Release
+runs-on: self-hosted
 on:
   release:
     types: [prereleased, released]
