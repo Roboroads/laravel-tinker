@@ -8,8 +8,10 @@ import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
 class PhpProcessListener : ProcessListener {
-    private val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
-    private val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
+    companion object {
+        private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
+        private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
+    }
 
     val processOutput = ArrayList<String>()
 
@@ -22,9 +24,9 @@ class PhpProcessListener : ProcessListener {
 
     override fun processTerminated(event: ProcessEvent) {
         ApplicationManager.getApplication().invokeLater({
-                TinkerOutputToolWindowFactory
-                    .tinkerOutputToolWindow?.addOutput("\n\n*** Execution finished ***")
-            },
+            TinkerOutputToolWindowFactory
+                .tinkerOutputToolWindow?.addOutput("\n\n*** Execution finished ***")
+        },
             ModalityState.NON_MODAL
         )
     }
@@ -35,25 +37,25 @@ class PhpProcessListener : ProcessListener {
             return
         }
 
-        var capText = event.text;
+        var capText = event.text
 
-        if(!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
+        if (!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
             capText = capText.substring(
                 capText.indexOf(OUTPUT_START_SEQUENCE) + OUTPUT_START_SEQUENCE.length
             )
-            capturing = true;
+            capturing = true
         }
-        if(capturing && capText.contains(OUTPUT_END_SEQUENCE)) {
+        if (capturing && capText.contains(OUTPUT_END_SEQUENCE)) {
             capText = capText.substring(0, capText.indexOf(OUTPUT_END_SEQUENCE))
             processOutput.add(capText)
-            capturing = false;
+            capturing = false
         }
 
         if (capturing) {
             processOutput.add(capText)
             ApplicationManager.getApplication().invokeLater({
-                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(capText)
-                },
+                TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(capText)
+            },
                 ModalityState.NON_MODAL
             )
         }

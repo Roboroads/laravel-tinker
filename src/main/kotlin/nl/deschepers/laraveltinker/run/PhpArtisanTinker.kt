@@ -2,8 +2,6 @@ package nl.deschepers.laraveltinker.run
 
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.process.ProcessTerminatedListener
-import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task.Backgroundable

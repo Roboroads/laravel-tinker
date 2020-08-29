@@ -1,24 +1,27 @@
 <idea-plugin>
-    <id>nl.deschepers.laraveltinker</id>
-    <name>Laravel Tinker</name>
-    <vendor>Robbin "Roboroads" Schepers</vendor>
+  <actions>
+    <action class="nl.deschepers.laraveltinker.action.OpenRunTinkerConsoleAction"
+      description="Opens or runs Tinker Console"
+      icon="/icons/laravel-tinker-icon16.svg" id="OpenTinkerConsoleAction"
+      text="Open/Run Tinker Console">
+      <add-to-group anchor="last" group-id="ToolsMenu"/>
+      <keyboard-shortcut first-keystroke="control shift T" keymap="$default"/>
+    </action>
+  </actions>
+  <depends>com.jetbrains.php</depends>
+  <depends>com.intellij.modules.platform</depends>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
-    <depends>com.jetbrains.php</depends>
+  <!-- Product and plugin compatibility requirements -->
+  <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow anchor="right"
+      factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
+      icon="/icons/laravel-tinker-icon13.svg"
+      id="Laravel Tinker"/>
+  </extensions>
+  <id>nl.deschepers.laraveltinker</id>
 
-    <actions>
-        <action id="OpenTinkerConsoleAction" class="nl.deschepers.laraveltinker.action.OpenRunTinkerConsoleAction" text="Open/Run Tinker Console" description="Opens or runs Tinker Console" icon="/icons/laravel-tinker-icon16.svg">
-            <add-to-group group-id="ToolsMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="control shift T" />
-        </action>
-    </actions>
+  <name>Laravel Tinker</name>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Laravel Tinker"
-          icon="/icons/laravel-tinker-icon13.svg"
-          anchor="right"
-          factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"/>
-    </extensions>
+  <vendor>Robbin "Roboroads" Schepers</vendor>
 </idea-plugin>

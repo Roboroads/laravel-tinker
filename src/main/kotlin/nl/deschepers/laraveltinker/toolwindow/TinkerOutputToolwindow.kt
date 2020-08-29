@@ -4,11 +4,15 @@ import com.intellij.openapi.wm.ToolWindow
 import com.intellij.ui.JBColor
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import javax.swing.JButton
 import javax.swing.JEditorPane
 import javax.swing.JPanel
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
+    companion object {
+        private const val COLOR1 = 0xFFFFFF
+        private const val COLOR2 = 0x999999
+    }
+
     private var tinkerOutputToolWindowContent: JPanel? = null
     private var tinkerOutput: JEditorPane? = null
     private var outputText: String = ""
@@ -16,7 +20,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
     fun resetOutput() {
         this.tinkerOutput?.foreground =
-            JBColor.namedColor("Editor.foreground", JBColor(0xFFFFFF, 0x999999))
+            JBColor.namedColor("Editor.foreground", JBColor(COLOR1, COLOR2))
         outputTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         outputText = ""
         toolWindow.show()
@@ -27,7 +31,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
         outputText += tinkerOutput
         outputText = outputText.replace(Regex("<aside(.*?)</aside>",
             setOf(RegexOption.MULTILINE, RegexOption.DOT_MATCHES_ALL)
-        ), "")
+        ), ""
+        )
         this.updateView()
     }
 
@@ -42,14 +47,12 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
             outputTime +
             "</div>" +
             "<div class=\"output\">" +
-            "<pre><code>"+
+            "<pre><code>" +
             outputText +
-            "</code></pre>"+
+            "</code></pre>" +
             "</div>" +
             "</body>" +
             "</html>"
-
-        System.out.println(this.tinkerOutput!!.text);
     }
 
     fun getContent(): JPanel? {
