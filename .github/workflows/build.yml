@@ -146,9 +146,8 @@ jobs:
         with:
           plugin-location: plugin-artifact/*.zip
           ide-versions: |
-            ideaIC:2019.3
-            ideaIC:2020.1
-            ideaIC:2020.2
+            ideaIU:2020.1
+            ideaIU:2020.2
 
       # Print the output of the verify step
       - name: Print Logs
