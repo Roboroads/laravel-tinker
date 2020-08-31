@@ -7,13 +7,12 @@ Open/Run the console under Tools -> Run Tinker Console
 
 Default shortcut: ctrl+Shift+T
 
-> **NOTICE** - this plugin is in alpha phase. Bugs **will** occur. Please let them know at the link below.
-
----
+**NOTICE** - this plugin is new and might contain bugs. Please report them at the github issues page on the link below
 
  - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
  - [🙏🏼 Patreon](https://github.com/Roboroads/laravel-tinker/issues): Consider supporting this project if it helped you 😊
 <!-- Plugin description end -->
+ - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 
 ## Credits
  - [Robbin Schepers](https://github.com/Roboroads) - Creating the plugin
