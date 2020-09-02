@@ -1,6 +1,7 @@
 # Laravel Tinker
 
-<!-- Plugin description -->Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes - with the added benefit of having your IDE's autocompletion, code colors and error inspections.
+<!-- Plugin description -->
+Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes - with the added benefit of having your IDE's autocompletion, code colors and error inspections.
 
 Open/Run the console under Tools -> Run Tinker Console
 
@@ -9,8 +10,9 @@ Default shortcut: ctrl+Shift+T
 **NOTICE** - this plugin is new and might contain bugs. Please report them at the github issues page on the link below
 
  - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
- - [🙏🏼 Patreon](https://github.com/Roboroads/laravel-tinker/issues): Consider supporting this project if it helped you 😊 <!-- Plugin description end -->
+ - [🙏🏼 Patreon](https://github.com/Roboroads/laravel-tinker/issues): Consider supporting this project if it helped you 😊
  - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
+<!-- Plugin description end -->
 
 ## Credits
  - [Robbin Schepers](https://github.com/Roboroads) - Creating the plugin

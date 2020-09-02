@@ -1,13 +1,18 @@
-<?php
+/*<?php/**/
 echo "%%START-OUTPUT%%";
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
-$config = new \Psy\Configuration(['updateCheck'=>'never',]);
+$config = new \Psy\Configuration([
+    'updateCheck' => 'never',
+    'usePcntl' => false,
+    'useReadline' => false,
+    'prompt' => '%%EOT%%'
+]);
 
 $casters = [
     'Illuminate\Support\Collection' => 'Laravel\Tinker\TinkerCaster::castCollection',
@@ -22,22 +27,19 @@ if (class_exists('Illuminate\Foundation\Application')) {
 
 $config->getPresenter()->addCasters($casters);
 
-$config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD')?'null':'/dev/null');
+$config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'null' : '/dev/null');
 
-$shell=new \Psy\Shell($config);
+$shell = new \Psy\Shell($config);
 
-$output=new \Symfony\Component\Console\Output\ConsoleOutput();
+$output = new \Symfony\Component\Console\Output\ConsoleOutput();
 $shell->setOutput($output);
 
 $autoloadClassMap = __DIR__ . '/vendor/composer/autoload_classmap.php';
 $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
 
-$code=str_replace(['<?=','<?php','<?','?>'],'',$argv[1]);
-
-$closure = new ExecutionLoopClosure($this->shell);
+$code = str_replace(['<?=', '<?php', '<?', '?>'], '', $argv[1]);
+$shell->addInput($code, true);
+$closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
-$shell->execute($code);
 
 $loader->unregister();
-
-echo "%%END-OUTPUT%%";

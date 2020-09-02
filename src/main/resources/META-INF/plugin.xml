@@ -5,7 +5,9 @@
       icon="/icons/laravel-tinker-icon16.svg" id="OpenTinkerConsoleAction"
       text="Open/Run Tinker Console">
       <add-to-group anchor="last" group-id="ToolsMenu"/>
-      <keyboard-shortcut first-keystroke="control shift T" keymap="$default"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="control shift T" replace-all="true" />
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="control shift T" replace-all="true" />
+      <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control shift T" replace-all="true" />
     </action>
   </actions>
   <depends>com.jetbrains.php</depends>
@@ -18,6 +20,9 @@
       factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
       icon="/icons/laravel-tinker-icon13.svg"
       id="Laravel Tinker"/>
+
+    <codeInsight.lineMarkerProvider language="PHP"
+      implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"/>
   </extensions>
   <id>nl.deschepers.laraveltinker</id>
 

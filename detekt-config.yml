@@ -3,4 +3,14 @@
 
 formatting:
   Indentation:
-    active: true
+    active: false
+
+style:
+  ReturnCount:
+    active: false
+  MagicNumber:
+    active: false
+
+complexity:
+  LongMethod:
+    active: false

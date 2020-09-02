@@ -55,9 +55,9 @@ intellij {
 //  https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
 //
     setPlugins(
-        "com.jetbrains.php:202.6397.115",
-        "org.jetbrains.plugins.phpstorm-remote-interpreter:202.6397.59",
-        "org.jetbrains.plugins.phpstorm-docker:202.6397.59"
+        "com.jetbrains.php:202.6397.115"
+//        "org.jetbrains.plugins.phpstorm-remote-interpreter:202.6397.59",
+//        "org.jetbrains.plugins.phpstorm-docker:202.6397.59"
     )
 }
 
@@ -124,5 +124,9 @@ tasks {
         dependsOn("patchChangelog")
         token(System.getenv("PUBLISH_TOKEN"))
         channels(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first())
+    }
+
+    runIde {
+        ideDirectory("/home/robbin/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-0/202.6948.87")
     }
 }

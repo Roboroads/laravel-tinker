@@ -1,16 +1,18 @@
 package nl.deschepers.laraveltinker.listener
 
 import com.intellij.execution.process.ProcessEvent
+import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
-class PhpProcessListener : ProcessListener {
+class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessListener {
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
+        private const val OUTPUT_EOT_PROMPT = "%%EOT%%"
     }
 
     val processOutput = ArrayList<String>()
@@ -39,6 +41,11 @@ class PhpProcessListener : ProcessListener {
         }
 
         var capText = event.text
+
+        System.out.println("'$capText'")
+        if (capText == OUTPUT_EOT_PROMPT) {
+            processHandler.destroyProcess()
+        }
 
         if (!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
             capText = capText.substring(
