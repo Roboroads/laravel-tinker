@@ -23,7 +23,8 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
                 UPDATE_ALL,
                 null,
                 { _: MouseEvent, psiElement: PsiElement ->
-                    PhpArtisanTinker(psiElement.project,
+                    PhpArtisanTinker(
+                        psiElement.project,
                         psiElement.containingFile.originalFile.text
                     ).run()
                 },
