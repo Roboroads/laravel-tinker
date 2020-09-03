@@ -1,6 +1,5 @@
 package nl.deschepers.laraveltinker.linemarkerprovider
 
-import com.intellij.codeHighlighting.Pass.UPDATE_ALL
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.icons.AllIcons.RunConfigurations.TestState.Run
@@ -16,11 +15,11 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
         if (TinkerEditor.openFiles.contains(element.containingFile.virtualFile) &&
             element.elementType.toString() == "php opening tag"
         ) {
-            return LineMarkerInfo(
+
+            return LineMarkerInfo<PsiElement>(
                 element,
                 element.textRange,
                 Run,
-                UPDATE_ALL,
                 null,
                 { _: MouseEvent, psiElement: PsiElement ->
                     PhpArtisanTinker(
