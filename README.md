@@ -10,7 +10,7 @@ Default shortcut: ctrl+Shift+T
 **NOTICE** - this plugin is new and might contain bugs. Please report them at the github issues page on the link below
 
  - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
- - [🙏🏼 Patreon](https://github.com/Roboroads/laravel-tinker/issues): Consider supporting this project if it helped you 😊
+ - [🙏🏼 Patreon](https://www.patreon.com/roboroads): Consider supporting this project if it helped you 😊
  - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 <!-- Plugin description end -->
 
