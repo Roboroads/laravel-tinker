@@ -3,9 +3,11 @@
 <!-- Plugin description -->
 Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes - with the added benefit of having your IDE's autocompletion, code colors and error inspections.
 
-Open/Run the console under Tools -> Run Tinker Console
+Open/Run the console under Tools -> Open/Run Tinker Console
 
 Default shortcut: ctrl+Shift+T
+
+Both options will open a console if you don't have one open currently or run the current console if you do.
 
 **NOTICE** - this plugin is new and might contain bugs. Please report them at the github issues page on the link below
 
