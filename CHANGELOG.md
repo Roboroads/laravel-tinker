@@ -7,15 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+ - Your last command will now be saved (on per-project level)
+ - Non-obtrusive reminder you can support this package.
+ 
 ### Changed
  - Output window now (hopefully) always inherits the font and color of the IDE
 
-### Deprecated
-
-### Removed
-
 ### Fixed
+ - The link to PHP settings in error dialogs now *acually* links to the correct settings page.
+ - Output showing slow on larger outputs
 
 ### Security
 ## [1.1.0]

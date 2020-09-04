@@ -5,24 +5,32 @@
       icon="/icons/laravel-tinker-icon16.svg" id="OpenTinkerConsoleAction"
       text="Open/Run Tinker Console">
       <add-to-group anchor="last" group-id="ToolsMenu"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="control shift T" replace-all="true" />
-      <keyboard-shortcut keymap="Mac OS X" first-keystroke="control shift T" replace-all="true" />
-      <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control shift T" replace-all="true" />
+      <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
+      <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
+      <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
+        replace-all="true"/>
     </action>
   </actions>
+
   <depends>com.jetbrains.php</depends>
   <depends>com.intellij.modules.platform</depends>
 
   <!-- Product and plugin compatibility requirements -->
   <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
   <extensions defaultExtensionNs="com.intellij">
+    <applicationService
+      serviceImplementation="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"
+      serviceInterface="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"/>
+
+    <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
+      language="PHP"/>
+
+    <projectService serviceImplementation="nl.deschepers.laraveltinker.cache.PersistentProjectCache"
+      serviceInterface="nl.deschepers.laraveltinker.cache.PersistentProjectCache"/>
     <toolWindow anchor="right"
       factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
       icon="/icons/laravel-tinker-icon13.svg"
       id="Laravel Tinker"/>
-
-    <codeInsight.lineMarkerProvider language="PHP"
-      implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"/>
   </extensions>
   <id>nl.deschepers.laraveltinker</id>
 

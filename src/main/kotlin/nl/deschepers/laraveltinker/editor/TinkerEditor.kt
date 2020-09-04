@@ -5,6 +5,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.testFramework.LightVirtualFile
 import com.jetbrains.php.lang.PhpFileType
+import nl.deschepers.laraveltinker.cache.PersistentProjectCache
 
 class TinkerEditor(project: Project) {
     companion object {
@@ -14,12 +15,12 @@ class TinkerEditor(project: Project) {
     var fileEditorManager: FileEditorManager = FileEditorManager.getInstance(project)
 
     init {
-        val lvf = LightVirtualFile(
+        val tinkerFile = LightVirtualFile(
             "Tinker Console",
             PhpFileType.INSTANCE,
-            "<?php\n// Tinker away!\n"
+            project.getService(PersistentProjectCache::class.java).state.lastCode
         )
-        fileEditorManager.openFile(lvf, true)
-        openFiles.add(lvf)
+        fileEditorManager.openFile(tinkerFile, true)
+        openFiles.add(tinkerFile)
     }
 }

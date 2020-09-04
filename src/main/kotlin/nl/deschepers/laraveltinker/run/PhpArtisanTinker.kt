@@ -19,6 +19,7 @@ import com.jetbrains.php.run.script.PhpScriptRuntimeConfigurationProducer
 import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
 import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
+import nl.deschepers.laraveltinker.cache.PersistentProjectCache
 import nl.deschepers.laraveltinker.listener.PhpProcessListener
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import java.io.BufferedReader
@@ -94,6 +95,8 @@ class PhpArtisanTinker(private val project: Project, private val phpCode: String
 
         ToolWindowManager.getInstance(project).getToolWindow("Laravel Tinker")?.activate(null)
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.resetOutput()
+
+        project.getService(PersistentProjectCache::class.java).state.lastCode = phpCode
 
         ProgressManager.getInstance().run(
             object : Backgroundable(
