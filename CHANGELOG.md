@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [1.1.1]
+### Added
  - Your last command will now be saved (on per-project level)
  - Non-obtrusive reminder you can support this package.
  
@@ -17,7 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - The link to PHP settings in error dialogs now *acually* links to the correct settings page.
  - Output showing slow on larger outputs
 
-### Security
 ## [1.1.0]
 
 ### Added

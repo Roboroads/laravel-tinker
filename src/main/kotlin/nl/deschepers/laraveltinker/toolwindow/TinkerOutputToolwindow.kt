@@ -5,7 +5,7 @@ import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import java.awt.Desktop
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Timer
 import javax.swing.JPanel
 import javax.swing.JTextPane
 import javax.swing.event.HyperlinkEvent
@@ -17,7 +17,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     private var outputText: String = ""
     private var outputTime: String = ""
 
-    private var timer = false;
+    private var timer = false
 
     init {
         tinkerOutput!!.addHyperlinkListener { e ->
@@ -49,13 +49,13 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     fun addOutput(tinkerOutput: String) {
         outputText += tinkerOutput
 
-        if(!timer) {
-            timer = true;
+        if (!timer) {
+            timer = true
 
             Timer("UpdateTinkerOutput", false).schedule(250) {
                 outputText = outputText.replace("%%EOT%%", "")
                 updateView()
-                timer = false;
+                timer = false
             }
         }
     }
