@@ -13,22 +13,22 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Tinker output:"/>
+          <text resource-bundle="messages/LaravelTinkerBundle" key="lt.tinker.output"/>
         </properties>
       </component>
-      <scrollpane id="9b8e7">
+      <scrollpane id="67dae">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="7ec85" class="javax.swing.JEditorPane" binding="tinkerOutput">
+          <component id="2c6ed" class="javax.swing.JTextPane" binding="tinkerOutput">
             <constraints/>
             <properties>
               <contentType value="text/html"/>
               <editable value="false"/>
-              <font swing-font="EditorPane.font"/>
+              <inheritsPopupMenu value="false"/>
             </properties>
           </component>
         </children>

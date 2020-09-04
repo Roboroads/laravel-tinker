@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+
+### Changed
+ - Output window now (hopefully) always inherits the font and color of the IDE
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [1.1.0]
 
 ### Added
  - Run button at the opening tag of the tinker console

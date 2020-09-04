@@ -1,11 +1,11 @@
 package nl.deschepers.laraveltinker.toolwindow
 
 import com.intellij.openapi.wm.ToolWindow
-import com.intellij.ui.JBColor
+import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import javax.swing.JEditorPane
 import javax.swing.JPanel
+import javax.swing.JTextPane
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     companion object {
@@ -14,13 +14,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     private var tinkerOutputToolWindowContent: JPanel? = null
-    private var tinkerOutput: JEditorPane? = null
+    private var tinkerOutput: JTextPane? = null
     private var outputText: String = ""
     private var outputTime: String = ""
 
     fun resetOutput() {
-        this.tinkerOutput?.foreground =
-            JBColor.namedColor("Editor.foreground", JBColor(COLOR1, COLOR2))
+        tinkerOutput?.background = null
+        tinkerOutput?.foreground = null
+        tinkerOutput?.disabledTextColor = null
+        tinkerOutput?.disabledTextColor = null
+
         outputTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         outputText = ""
 
@@ -39,12 +42,15 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     fun updateView() {
         this.tinkerOutput!!.text = "<html>" +
             "<head>" +
-            "<style>.output{padding:5px;} .header{font-weight:bold;}</style>" +
+            "<style>" +
+            "body{word-wrap:break-word;} " +
+            ".output{padding:5px;} " +
+            ".header{font-weight:bold;}" +
+            "</style>" +
             "</head>" +
             "<body>" +
             "<div class=\"header\">" +
-            "// Laravel Tinker started at " +
-            outputTime +
+            LaravelTinkerBundle.message("lt.started.at", outputTime) +
             "</div>" +
             "<div class=\"output\">" +
             "<pre><code>" +
