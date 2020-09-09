@@ -1,4 +1,7 @@
 /*<?php/**/
+
+define('LARAVEL_START', microtime(true));
+
 echo "%%START-OUTPUT%%";
 
 require __DIR__ . '/vendor/autoload.php';
