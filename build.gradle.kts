@@ -118,7 +118,7 @@ tasks {
                 changelog.getLatest().toHTML()
             }
         )
-    }
+    }/
 
     publishPlugin {
         dependsOn("patchChangelog")
@@ -128,5 +128,6 @@ tasks {
 
     runIde {
         ideDirectory("/home/robbin/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-0/202.6948.87")
+//        ideDirectory("C:\\Users\\vagrant\\AppData\\Local\\JetBrains\\Toolbox\\apps\\PhpStorm\\ch-0\\202.6948.87")
     }
 }
