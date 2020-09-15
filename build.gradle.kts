@@ -118,7 +118,7 @@ tasks {
                 changelog.getLatest().toHTML()
             }
         )
-    }/
+    }
 
     publishPlugin {
         dependsOn("patchChangelog")
