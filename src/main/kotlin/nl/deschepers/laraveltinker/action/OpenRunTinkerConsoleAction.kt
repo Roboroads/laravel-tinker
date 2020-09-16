@@ -28,8 +28,8 @@ class OpenRunTinkerConsoleAction : AnAction() {
 
         val tinkerConsoleFile = getTinkerConsoleFile(e)
         if (tinkerConsoleFile != null) {
-            val document = FileDocumentManager.getInstance().getDocument(tinkerConsoleFile);
-            if(document !== null) {
+            val document = FileDocumentManager.getInstance().getDocument(tinkerConsoleFile)
+            if (document !== null) {
                 PhpArtisanTinker(
                     project,
                     document.text
@@ -44,14 +44,13 @@ class OpenRunTinkerConsoleAction : AnAction() {
 
     private fun getTinkerConsoleFile(e: AnActionEvent): VirtualFile? {
         val virtualFile: VirtualFile? = e.getData(CommonDataKeys.VIRTUAL_FILE)
-        if (virtualFile != null && TinkerConsole.openFile == virtualFile)
-            return virtualFile
+        if (virtualFile != null && TinkerConsole.openFile == virtualFile) return virtualFile
 
         // Action was not run from an editor - see if one is open at all.
         val project = e.project
-        if(project !== null) {
-            for(editor in FileEditorManager.getInstance(project).selectedEditors) {
-                if(TinkerConsole.openFile == editor.file) {
+        if (project !== null) {
+            for (editor in FileEditorManager.getInstance(project).selectedEditors) {
+                if (TinkerConsole.openFile == editor.file) {
                     return editor.file
                 }
             }

@@ -7,20 +7,18 @@ import com.intellij.testFramework.LightVirtualFile
 import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.cache.PersistentProjectCache
 
-class TinkerConsole {
-    companion object {
-        var openFile: VirtualFile? = null
+object TinkerConsole {
+    var openFile: VirtualFile? = null
 
-        fun open(project: Project) {
-            if(openFile == null) {
-                openFile = LightVirtualFile(
-                    "Tinker Console",
-                    PhpFileType.INSTANCE,
-                    project.getService(PersistentProjectCache::class.java).state.lastCode
-                )
-            }
-
-            FileEditorManager.getInstance(project).openFile(openFile!!, true)
+    fun open(project: Project) {
+        if (openFile == null) {
+            openFile = LightVirtualFile(
+                "Tinker Console",
+                PhpFileType.INSTANCE,
+                project.getService(PersistentProjectCache::class.java).state.lastCode
+            )
         }
+
+        FileEditorManager.getInstance(project).openFile(openFile!!, true)
     }
 }

@@ -71,8 +71,11 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         this.tinkerOutput!!.text = "<html>" +
             "<head>" +
             "<style>" +
-            "body{word-wrap:break-word; color:${toHex(titlePane!!.foreground)}; font-family:${titlePane!!.font.family}; " +
-            "background-color:#;} " +
+            "body{" +
+            "   word-wrap:break-word;" +
+            "   color:${toHex(titlePane!!.foreground)};" +
+            "   font-family:${titlePane!!.font.family};" +
+            "} " +
             ".output{padding:5px;} " +
             ".header{font-weight:bold;}" +
             "</style>" +
@@ -100,27 +103,27 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         val propColor = DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes
             .foregroundColor
 
-        val regex = Regex("(.*\n=>)(.*)", RegexOption.DOT_MATCHES_ALL);
+        val regex = Regex("(.*\n=>)(.*)", RegexOption.DOT_MATCHES_ALL)
         return text.replace(regex, "$1") +
             text.replace(regex, "$2")
-                .replace( //Strings in array before =>
+                .replace( // Strings in array before =>
                     Regex("\"((?:[^\"\\\\]|\\\\.)*)\"\\s=>"),
                     "&quot;<font color=\"${toHex(propColor)}\">$1</font>&quot;" +
                         " =>"
                 )
-                .replace( //Ints in array before =>
+                .replace( // Ints in array before =>
                     Regex("([0-9]+)\\s=>"),
                     "<font color=\"${toHex(propColor)}\">$1</font> =>"
                 )
-                .replace( //String in objects before :
+                .replace( // String in objects before :
                     Regex("\\+\"((?:[^\"\\\\]|\\\\.)*)\":"),
                     "+&quot;<b>$1</b>&quot;:"
                 )
-                .replace( //Strings as values
+                .replace( // Strings as values
                     Regex("(=>|:)\\s\"((?:[^\"\\\\]|\\\\.)*)\""),
                     "$1 &quot;<font color=\"${toHex(stringColor)}\">$2</font>&quot;"
                 )
-                .replace( //Ints as values
+                .replace( // Ints as values
                     Regex("(=>|:)\\s([0-9]+)"),
                     "$1 <font color=\"${toHex(numberColor)}\">$2</font>"
                 )
