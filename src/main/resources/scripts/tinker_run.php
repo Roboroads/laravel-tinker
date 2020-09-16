@@ -37,11 +37,15 @@ $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 $shell->setOutput($output);
 
 $autoloadClassMap = __DIR__ . '/vendor/composer/autoload_classmap.php';
-$loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
+if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
+    $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
+}
 
 $code = str_replace(['<?=', '<?php', '<?', '?>'], '', $argv[1]);
 $shell->addInput($code, true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 
-$loader->unregister();
+if(isset($loader)) {
+    $loader->unregister();
+}
