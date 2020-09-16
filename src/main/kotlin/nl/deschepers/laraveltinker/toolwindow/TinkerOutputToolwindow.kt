@@ -14,6 +14,7 @@ import kotlin.concurrent.schedule
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     private var tinkerOutputToolWindowContent: JPanel? = null
     private var tinkerOutput: JTextPane? = null
+    private var titlePane: JTextPane? = null
     private var outputText: String = ""
     private var outputTime: String = ""
 
@@ -64,7 +65,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         this.tinkerOutput!!.text = "<html>" +
             "<head>" +
             "<style>" +
-            "body{word-wrap:break-word;} " +
+            "body{word-wrap:break-word; color:#${Integer.toHexString(titlePane!!.foreground.rgb)
+                .substring(2)} !important; font-family:${titlePane!!.font.family};} " +
             ".output{padding:5px;} " +
             ".header{font-weight:bold;}" +
             "</style>" +
