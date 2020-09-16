@@ -7,14 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
+ - [#7] Output syntax highlighting
 
 ### Fixed
+ - [#11] Plugin won't create a null file anymore on windows. 
+ - [#16] Only 1 tinker console will be open at all times.
+ - [#18] Added the LARAVEL_START constant to the tinker run script.
+ - [#19] Colors in output window now reset to IDE colors when running.
+ - [#12] [#20] Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
+   - By just checking if it exists before loading it
+   - Should fix the plugin for laravel/tinker versions `<= 1.0.1`
 
 ### Security
 ## [1.1.1]

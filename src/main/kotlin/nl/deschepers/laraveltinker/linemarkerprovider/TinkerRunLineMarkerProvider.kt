@@ -6,13 +6,13 @@ import com.intellij.icons.AllIcons.RunConfigurations.TestState.Run
 import com.intellij.openapi.editor.markup.GutterIconRenderer.Alignment.RIGHT
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
-import nl.deschepers.laraveltinker.editor.TinkerEditor
+import nl.deschepers.laraveltinker.editor.TinkerConsole
 import nl.deschepers.laraveltinker.run.PhpArtisanTinker
 import java.awt.event.MouseEvent
 
 class TinkerRunLineMarkerProvider : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        if (TinkerEditor.openFiles.contains(element.containingFile.virtualFile) &&
+        if (TinkerConsole.openFile == element.containingFile.virtualFile &&
             element.elementType.toString() == "php opening tag"
         ) {
 
