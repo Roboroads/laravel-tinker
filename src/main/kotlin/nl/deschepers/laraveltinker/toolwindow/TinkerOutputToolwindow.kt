@@ -1,7 +1,9 @@
 package nl.deschepers.laraveltinker.toolwindow
 
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.wm.ToolWindow
 import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import java.awt.Color
 import java.awt.Desktop
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -61,12 +63,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         }
     }
 
+    fun toHex(color: Color): String {
+        return "#" + Integer.toHexString(color.rgb).substring(2)
+    }
+
     fun updateView() {
         this.tinkerOutput!!.text = "<html>" +
             "<head>" +
             "<style>" +
-            "body{word-wrap:break-word; color:#${Integer.toHexString(titlePane!!.foreground.rgb)
-                .substring(2)} !important; font-family:${titlePane!!.font.family};} " +
+            "body{word-wrap:break-word; color:${toHex(titlePane!!.foreground)}; font-family:${titlePane!!.font.family}; " +
+            "background-color:#;} " +
             ".output{padding:5px;} " +
             ".header{font-weight:bold;}" +
             "</style>" +
@@ -77,7 +83,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
             "</div>" +
             "<div class=\"output\">" +
             "<pre><code>" +
-            outputText +
+            highlightSyntax("\n" + outputText) +
             "</code></pre>" +
             "</div>" +
             "</body>" +
@@ -86,5 +92,37 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
 
     fun getContent(): JPanel? {
         return tinkerOutputToolWindowContent
+    }
+
+    private fun highlightSyntax(text: String): String {
+        val stringColor = DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor
+        val numberColor = DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor
+        val propColor = DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes
+            .foregroundColor
+
+        val regex = Regex("(.*\n=>)(.*)", RegexOption.DOT_MATCHES_ALL);
+        return text.replace(regex, "$1") +
+            text.replace(regex, "$2")
+                .replace( //Strings in array before =>
+                    Regex("\"((?:[^\"\\\\]|\\\\.)*)\"\\s=>"),
+                    "&quot;<font color=\"${toHex(propColor)}\">$1</font>&quot;" +
+                        " =>"
+                )
+                .replace( //Ints in array before =>
+                    Regex("([0-9]+)\\s=>"),
+                    "<font color=\"${toHex(propColor)}\">$1</font> =>"
+                )
+                .replace( //String in objects before :
+                    Regex("\\+\"((?:[^\"\\\\]|\\\\.)*)\":"),
+                    "+&quot;<b>$1</b>&quot;:"
+                )
+                .replace( //Strings as values
+                    Regex("(=>|:)\\s\"((?:[^\"\\\\]|\\\\.)*)\""),
+                    "$1 &quot;<font color=\"${toHex(stringColor)}\">$2</font>&quot;"
+                )
+                .replace( //Ints as values
+                    Regex("(=>|:)\\s([0-9]+)"),
+                    "$1 <font color=\"${toHex(numberColor)}\">$2</font>"
+                )
     }
 }
