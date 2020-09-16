@@ -17,18 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
-## [1.2.0]
-### Added
 
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [1.2.0]
 ### Added
  - [#7] Output syntax highlighting
@@ -41,8 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - [#12] [#20] Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
    - By just checking if it exists before loading it
    - Should fix the plugin for laravel/tinker versions `<= 1.0.1`
-
-### Security
+   
 ## [1.1.1]
 ### Added
  - Your last command will now be saved (on per-project level)
