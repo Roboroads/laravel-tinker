@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+ - [#23] Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
 
 ### Security
 

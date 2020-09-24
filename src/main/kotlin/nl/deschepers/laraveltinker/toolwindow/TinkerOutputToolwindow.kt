@@ -104,6 +104,11 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
             .foregroundColor
 
         val regex = Regex("(.*\n=>)(.*)", RegexOption.DOT_MATCHES_ALL)
+
+        if (!text.matches(regex)) {
+            return text
+        }
+
         return text.replace(regex, "$1") +
             text.replace(regex, "$2")
                 .replace( // Strings in array before =>
