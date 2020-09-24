@@ -3,6 +3,7 @@ package nl.deschepers.laraveltinker.run
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessTerminatedListener
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
@@ -29,6 +30,8 @@ import java.util.stream.Collectors
 
 class PhpArtisanTinker(private val project: Project, private val phpCode: String) {
     fun run() {
+        FileDocumentManager.getInstance().saveAllDocuments()
+
         val runConfiguration = PhpScriptRunConfiguration(
             project,
             PhpScriptRuntimeConfigurationProducer().configurationFactory,

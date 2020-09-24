@@ -16,7 +16,7 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
             element.elementType.toString() == "php opening tag"
         ) {
 
-            return LineMarkerInfo<PsiElement>(
+            return LineMarkerInfo(
                 element,
                 element.textRange,
                 Run,
