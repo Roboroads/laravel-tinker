@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [1.2.1]
+### Added
  - [#25] When running tinker it will now save all documents before executing
 ### Fixed
  - [#23] Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
