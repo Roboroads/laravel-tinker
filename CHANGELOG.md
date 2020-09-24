@@ -19,68 +19,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 ## [1.2.1]
 ### Added
- - [#25] When running tinker it will now save all documents before executing
+- [ISS-25](https://github.com/Roboroads/laravel-tinker/issues/25) When running tinker it will now save all documents before executing
 ### Fixed
- - [#23] Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
+- [ISS-23](https://github.com/Roboroads/laravel-tinker/issues/23) Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
 
 ## [1.2.0]
 ### Added
- - [#7] Output syntax highlighting
+- [ISS-7](https://github.com/Roboroads/laravel-tinker/issues/7) Output syntax highlighting
 
 ### Fixed
- - [#11] Plugin won't create a null file anymore on windows. 
- - [#16] Only 1 tinker console will be open at all times.
- - [#18] Added the LARAVEL_START constant to the tinker run script.
- - [#19] Colors in output window now reset to IDE colors when running.
- - [#12] [#20] Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
-   - By just checking if it exists before loading it
-   - Should fix the plugin for laravel/tinker versions `<= 1.0.1`
+- [ISS-11](https://github.com/Roboroads/laravel-tinker/issues/11) Plugin won't create a null file anymore on windows. 
+- [ISS-16](https://github.com/Roboroads/laravel-tinker/issues/16) Only 1 tinker console will be open at all times.
+- [ISS-18](https://github.com/Roboroads/laravel-tinker/issues/18) Added the LARAVEL_START constant to the tinker run script.
+- [ISS-19](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
+- [ISS-12](https://github.com/Roboroads/laravel-tinker/issues/12) & [ISS-20](https://github.com/Roboroads/laravel-tinker/issues/20) Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
+  - By just checking if it exists before loading it
+  - Should fix the plugin for laravel/tinker versions `<= 1.0.1`
    
 ## [1.1.1]
 ### Added
- - Your last command will now be saved (on per-project level)
- - Non-obtrusive reminder you can support this package.
+- [ISS-10](https://github.com/Roboroads/laravel-tinker/issues/10) Your last command will now be saved (on per-project level)
+- Non-obtrusive reminder you can support this package.
  
 ### Changed
- - Output window now (hopefully) always inherits the font and color of the IDE
+- [ISS-6](https://github.com/Roboroads/laravel-tinker/issues/6) Output window now (hopefully) always inherits the font and color of the IDE
 
 ### Fixed
- - The link to PHP settings in error dialogs now *acually* links to the correct settings page.
- - Output showing slow on larger outputs
+- The link to PHP settings in error dialogs now *acually* links to the correct settings page.
+- [ISS-9](https://github.com/Roboroads/laravel-tinker/issues/9) Output showing slow on larger outputs
 
 ## [1.1.0]
 
 ### Added
- - Run button at the opening tag of the tinker console
+- Run button at the opening tag of the tinker console
 
 ### Changed
- - Cleaned output of tinker output window
- - PHP Runner script is now a php file, makes it easier to work with in the IDE.
+- Cleaned output of tinker output window
+- PHP Runner script is now a php file, makes it easier to work with in the IDE.
  
 ### Fixed
- - Default keybinding in Mac OS
- - Toolwindow not opening automatically if not opened before
- - Leaving zombie processes (something pcntl did)
- - Silent crash when docker was not set
- - Tinker process not shutting down because of waiting for non-existent input
+- Default keybinding in Mac OS
+- Toolwindow not opening automatically if not opened before
+- Leaving zombie processes (something pcntl did)
+- Silent crash when docker was not set
+- Tinker process not shutting down because of waiting for non-existent input
 
 ## [1.0.0]
 ### Added
- - A correct way to interact with remote interpreters
+- [ISS-1](https://github.com/Roboroads/laravel-tinker/issues/1) A correct way to interact with remote interpreters
 
 ### Changed
- - Made errors more to the point
- - Better code splitting in message balloons
- - More text in the readme
- - Better formatting in tinker output
+- Made errors more to the point
+- Better code splitting in message balloons
+- More text in the readme
+- Better formatting in tinker output
  
 ### Fixed
- - Laravel now actually gets bootstrapped
- - Removed needless output from interpreter, like docker startup messages
- - Made output toolwindow font show in readable colors
- - Campatibility issues that arose in 0.0.1-ALPHA
+- Laravel now actually gets bootstrapped
+- Removed needless output from interpreter, like docker startup messages
+- Made output toolwindow font show in readable colors
+- Campatibility issues that arose in 0.0.1-ALPHA
  
  
-## [0.0.1-ALPHA] - 2020-08-27
+## [0.0.1-ALPHA]
 ### Added
- - Everything
+- Everything
