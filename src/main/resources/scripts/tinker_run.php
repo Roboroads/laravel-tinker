@@ -41,7 +41,24 @@ if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
     $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
 }
 
-$code = str_replace(['<?=', '<?php', '<?', '?>'], '', $argv[1]);
+$code = array_reduce(
+    token_get_all($argv[1]),
+    function ($carry, $token) {
+        if (is_string($token)) {
+            return $carry . $token;
+        }
+
+        [$id, $text] = $token;
+
+        if (in_array($id, [T_COMMENT, T_DOC_COMMENT, T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO, T_CLOSE_TAG], true)) {
+            $text = '';
+        }
+
+        return $carry . $text;
+    },
+    ''
+);
+
 $shell->addInput($code, true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
