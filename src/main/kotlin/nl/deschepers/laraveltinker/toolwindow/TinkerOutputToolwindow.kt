@@ -69,15 +69,20 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     fun updateView() {
-        val pluginSettings = PluginSettings.getInstance();
+        val pluginSettings = PluginSettings.getInstance()
 
-        this.tinkerOutput!!.text = """
+        val color = toHex(titlePane!!.foreground)
+        val timeString = if (pluginSettings.showExecutionStarted) LaravelTinkerBundle.message("lt.started.at", outputTime) else ""
+        val highlightedOutput = highlightSyntax("\n" + outputText)
+
+        this.tinkerOutput!!.text =
+            """
             <html>
                 <head>
                     <style>
                         body {
                            word-wrap:break-word;
-                           color: ${toHex(titlePane!!.foreground)};
+                           color: $color;
                            font-family: ${titlePane!!.font.family};
                         } 
                         .output {
@@ -90,12 +95,12 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                 </head>
                 <body>
                     <div class="header">
-                        ${ if(pluginSettings.showExecutionStarted) LaravelTinkerBundle.message("lt.started.at", outputTime) else "" }
+                        $timeString
                     </div>
                     <div class="output">
                         <pre>
                             <code>
-                                ${highlightSyntax("\n" + outputText)}
+                                $highlightedOutput
                             </code>
                         </pre>
                     </div>

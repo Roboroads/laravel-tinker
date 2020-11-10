@@ -4,12 +4,16 @@
 formatting:
   Indentation:
     active: false
+  MaximumLineLength:
+    maxLineLength: 180
 
 style:
   ReturnCount:
     active: false
   MagicNumber:
     active: false
+  MaxLineLength:
+    maxLineLength: 180
 
 complexity:
   LongMethod:

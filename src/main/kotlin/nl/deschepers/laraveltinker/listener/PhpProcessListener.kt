@@ -33,7 +33,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
             {
                 val pluginSettings = PluginSettings.getInstance()
 
-                if(pluginSettings.showExecutionEnded) {
+                if (pluginSettings.showExecutionEnded) {
                     TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(
                         LaravelTinkerBundle.message("lt.execution.finished")
                     )
