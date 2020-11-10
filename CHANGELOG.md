@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+- The title of the tinker screen was editable - now it isn't.
 
 ### Security
 ## [1.2.1]
