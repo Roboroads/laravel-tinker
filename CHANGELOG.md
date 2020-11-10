@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-
+- Dependencies updated to the latest versions
 ### Deprecated
 
 ### Removed
@@ -18,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The title of the tinker screen was editable - now it isn't.
 - [ISS-28](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again
   - Credits to [@emargareten](https://github.com/emargareten)
-
 ### Security
 ## [1.2.1]
 ### Added
