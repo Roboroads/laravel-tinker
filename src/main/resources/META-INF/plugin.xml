@@ -10,6 +10,14 @@
       <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
         replace-all="true"/>
     </action>
+    <action class="nl.deschepers.laraveltinker.action.CloseTinkerAction"
+      description="Closes the Tinker Console and output window"
+      icon="/icons/laravel-tinker-icon16.svg" id="CloseTinkerAction"
+      text="Close Tinker console/output">
+      <keyboard-shortcut keymap="$default" />
+      <keyboard-shortcut keymap="Mac OS X" />
+      <keyboard-shortcut keymap="Mac OS X 10.5+" />
+    </action>
   </actions>
 
   <depends>com.jetbrains.php</depends>
