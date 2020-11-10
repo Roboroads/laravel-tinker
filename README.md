@@ -9,7 +9,7 @@ Default shortcut: ctrl+Shift+T
 
 Both options will open a console if you don't have one open currently or run the current console if you do.
 
-**NOTICE** - this plugin is new and might contain bugs. Please report them at the github issues page on the link below
+**NOTICE** - this plugin is maturing but might still contain bugs. Please report them at the github issues page on the link below
 
  - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
  - [🙏🏼 Patreon](https://www.patreon.com/roboroads): Consider supporting this project if it helped you 😊
@@ -21,9 +21,12 @@ Both options will open a console if you don't have one open currently or run the
  - Other github projects:
    - [laravel/tinker](https://github.com/laravel/tinker) - The tool this plugin integrates
    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) - Heavily inspired this plugin
+ - [Contributors to this project](https://github.com/Roboroads/laravel-tinker/graphs/contributors)
+   - *I **will** name you seperately if your amount of contributions is exceptional*
+
 
 ## Contributing
 
-I do not have a lot of experience with Kotlin, so I kind of "tinkered" this together. Any tips or feedback is welcome in the [Issues Tab](https://github.com/Roboroads/laravel-tinker/issues) - or better, make me a PR!
+I do not have a lot of experience with Kotlin, so I kind of *tinkered* (😏) this together. Any tips or feedback is welcome in the [Issues Tab](https://github.com/Roboroads/laravel-tinker/issues) - or better, make me a PR!
 
 Want to be part of this plugin? Every positive contribution to this project is welcome! 
