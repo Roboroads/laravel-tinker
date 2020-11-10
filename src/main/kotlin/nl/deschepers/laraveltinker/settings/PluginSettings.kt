@@ -12,7 +12,8 @@ import org.jetbrains.annotations.NotNull
     storages = [Storage("laravel-tinker-plugin-settings.xml")]
 )
 class PluginSettings : PersistentStateComponent<PluginSettings> {
-    var commandLineParams: String = ""
+    var showExecutionStarted = true
+    var showExecutionEnded = true
 
     companion object {
         fun getInstance(): PluginSettings {

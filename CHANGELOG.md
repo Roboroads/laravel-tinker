@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Taravel Tinker settings page (under Tools)
+- Laravel Tinker settings page (under Tools)
+- [ISS-30](https://github.com/Roboroads/laravel-tinker/issues/30) Ability to disable start and finish messages in output
 ### Changed
 - Dependencies updated to the latest versions
 ### Deprecated

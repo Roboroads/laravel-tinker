@@ -3,6 +3,7 @@ package nl.deschepers.laraveltinker.toolwindow
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.wm.ToolWindow
 import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.settings.PluginSettings
 import java.awt.Color
 import java.awt.Desktop
 import java.time.LocalDateTime
@@ -68,29 +69,39 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     fun updateView() {
-        this.tinkerOutput!!.text = "<html>" +
-            "<head>" +
-            "<style>" +
-            "body{" +
-            "   word-wrap:break-word;" +
-            "   color:${toHex(titlePane!!.foreground)};" +
-            "   font-family:${titlePane!!.font.family};" +
-            "} " +
-            ".output{padding:5px;} " +
-            ".header{font-weight:bold;}" +
-            "</style>" +
-            "</head>" +
-            "<body>" +
-            "<div class=\"header\">" +
-            LaravelTinkerBundle.message("lt.started.at", outputTime) +
-            "</div>" +
-            "<div class=\"output\">" +
-            "<pre><code>" +
-            highlightSyntax("\n" + outputText) +
-            "</code></pre>" +
-            "</div>" +
-            "</body>" +
-            "</html>"
+        val pluginSettings = PluginSettings.getInstance();
+
+        this.tinkerOutput!!.text = """
+            <html>
+                <head>
+                    <style>
+                        body {
+                           word-wrap:break-word;
+                           color: ${toHex(titlePane!!.foreground)};
+                           font-family: ${titlePane!!.font.family};
+                        } 
+                        .output {
+                            padding: 5px; 
+                        } 
+                        .header {
+                            font-weight: bold;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        ${ if(pluginSettings.showExecutionStarted) LaravelTinkerBundle.message("lt.started.at", outputTime) else "" }
+                    </div>
+                    <div class="output">
+                        <pre>
+                            <code>
+                                ${highlightSyntax("\n" + outputText)}
+                            </code>
+                        </pre>
+                    </div>
+                </body>
+            </html>
+            """
     }
 
     fun getContent(): JPanel? {

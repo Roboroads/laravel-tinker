@@ -8,6 +8,7 @@ import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import nl.deschepers.laraveltinker.cache.PersistentApplicationCache
+import nl.deschepers.laraveltinker.settings.PluginSettings
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
 class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessListener {
@@ -30,12 +31,16 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
     override fun processTerminated(event: ProcessEvent) {
         ApplicationManager.getApplication().invokeLater(
             {
-                TinkerOutputToolWindowFactory
-                    .tinkerOutputToolWindow?.addOutput(
+                val pluginSettings = PluginSettings.getInstance()
+
+                if(pluginSettings.showExecutionEnded) {
+                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(
                         LaravelTinkerBundle.message("lt.execution.finished")
                     )
+                }
 
                 if (PersistentApplicationCache.instance.state.executionsCount >= SUPPORT_MESSAGE_EXECUTIONS) {
+                    /* Non-obtrusive, but still shameless plug .. :X */
                     TinkerOutputToolWindowFactory
                         .tinkerOutputToolWindow?.addOutput(
                             "\n\n\n" + LaravelTinkerBundle.message("lt.consider.supporting")

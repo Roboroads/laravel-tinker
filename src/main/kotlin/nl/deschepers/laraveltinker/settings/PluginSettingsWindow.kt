@@ -1,36 +1,35 @@
 package nl.deschepers.laraveltinker.settings
 
-import com.intellij.ui.components.JBLabel
-import com.intellij.ui.components.JBTextField
+import com.intellij.ui.components.JBCheckBox
 import com.intellij.util.ui.FormBuilder
-import org.jetbrains.annotations.NotNull
+import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import javax.swing.JPanel
 
 class PluginSettingsWindow {
     private var settingsPanel: JPanel
-    private val commandLineParams = JBTextField()
+    private val showExecutionStartedCheckbox = JBCheckBox(LaravelTinkerBundle.message("lt.setting.show_execution_start"))
+    private val showExecutionEndedCheckbox = JBCheckBox(LaravelTinkerBundle.message("lt.setting.show_execution_end"))
+
+    var showExecutionStarted: Boolean
+        get() = this.showExecutionStartedCheckbox.isSelected
+        set(value) {
+            this.showExecutionStartedCheckbox.isSelected = value
+        }
+    var showExecutionEnded: Boolean
+        get() = this.showExecutionEndedCheckbox.isSelected
+        set(value) {
+            this.showExecutionEndedCheckbox.isSelected = value
+        }
 
     init {
         settingsPanel = FormBuilder.createFormBuilder()
-            .addLabeledComponent(
-                JBLabel("Extra command line params: "),
-                commandLineParams,
-                1,
-                true
-            )
+            .addComponent(showExecutionStartedCheckbox)
+            .addComponent(showExecutionEndedCheckbox)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
 
     fun getPanel(): JPanel {
         return settingsPanel
-    }
-
-    fun getCommandLineParams(): String {
-        return commandLineParams.text
-    }
-
-    fun setCommandLineParams(newText: @NotNull String) {
-        commandLineParams.text = newText
     }
 }

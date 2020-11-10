@@ -14,17 +14,20 @@ class PluginSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val settings = PluginSettings.getInstance()
-        return !pluginSettingsWindow!!.getCommandLineParams().equals(settings.commandLineParams)
+        return pluginSettingsWindow!!.showExecutionStarted != settings.showExecutionStarted ||
+            pluginSettingsWindow!!.showExecutionEnded != settings.showExecutionEnded
     }
 
     override fun apply() {
         val settings = PluginSettings.getInstance()
-        settings.commandLineParams = pluginSettingsWindow!!.getCommandLineParams()
+        settings.showExecutionStarted = pluginSettingsWindow!!.showExecutionStarted
+        settings.showExecutionEnded = pluginSettingsWindow!!.showExecutionEnded
     }
 
     override fun reset() {
         val settings = PluginSettings.getInstance()
-        pluginSettingsWindow!!.setCommandLineParams(settings.commandLineParams)
+        pluginSettingsWindow!!.showExecutionStarted = settings.showExecutionStarted
+        pluginSettingsWindow!!.showExecutionEnded = settings.showExecutionEnded
     }
 
     override fun getDisplayName(): String {
