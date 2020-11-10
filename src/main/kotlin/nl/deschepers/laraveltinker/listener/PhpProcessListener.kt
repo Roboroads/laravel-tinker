@@ -32,14 +32,14 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
             {
                 TinkerOutputToolWindowFactory
                     .tinkerOutputToolWindow?.addOutput(
-                    LaravelTinkerBundle.message("lt.execution.finished")
-                )
+                        LaravelTinkerBundle.message("lt.execution.finished")
+                    )
 
                 if (PersistentApplicationCache.instance.state.executionsCount >= SUPPORT_MESSAGE_EXECUTIONS) {
                     TinkerOutputToolWindowFactory
                         .tinkerOutputToolWindow?.addOutput(
-                        "\n\n\n" + LaravelTinkerBundle.message("lt.consider.supporting")
-                    )
+                            "\n\n\n" + LaravelTinkerBundle.message("lt.consider.supporting")
+                        )
                     PersistentApplicationCache.instance.state.executionsCount = 0
                 }
             },

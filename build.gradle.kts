@@ -118,7 +118,6 @@ tasks {
         )
     }
 
-
     runPluginVerifier {
         ideVersions(pluginVerifierIdeVersions)
     }
