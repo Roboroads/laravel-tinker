@@ -21,6 +21,13 @@
     <applicationService
       serviceImplementation="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"
       serviceInterface="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"/>
+    <applicationService
+      serviceImplementation="nl.deschepers.laraveltinker.settings.PluginSettings"/>
+    <applicationConfigurable
+      parentId="tools"
+      instance="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
+      id="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
+      displayName="Laravel Tinker"/>
 
     <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
       language="PHP"/>
