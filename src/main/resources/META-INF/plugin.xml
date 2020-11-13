@@ -14,9 +14,6 @@
       description="Closes the Tinker Console and output window"
       icon="/icons/laravel-tinker-icon16.svg" id="CloseTinkerAction"
       text="Close Tinker console/output">
-      <keyboard-shortcut keymap="$default" />
-      <keyboard-shortcut keymap="Mac OS X" />
-      <keyboard-shortcut keymap="Mac OS X 10.5+" />
     </action>
   </actions>
 
