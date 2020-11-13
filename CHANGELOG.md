@@ -12,15 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ISS-21](https://github.com/Roboroads/laravel-tinker/issues/21) Ability to add a shortcut to close all involving Tinker
 ### Changed
 - Dependencies updated to the latest versions
-### Deprecated
-
-### Removed
-
 ### Fixed
 - The title of the tinker screen was editable - now it isn't.
 - [ISS-28](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again
   - Credits to [@emargareten](https://github.com/emargareten)
-### Security
+ 
 ## [1.2.1]
 ### Added
 - [ISS-25](https://github.com/Roboroads/laravel-tinker/issues/25) When running tinker it will now save all documents before executing
