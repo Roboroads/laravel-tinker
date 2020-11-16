@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [1.3.0]
+### Added
 - Laravel Tinker settings page (under Tools)
 - [ISS-30](https://github.com/Roboroads/laravel-tinker/issues/30) Ability to disable start and finish messages in output
 - [ISS-21](https://github.com/Roboroads/laravel-tinker/issues/21) Ability to add a shortcut to close all involving Tinker
