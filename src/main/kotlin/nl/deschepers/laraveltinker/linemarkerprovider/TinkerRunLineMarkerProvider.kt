@@ -10,7 +10,6 @@ import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import nl.deschepers.laraveltinker.editor.TinkerConsole
 import nl.deschepers.laraveltinker.run.PhpArtisanTinker
 import java.awt.event.MouseEvent
-import java.util.function.Supplier
 
 class TinkerRunLineMarkerProvider : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
