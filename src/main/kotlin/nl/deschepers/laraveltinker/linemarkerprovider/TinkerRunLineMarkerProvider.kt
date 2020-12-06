@@ -6,9 +6,11 @@ import com.intellij.icons.AllIcons.RunConfigurations.TestState.Run
 import com.intellij.openapi.editor.markup.GutterIconRenderer.Alignment.RIGHT
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
+import nl.deschepers.laraveltinker.LaravelTinkerBundle
 import nl.deschepers.laraveltinker.editor.TinkerConsole
 import nl.deschepers.laraveltinker.run.PhpArtisanTinker
 import java.awt.event.MouseEvent
+import java.util.function.Supplier
 
 class TinkerRunLineMarkerProvider : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
@@ -27,7 +29,8 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
                         psiElement.containingFile.originalFile.text
                     ).run()
                 },
-                RIGHT
+                RIGHT,
+                { LaravelTinkerBundle.message("lt.run") }
             )
         }
         return null

@@ -2,8 +2,7 @@ package nl.deschepers.laraveltinker.balloon
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationAction
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
+import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
@@ -14,8 +13,7 @@ open class Balloon(private val project: Project) {
     open var content: String = ""
 
     fun show() {
-        val notificationGroup =
-            NotificationGroup("Laravel Tinker", NotificationDisplayType.BALLOON, true)
+        val notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup("Laravel Tinker")
         val notification: Notification
 
         if (title != null) {
