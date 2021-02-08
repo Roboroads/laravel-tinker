@@ -16,15 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Every action this plugin can do is now individually bindable in your keymap.
 - Reorganization of a lot of classes
 - Dependencies have been updated
-### Deprecated
-
 ### Removed
 - BREAKING: Per-project cache (which stored your last executed tinker code)
   - You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it!
   - `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
-### Fixed
-
-### Security
 ## [1.3.1]
 ### Changed
 - Updated dependencies
