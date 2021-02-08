@@ -29,7 +29,7 @@ if (class_exists('Illuminate\Foundation\Application')) {
 
 $config->getPresenter()->addCasters($casters);
 
-$config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'nul' : '/dev/null');
+$config->setHistoryFile(file_exists('/dev/null') ? '/dev/null' : 'php://temp');
 
 $shell = new \Psy\Shell($config);
 
