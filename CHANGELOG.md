@@ -14,12 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - BREAKING: Every action is now independently listed
   - The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now
 - Every action this plugin can do is now individually bindable in your keymap.
-- Reorganization of a lot of classes
-- Dependencies have been updated
 ### Removed
 - BREAKING: Per-project cache (which stored your last executed tinker code)
   - You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it!
   - `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
+### Other
+- Reorganization of a lot of classes
+- Dependencies have been updated
 ## [1.3.1]
 ### Changed
 - Updated dependencies
