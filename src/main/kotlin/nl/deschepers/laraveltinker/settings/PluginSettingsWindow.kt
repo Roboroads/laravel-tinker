@@ -2,13 +2,13 @@ package nl.deschepers.laraveltinker.settings
 
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.util.ui.FormBuilder
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.Strings
 import javax.swing.JPanel
 
 class PluginSettingsWindow {
     private var settingsPanel: JPanel
-    private val showExecutionStartedCheckbox = JBCheckBox(LaravelTinkerBundle.message("lt.setting.show_execution_start"))
-    private val showExecutionEndedCheckbox = JBCheckBox(LaravelTinkerBundle.message("lt.setting.show_execution_end"))
+    private val showExecutionStartedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_start"))
+    private val showExecutionEndedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_end"))
 
     var showExecutionStarted: Boolean
         get() = this.showExecutionStartedCheckbox.isSelected

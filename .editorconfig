@@ -278,6 +278,8 @@ ij_editorconfig_spaces_around_assignment_operators = true
 
 [{*.ant,*.fxml,*.jhm,*.jnlp,*.jrxml,*.pom,*.rng,*.tld,*.wsdd,*.wsdl,*.xjb,*.xml,*.xsd,*.xsl,*.xslt,*.xul,phpunit.xml.dist}]
 ij_continuation_indent_size = 2
+indent_size = 4
+tab_width = 4
 ij_xml_align_attributes = false
 ij_xml_align_text = false
 ij_xml_attribute_wrap = normal

@@ -2,7 +2,7 @@ package nl.deschepers.laraveltinker.toolwindow
 
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.wm.ToolWindow
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.PluginSettings
 import java.awt.Color
 import java.awt.Desktop
@@ -72,7 +72,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         val pluginSettings = PluginSettings.getInstance()
 
         val color = toHex(titlePane!!.foreground)
-        val timeString = if (pluginSettings.showExecutionStarted) LaravelTinkerBundle.message("lt.started.at", outputTime) else ""
+        val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
         val highlightedOutput = highlightSyntax("\n" + outputText)
 
         this.tinkerOutput!!.text =

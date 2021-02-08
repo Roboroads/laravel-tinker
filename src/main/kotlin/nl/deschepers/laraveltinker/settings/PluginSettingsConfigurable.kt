@@ -1,7 +1,7 @@
 package nl.deschepers.laraveltinker.settings
 
 import com.intellij.openapi.options.Configurable
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.Strings
 import javax.swing.JComponent
 
 class PluginSettingsConfigurable : Configurable {
@@ -31,7 +31,7 @@ class PluginSettingsConfigurable : Configurable {
     }
 
     override fun getDisplayName(): String {
-        return LaravelTinkerBundle.getMessage("name")
+        return Strings.getMessage("name")
     }
 
     override fun disposeUIResources() {

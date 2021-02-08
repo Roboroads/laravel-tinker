@@ -5,10 +5,10 @@ import com.intellij.notification.NotificationAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.options.ShowSettingsUtil
 import com.jetbrains.php.config.PhpProjectConfigurable
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.Strings
 
 class EditPhpInterpreterSettingsAction : NotificationAction(
-    LaravelTinkerBundle.message("lt.php.interpreter.settings")
+    Strings.get("lt.php.interpreter.settings")
 ) {
     override fun actionPerformed(e: AnActionEvent, notification: Notification) {
         val project = e.project

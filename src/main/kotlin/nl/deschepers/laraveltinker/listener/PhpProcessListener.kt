@@ -6,8 +6,8 @@ import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.util.Key
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
-import nl.deschepers.laraveltinker.cache.PersistentApplicationCache
+import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 import nl.deschepers.laraveltinker.settings.PluginSettings
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
@@ -35,7 +35,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
 
                 if (pluginSettings.showExecutionEnded) {
                     TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(
-                        LaravelTinkerBundle.message("lt.execution.finished")
+                        Strings.get("lt.execution.finished")
                     )
                 }
 
@@ -43,7 +43,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
                     /* Non-obtrusive, but still shameless plug .. :X */
                     TinkerOutputToolWindowFactory
                         .tinkerOutputToolWindow?.addOutput(
-                            "\n\n\n" + LaravelTinkerBundle.message("lt.consider.supporting")
+                            "\n\n\n" + Strings.get("lt.consider.supporting")
                         )
                     PersistentApplicationCache.instance.state.executionsCount = 0
                 }

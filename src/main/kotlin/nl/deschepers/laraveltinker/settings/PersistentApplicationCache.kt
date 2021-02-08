@@ -1,4 +1,4 @@
-package nl.deschepers.laraveltinker.cache
+package nl.deschepers.laraveltinker.settings
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.ServiceManager

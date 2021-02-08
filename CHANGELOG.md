@@ -7,28 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+- BREAKING: [ISS-39](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles"
+- [ISS-37](https://github.com/Roboroads/laravel-tinker/issues/37) [ISS-38](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text
+  - This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`
 ### Changed
-
+- BREAKING: Every action is now independently listed
+  - The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now
+- Every action this plugin can do is now individually bindable in your keymap.
+- Reorganization of a lot of classes
+- Dependencies have been updated
 ### Deprecated
 
 ### Removed
-
+- BREAKING: Per-project cache (which stored your last executed tinker code)
+  - You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it!
+  - `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
 ### Fixed
 
 ### Security
 ## [1.3.1]
-### Added
-
 ### Changed
 - Updated dependencies
-### Deprecated
-
-### Removed
-
 ### Fixed
 - Compatibility with 2020.3
-### Security
 ## [1.3.0]
 ### Added
 - Laravel Tinker settings page (under Tools)

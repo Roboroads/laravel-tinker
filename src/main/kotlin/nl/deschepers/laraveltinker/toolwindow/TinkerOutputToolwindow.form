@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
-          <text resource-bundle="messages/LaravelTinkerBundle" key="lt.tinker.output"/>
+          <text resource-bundle="strings/strings" key="lt.tinker.output"/>
         </properties>
       </component>
       <scrollpane id="67dae">

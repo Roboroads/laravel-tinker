@@ -1,4 +1,4 @@
-package nl.deschepers.laraveltinker.run
+package nl.deschepers.laraveltinker.util
 
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.process.ProcessHandler
@@ -17,10 +17,9 @@ import com.jetbrains.php.config.commandLine.PhpCommandSettingsBuilder
 import com.jetbrains.php.run.PhpEditInterpreterExecutionException
 import com.jetbrains.php.run.script.PhpScriptRunConfiguration
 import com.jetbrains.php.run.script.PhpScriptRuntimeConfigurationProducer
-import nl.deschepers.laraveltinker.LaravelTinkerBundle
+import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
 import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
-import nl.deschepers.laraveltinker.cache.PersistentProjectCache
 import nl.deschepers.laraveltinker.listener.PhpProcessListener
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import java.io.BufferedReader
@@ -28,7 +27,7 @@ import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.stream.Collectors
 
-class PhpArtisanTinker(private val project: Project, private val phpCode: String) {
+class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: String) {
     fun run() {
         FileDocumentManager.getInstance().saveAllDocuments()
 
@@ -80,14 +79,14 @@ class PhpArtisanTinker(private val project: Project, private val phpCode: String
         } catch (ex: ExecutionException) {
             PhpInterpreterErrorBalloon(
                 project,
-                ex.message ?: LaravelTinkerBundle.message("lt.error.php.interpreter.error")
+                ex.message ?: Strings.get("lt.error.php.interpreter.error")
             ).show()
 
             return
         } catch (ex: PhpEditInterpreterExecutionException) {
             PhpInterpreterErrorBalloon(
                 project,
-                ex.message ?: LaravelTinkerBundle.message("lt.error.php.interpreter.error")
+                ex.message ?: Strings.get("lt.error.php.interpreter.error")
             ).show()
 
             return
@@ -99,12 +98,10 @@ class PhpArtisanTinker(private val project: Project, private val phpCode: String
         ToolWindowManager.getInstance(project).getToolWindow("Laravel Tinker")?.activate(null)
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.resetOutput()
 
-        project.getService(PersistentProjectCache::class.java).state.lastCode = phpCode
-
         ProgressManager.getInstance().run(
             object : Backgroundable(
                 project,
-                LaravelTinkerBundle.message("lt.running")
+                Strings.get("lt.running")
             ) {
                 override fun run(progressIndicator: ProgressIndicator) {
                     processHandler.startNotify()

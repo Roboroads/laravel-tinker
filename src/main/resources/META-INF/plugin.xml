@@ -1,54 +1,97 @@
 <idea-plugin>
-  <actions>
-    <action class="nl.deschepers.laraveltinker.action.OpenRunTinkerConsoleAction"
-      description="Opens or runs Tinker Console"
-      icon="/icons/laravel-tinker-icon16.svg" id="OpenTinkerConsoleAction"
-      text="Open/Run Tinker Console">
-      <add-to-group anchor="last" group-id="ToolsMenu"/>
-      <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
-      <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
-      <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
-        replace-all="true"/>
-    </action>
-    <action class="nl.deschepers.laraveltinker.action.CloseTinkerAction"
-      description="Closes the Tinker Console and output window"
-      icon="/icons/laravel-tinker-icon16.svg" id="CloseTinkerAction"
-      text="Close Tinker console/output">
-    </action>
-  </actions>
+    <actions>
+        <group
+          id="nl.deschepers.laraveltinker.MenuActions"
+          icon="/icons/laravel-tinker-icon16.svg"
+          text="Laravel Tinker"
+          description="Laravel Tinker actions"
+          popup="true">
+            <add-to-group anchor="last" group-id="ToolsMenu"/>
 
-  <depends>com.jetbrains.php</depends>
-  <depends>com.intellij.modules.platform</depends>
+            <action
+              id="nl.deschepers.laraveltinker.action.SmartAction"
+              class="nl.deschepers.laraveltinker.action.SmartAction"
+              description="Smart action"
+              text="Smart action"
+              icon="/icons/laravel-tinker-icon16.svg">
+                <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
+                <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
+                <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
+                  replace-all="true"/>
+            </action>
+            <action
+              id="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
+              class="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
+              description="Open new console"
+              text="Open new console">
+            </action>
+            <action
+              id="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
+              class="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
+              description="Reopen last console"
+              text="Reopen last console">
+            </action>
+            <action
+              id="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
+              class="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
+              description="Switch to console tab"
+              text="Switch to console tab">
+            </action>
+            <action
+              id="nl.deschepers.laraveltinker.action.RunConsoleAction"
+              class="nl.deschepers.laraveltinker.action.RunConsoleAction"
+              description="Run console"
+              text="Run console"
+              icon="runConfigurations/testState/run.svg">
+            </action>
+            <action
+              id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
+              class="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
+              description="Close all tinker windows"
+              text="Close all tinker windows"
+            />
+        </group>
 
-  <!-- Product and plugin compatibility requirements -->
-  <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
-  <extensions defaultExtensionNs="com.intellij">
-    <applicationService
-      serviceImplementation="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"
-      serviceInterface="nl.deschepers.laraveltinker.cache.PersistentApplicationCache"/>
-    <applicationService
-      serviceImplementation="nl.deschepers.laraveltinker.settings.PluginSettings"/>
-    <applicationConfigurable
-      parentId="tools"
-      instance="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
-      id="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
-      displayName="Laravel Tinker"/>
+        <action id="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
+          class="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
+          text="Open Tinker Console With Selection"
+          description="Opens a new tinker console with the code you have currently selected."
+          icon="/icons/laravel-tinker-icon16.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 
-    <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
-      language="PHP"/>
+    <depends>com.jetbrains.php</depends>
+    <depends>com.intellij.modules.platform</depends>
 
-    <projectService serviceImplementation="nl.deschepers.laraveltinker.cache.PersistentProjectCache"
-      serviceInterface="nl.deschepers.laraveltinker.cache.PersistentProjectCache"/>
-    <toolWindow anchor="right"
-      factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
-      icon="/icons/laravel-tinker-icon13.svg"
-      id="Laravel Tinker"/>
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+          serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
+          serviceInterface="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"/>
+        <applicationService
+          serviceImplementation="nl.deschepers.laraveltinker.settings.PluginSettings"/>
+        <applicationConfigurable
+          parentId="tools"
+          instance="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
+          id="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
+          displayName="Laravel Tinker"/>
 
-    <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
-  </extensions>
-  <id>nl.deschepers.laraveltinker</id>
+        <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
+          language="PHP"/>
+        <scratch.rootType implementation="nl.deschepers.laraveltinker.util.LaravelTinkerConsolesRootType"/>
 
-  <name>Laravel Tinker</name>
+        <toolWindow anchor="right"
+          factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
+          icon="/icons/laravel-tinker-icon13.svg"
+          id="Laravel Tinker"/>
 
-  <vendor>Robbin "Roboroads" Schepers</vendor>
+        <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
+    </extensions>
+    <id>nl.deschepers.laraveltinker</id>
+
+    <name>Laravel Tinker</name>
+
+    <vendor>Robbin "Roboroads" Schepers</vendor>
 </idea-plugin>
