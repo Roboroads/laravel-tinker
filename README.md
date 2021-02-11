@@ -14,9 +14,7 @@ Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ct
 
 ---
 
-![Scocial Blue](https://socialblue.com/wp-content/themes/socialblue/dist/svg/logo.svg "Social Blue")
-
-Social Blue, where I work, is looking for new Laravel developers, [check it out!](https://socialblue.com/careers)
+![Scocial Blue](https://socialblue.com/wp-content/themes/socialblue/dist/svg/logo.svg "Social Blue") Social Blue, where I work, is looking for new Laravel developers, [check it out!](https://socialblue.com/careers)
 
 ---
 
