@@ -12,9 +12,13 @@ Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ct
  - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 <!-- Plugin description end -->
 
+---
+
 ![Scocial Blue](https://socialblue.com/wp-content/themes/socialblue/dist/svg/logo.svg "Social Blue")
 
 Social Blue, where I work, is looking for new Laravel developers, [check it out!](https://socialblue.com/careers)
+
+---
 
 ## Credits
  - [Robbin Schepers](https://github.com/Roboroads) - Creating the plugin
