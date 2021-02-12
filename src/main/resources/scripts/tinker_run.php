@@ -35,6 +35,13 @@ if(file_exists('/dev/null') && is_writable('/dev/null')) {
     $historyFile = '/dev/null';
 }
 
+if(empty($historyFile) && defined('PHP_WINDOWS_VERSION_BUILD') && is_writable('nul')) {
+    try {
+        file_put_contents('nul', 'testing-nul');
+        $historyFile = 'nul';
+    } catch(Exception $ex) {/*Ignored*/}
+}
+
 if(empty($historyFile))
     try {
         $tempfile = tempnam(sys_get_temp_dir(), 'tpm-LTHis');
