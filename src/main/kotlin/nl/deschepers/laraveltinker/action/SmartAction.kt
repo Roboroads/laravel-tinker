@@ -6,6 +6,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.vfs.VirtualFile
+import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
 
@@ -58,7 +59,12 @@ class SmartAction : AnAction() {
 
         // Second action: Open a new console with the selected text
         val currentEditor: Editor? = e.getData(CommonDataKeys.EDITOR)
-        if (currentEditor != null && currentEditor.selectionModel.hasSelection()) {
+        val isFile = currentEditor != null && virtualFile != null
+        if (
+            isFile &&
+            virtualFile!!.fileType is PhpFileType &&
+            currentEditor!!.selectionModel.hasSelection()
+        ) {
             val tinkerConsole = tinkerConsoleUtil.createNewTinkerConsole("\n${currentEditor.selectionModel.selectedText!!}\n")
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
         }

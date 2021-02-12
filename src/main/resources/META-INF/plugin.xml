@@ -89,9 +89,8 @@
 
         <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
     </extensions>
+
     <id>nl.deschepers.laraveltinker</id>
-
     <name>Laravel Tinker</name>
-
     <vendor>Robbin "Roboroads" Schepers</vendor>
 </idea-plugin>
