@@ -29,7 +29,28 @@ if (class_exists('Illuminate\Foundation\Application')) {
 
 $config->getPresenter()->addCasters($casters);
 
-$config->setHistoryFile(file_exists('/dev/null') ? '/dev/null' : 'php://temp');
+$historyFile = '';
+$shouldRemoveHistoryFile = false;
+if(file_exists('/dev/null') && is_writable('/dev/null')) {
+    $historyFile = '/dev/null';
+}
+
+if(empty($historyFile))
+    try {
+        $tempfile = tempnam(sys_get_temp_dir(), 'tpm-LTHis');
+        if(is_writable($tempfile)) {
+            $historyFile = $tempfile;
+            $shouldRemoveHistoryFile = true;
+        }
+    } catch(Exception $ex) {/*Ignored*/}
+}
+
+if(empty($historyFile)) {
+    $historyFile = tempnam('.', 'tpm-LTHis');
+    $shouldRemoveHistoryFile = true;
+}
+
+$config->setHistoryFile($historyFile);
 
 $shell = new \Psy\Shell($config);
 
@@ -65,4 +86,8 @@ $closure->execute();
 
 if(isset($loader)) {
     $loader->unregister();
+}
+
+if($shouldRemoveHistoryFile) {
+    unlink($historyFile);
 }
