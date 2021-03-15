@@ -1,5 +1,5 @@
 <!-- Plugin description -->
-![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/counting-words/tree/main/.github/branding/logo-text.webp)
+![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/laravel-tinker/master/.github/branding/logo-text.webp)
 
 Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes - with the added benefit of having your IDE's autocompletion, code colors and error inspections.
 
