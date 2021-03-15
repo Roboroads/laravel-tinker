@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+ - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
 ### Changed
 
 ### Deprecated
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
-## [unspecified]
+## [2.0.0]
 ### Added
 - BREAKING: [ISS-39](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles"
 - [ISS-37](https://github.com/Roboroads/laravel-tinker/issues/37) [ISS-38](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text
