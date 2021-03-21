@@ -133,7 +133,7 @@ tasks {
 
     runIde {
         jvmArgs("--add-exports", "java.base/jdk.internal.vm=ALL-UNNAMED")
-        ideDirectory("/home/robbin/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-0/203.7148.74")
+        ideDirectory("/home/robbin/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-0/203.7717.64")
 //        ideDirectory("C:\\Users\\vagrant\\AppData\\Local\\JetBrains\\Toolbox\\apps\\PhpStorm\\ch-0\\202.7660.42")
     }
 }
