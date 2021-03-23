@@ -4,14 +4,9 @@ import com.intellij.ide.scratch.ScratchFileService
 import com.intellij.ide.scratch.ScratchFileServiceImpl
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.roots.FileIndex
-import com.intellij.openapi.roots.impl.DirectoryIndex
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.psi.PsiDirectory
-import com.intellij.psi.search.FilenameIndex
-import com.intellij.psi.search.GlobalSearchScope
 import com.jetbrains.php.lang.PhpLanguage
 import nl.deschepers.laraveltinker.Strings
 
