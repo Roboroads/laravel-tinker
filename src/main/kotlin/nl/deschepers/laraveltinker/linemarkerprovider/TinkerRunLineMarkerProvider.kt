@@ -26,7 +26,7 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
             Run,
             null,
             { _: MouseEvent, psiElement: PsiElement ->
-                tinkerConsoleUtil.runTinkerOnFile(psiElement.containingFile.virtualFile)
+                tinkerConsoleUtil.runTinkerWithFile(psiElement.containingFile.virtualFile)
             },
             RIGHT,
             { Strings.get("lt.run") }

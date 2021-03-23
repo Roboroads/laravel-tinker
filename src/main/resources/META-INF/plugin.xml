@@ -90,6 +90,11 @@
         <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
     </extensions>
 
+    <projectListeners>
+        <listener class="nl.deschepers.laraveltinker.listener.ProjectOpenListener"
+          topic="com.intellij.openapi.project.ProjectManagerListener" />
+    </projectListeners>
+
     <id>nl.deschepers.laraveltinker</id>
     <name>Laravel Tinker</name>
     <vendor>Robbin "Roboroads" Schepers</vendor>

@@ -1,5 +1,5 @@
 <!-- Plugin description -->
-![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/laravel-tinker/master/.github/branding/logo-text.webp)
+![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/laravel-tinker/master/.github/branding/logo-text.png)
 
 Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes - with the added benefit of having your IDE's autocompletion, code colors and error inspections.
 
@@ -11,12 +11,6 @@ Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ct
  - [🙏🏼 Patreon](https://www.patreon.com/roboroads): Consider supporting this project if it helped you 😊
  - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 <!-- Plugin description end -->
-
----
-
-![Scocial Blue](https://socialblue.com/wp-content/themes/socialblue/dist/svg/logo.svg "Social Blue") Social Blue, where I work, is looking for new Laravel developers, [check it out!](https://socialblue.com/careers)
-
----
 
 ## Credits
  - [Robbin "Roboroads" Schepers](https://github.com/Roboroads) - Creating the plugin

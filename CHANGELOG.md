@@ -6,21 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
- - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
 ### Changed
-
-### Deprecated
-
+- New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
 ### Removed
-
+- Tinker Consoles having an IS_TINKER_CONSOLE userdata key.
 ### Fixed
-
-### Security
+- [[#50]](https://github.com/Roboroads/laravel-tinker/issues/50) Tinker Create/Smart action overwriting its own files from a previous session.
+- Tinker files not being PHP when project reloads.
 ## [2.0.0]
 ### Added
-- BREAKING: [ISS-39](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles"
-- [ISS-37](https://github.com/Roboroads/laravel-tinker/issues/37) [ISS-38](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text
+- BREAKING: [[#39]](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles"
+- [[#37]](https://github.com/Roboroads/laravel-tinker/issues/37) [[#38]](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text
   - This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`
 ### Changed
 - BREAKING: Every action is now independently listed
@@ -41,45 +37,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0]
 ### Added
 - Laravel Tinker settings page (under Tools)
-- [ISS-30](https://github.com/Roboroads/laravel-tinker/issues/30) Ability to disable start and finish messages in output
-- [ISS-21](https://github.com/Roboroads/laravel-tinker/issues/21) Ability to add a shortcut to close all involving Tinker
+- [[#30]](https://github.com/Roboroads/laravel-tinker/issues/30) Ability to disable start and finish messages in output
+- [[#21]](https://github.com/Roboroads/laravel-tinker/issues/21) Ability to add a shortcut to close all involving Tinker
 ### Changed
 - Dependencies updated to the latest versions
 ### Fixed
 - The title of the tinker screen was editable - now it isn't.
-- [ISS-28](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again
+- [[#28]](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again
   - Credits to [@emargareten](https://github.com/emargareten)
  
 ## [1.2.1]
 ### Added
-- [ISS-25](https://github.com/Roboroads/laravel-tinker/issues/25) When running tinker it will now save all documents before executing
+- [[#25]](https://github.com/Roboroads/laravel-tinker/issues/25) When running tinker it will now save all documents before executing
 ### Fixed
-- [ISS-23](https://github.com/Roboroads/laravel-tinker/issues/23) Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
+- [[#23]](https://github.com/Roboroads/laravel-tinker/issues/23) Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
 
 ## [1.2.0]
 ### Added
-- [ISS-7](https://github.com/Roboroads/laravel-tinker/issues/7) Output syntax highlighting
+- [[#7]](https://github.com/Roboroads/laravel-tinker/issues/7) Output syntax highlighting
 
 ### Fixed
-- [ISS-11](https://github.com/Roboroads/laravel-tinker/issues/11) Plugin won't create a null file anymore on windows. 
-- [ISS-16](https://github.com/Roboroads/laravel-tinker/issues/16) Only 1 tinker console will be open at all times.
-- [ISS-18](https://github.com/Roboroads/laravel-tinker/issues/18) Added the LARAVEL_START constant to the tinker run script.
-- [ISS-19](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
-- [ISS-12](https://github.com/Roboroads/laravel-tinker/issues/12) & [ISS-20](https://github.com/Roboroads/laravel-tinker/issues/20) Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
+- [[#11]](https://github.com/Roboroads/laravel-tinker/issues/11) Plugin won't create a null file anymore on windows. 
+- [[#16]](https://github.com/Roboroads/laravel-tinker/issues/16) Only 1 tinker console will be open at all times.
+- [[#18]](https://github.com/Roboroads/laravel-tinker/issues/18) Added the LARAVEL_START constant to the tinker run script.
+- [[#19]](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
+- [[#12]](https://github.com/Roboroads/laravel-tinker/issues/12) [[#20]](https://github.com/Roboroads/laravel-tinker/issues/20) Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
   - By just checking if it exists before loading it
   - Should fix the plugin for laravel/tinker versions `<= 1.0.1`
    
 ## [1.1.1]
 ### Added
-- [ISS-10](https://github.com/Roboroads/laravel-tinker/issues/10) Your last command will now be saved (on per-project level)
+- [[#10]](https://github.com/Roboroads/laravel-tinker/issues/10) Your last command will now be saved (on per-project level)
 - Non-obtrusive reminder you can support this package.
  
 ### Changed
-- [ISS-6](https://github.com/Roboroads/laravel-tinker/issues/6) Output window now (hopefully) always inherits the font and color of the IDE
+- [[#6]](https://github.com/Roboroads/laravel-tinker/issues/6) Output window now (hopefully) always inherits the font and color of the IDE
 
 ### Fixed
 - The link to PHP settings in error dialogs now *acually* links to the correct settings page.
-- [ISS-9](https://github.com/Roboroads/laravel-tinker/issues/9) Output showing slow on larger outputs
+- [[#9]](https://github.com/Roboroads/laravel-tinker/issues/9) Output showing slow on larger outputs
 
 ## [1.1.0]
 
@@ -99,7 +95,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0]
 ### Added
-- [ISS-1](https://github.com/Roboroads/laravel-tinker/issues/1) A correct way to interact with remote interpreters
+- [[#1]](https://github.com/Roboroads/laravel-tinker/issues/1) A correct way to interact with remote interpreters
 
 ### Changed
 - Made errors more to the point

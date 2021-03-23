@@ -54,7 +54,7 @@ class SmartAction : AnAction() {
         if (
             virtualFile != null &&
             tinkerConsoleUtil.isTinkerConsole(virtualFile) &&
-            tinkerConsoleUtil.runTinkerOnFile(virtualFile)
+            tinkerConsoleUtil.runTinkerWithFile(virtualFile)
         ) return
 
         // Second action: Open a new console with the selected text

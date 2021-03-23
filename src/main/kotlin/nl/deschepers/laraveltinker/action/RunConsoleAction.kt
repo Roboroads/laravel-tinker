@@ -29,7 +29,7 @@ class RunConsoleAction : AnAction() {
         val virtualFile: VirtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
 
         if (tinkerConsoleUtil.isTinkerConsole(virtualFile)) {
-            tinkerConsoleUtil.runTinkerOnFile(virtualFile)
+            tinkerConsoleUtil.runTinkerWithFile(virtualFile)
         }
     }
 }
