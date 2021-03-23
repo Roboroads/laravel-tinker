@@ -15,9 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-
+- [[#47]](https://github.com/Roboroads/laravel-tinker/issues/47) `<` and `>` are now replaced by `&gt;` and `&lt;` to make them not parse as HTML in tinker output
 ### Security
-## [unspecified]
+## [2.0.1]
 ### Changed
 - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
 ### Removed
