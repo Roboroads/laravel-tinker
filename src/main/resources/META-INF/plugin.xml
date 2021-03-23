@@ -85,7 +85,8 @@
         <toolWindow anchor="right"
           factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
           icon="/icons/laravel-tinker-icon13.svg"
-          id="Laravel Tinker"/>
+          id="Laravel Tinker"
+        />
 
         <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
     </extensions>

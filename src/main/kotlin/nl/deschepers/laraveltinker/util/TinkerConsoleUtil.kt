@@ -4,17 +4,12 @@ import com.intellij.ide.scratch.ScratchFileService
 import com.intellij.ide.scratch.ScratchFileServiceImpl
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.jetbrains.php.lang.PhpLanguage
 import nl.deschepers.laraveltinker.Strings
 
 class TinkerConsoleUtil(val project: Project) {
-    companion object {
-        private val IS_TINKER_CONSOLE_KEY: Key<String> = Key.create("IsTinkerConsole")
-    }
-
     fun getLastOpenTinkerConsole(): VirtualFile? {
         return getTinkerConsoleFiles()?.last()
     }
@@ -68,8 +63,6 @@ class TinkerConsoleUtil(val project: Project) {
             Strings.get("lt.console.default_content") + startingText,
             option
         )
-
-        tinkerConsole?.putUserData(IS_TINKER_CONSOLE_KEY, "true")
 
         return tinkerConsole
     }

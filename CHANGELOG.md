@@ -13,15 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 ### Removed
-
+- Tinker Consoles having an IS_TINKER_CONSOLE userdata key.
 ### Fixed
 - [[#47]](https://github.com/Roboroads/laravel-tinker/issues/47) `<` and `>` are now replaced by `&gt;` and `&lt;` to make them not parse as HTML in tinker output
 ### Security
 ## [2.0.1]
 ### Changed
 - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
-### Removed
-- Tinker Consoles having an IS_TINKER_CONSOLE userdata key.
 ### Fixed
 - [[#50]](https://github.com/Roboroads/laravel-tinker/issues/50) Tinker Create/Smart action overwriting its own files from a previous session.
 - Tinker files not being PHP when project reloads.
