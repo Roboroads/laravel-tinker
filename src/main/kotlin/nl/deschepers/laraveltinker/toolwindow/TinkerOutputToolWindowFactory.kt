@@ -8,14 +8,15 @@ import com.intellij.ui.content.ContentFactory
 
 class TinkerOutputToolWindowFactory : ToolWindowFactory {
     companion object {
-        var tinkerOutputToolWindow: TinkerOutputToolwindow? = null
+        var tinkerOutputToolWindow: MutableMap<Project, TinkerOutputToolwindow> = mutableMapOf()
     }
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        tinkerOutputToolWindow = TinkerOutputToolwindow(toolWindow)
+        val instance = TinkerOutputToolwindow(toolWindow)
+        tinkerOutputToolWindow[project] = instance
         val contentFactory = ContentFactory.SERVICE.getInstance()
         val content: Content =
-            contentFactory.createContent(tinkerOutputToolWindow!!.getContent(), "", false)
+            contentFactory.createContent(instance.getContent(), "", false)
         toolWindow.contentManager.addContent(content)
     }
 }

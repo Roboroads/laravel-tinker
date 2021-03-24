@@ -92,11 +92,11 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             return
         }
 
-        val phpProcessListener = PhpProcessListener(processHandler)
+        val phpProcessListener = PhpProcessListener(project, processHandler)
         processHandler.addProcessListener(phpProcessListener)
 
         ToolWindowManager.getInstance(project).getToolWindow("Laravel Tinker")?.activate(null)
-        TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.resetOutput()
+        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.resetOutput()
 
         ProgressManager.getInstance().run(
             object : Backgroundable(

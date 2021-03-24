@@ -5,13 +5,14 @@ import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 import nl.deschepers.laraveltinker.settings.PluginSettings
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
-class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessListener {
+class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) : ProcessListener {
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
@@ -34,7 +35,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
                 val pluginSettings = PluginSettings.getInstance()
 
                 if (pluginSettings.showExecutionEnded) {
-                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(
+                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.addOutput(
                         Strings.get("lt.execution.finished")
                     )
                 }
@@ -42,7 +43,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
                 if (PersistentApplicationCache.instance.state.executionsCount >= SUPPORT_MESSAGE_EXECUTIONS) {
                     /* Non-obtrusive, but still shameless plug .. :X */
                     TinkerOutputToolWindowFactory
-                        .tinkerOutputToolWindow?.addOutput(
+                        .tinkerOutputToolWindow[project]?.addOutput(
                             "\n\n\n" + Strings.get("lt.consider.supporting")
                         )
                     PersistentApplicationCache.instance.state.executionsCount = 0
@@ -79,7 +80,7 @@ class PhpProcessListener(private val processHandler: ProcessHandler) : ProcessLi
         if (capturing) {
             processOutput.add(capText)
             ApplicationManager.getApplication().invokeLater(
-                { TinkerOutputToolWindowFactory.tinkerOutputToolWindow?.addOutput(capText) },
+                { TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.addOutput(capText) },
                 ModalityState.NON_MODAL
             )
         }
