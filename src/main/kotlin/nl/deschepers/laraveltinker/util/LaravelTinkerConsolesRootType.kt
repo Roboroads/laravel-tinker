@@ -39,6 +39,7 @@ class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt
         return LayeredIcon.create(icon, AllIcons.Actions.Scratch)
     }
 
+    @Suppress("SwallowedException")
     fun createScratchFile(project: Project?, text: String?, option: ScratchFileService.Option?): VirtualFile? {
         val fileName = Strings.get("lt.console.name")
         return try {

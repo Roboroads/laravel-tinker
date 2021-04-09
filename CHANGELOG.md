@@ -7,17 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+- Dependabot
 ### Changed
-
-### Deprecated
-
+- [[#53]](https://github.com/Roboroads/laravel-tinker/issues/53) Updates compatibility with 2021.1
 ### Removed
 - Tinker Consoles having an IS_TINKER_CONSOLE userdata key.
 ### Fixed
 - [[#47]](https://github.com/Roboroads/laravel-tinker/issues/47) [[#40]](https://github.com/Roboroads/laravel-tinker/issues/40) `<` and `>` are now replaced by `&gt;` and `&lt;` to make them not parse as HTML in tinker output
 - [[#40]](https://github.com/Roboroads/laravel-tinker/issues/40) Fixes always showing output on the last opened project when having multiple projects open.
-### Security
 ## [2.0.1]
 ### Changed
 - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)

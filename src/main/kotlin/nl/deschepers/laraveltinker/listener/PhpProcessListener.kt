@@ -44,8 +44,8 @@ class PhpProcessListener(private val project: Project, private val processHandle
                     /* Non-obtrusive, but still shameless plug .. :X */
                     TinkerOutputToolWindowFactory
                         .tinkerOutputToolWindow[project]?.addOutput(
-                            "\n\n\n" + Strings.get("lt.consider.supporting")
-                        )
+                        "\n\n\n" + Strings.get("lt.consider.supporting")
+                    )
                     PersistentApplicationCache.instance.state.executionsCount = 0
                 }
             },

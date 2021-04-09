@@ -68,8 +68,10 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         return "#" + Integer.toHexString(color.rgb).substring(2)
     }
 
-    fun encodeHtmlChars(str: String): String {
-        return str.replace("<", "&lt;").replace(">", "&gt;")
+    fun sanitizeOutput(str: String): String {
+        return str.replace("<aside>⏎</aside>", "")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
     }
 
     fun updateView() {
@@ -77,7 +79,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
 
         val color = toHex(titlePane!!.foreground)
         val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
-        val highlightedOutput = highlightSyntax("\n" + encodeHtmlChars(outputText))
+        val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
 
         this.tinkerOutput!!.text =
             """
