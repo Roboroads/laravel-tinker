@@ -42,7 +42,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
@@ -87,7 +88,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
@@ -114,7 +116,7 @@ jobs:
         run: |
           PROPERTIES="$(./gradlew properties --console=plain -q)"
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
-          NAME="$(echo "$PROPERTIES" | grep "^pluginName_:" | cut -f2- -d ' ')"
+          NAME="$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')"
           CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
@@ -135,7 +137,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: plugin-artifact
-          path: ./build/distributions/${{ needs.build.outputs.artifact }}
+          path: ./build/distributions/${{ steps.properties.outputs.artifact }}
 
   # Verify built plugin using IntelliJ Plugin Verifier tool
   # Requires build job to be passed
@@ -149,7 +151,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
