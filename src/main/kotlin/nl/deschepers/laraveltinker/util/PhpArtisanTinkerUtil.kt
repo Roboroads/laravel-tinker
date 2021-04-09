@@ -111,7 +111,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                         try {
                             progressIndicator.checkCanceled()
                         } catch (ex: ProcessCanceledException) {
-                            processHandler.waitFor(5000)
+                            processHandler.destroyProcess()
                             throw ex
                         }
                     }

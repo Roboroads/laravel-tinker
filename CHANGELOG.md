@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [[#47]](https://github.com/Roboroads/laravel-tinker/issues/47) [[#40]](https://github.com/Roboroads/laravel-tinker/issues/40) `<` and `>` are now replaced by `&gt;` and `&lt;` to make them not parse as HTML in tinker output
 - [[#40]](https://github.com/Roboroads/laravel-tinker/issues/40) Fixes always showing output on the last opened project when having multiple projects open.
+- [[#41]](https://github.com/Roboroads/laravel-tinker/issues/41) When pressing the x icon on the progress bar to stop the PHP execution, the process now gets destroyed within 250ms.
 ## [2.0.1]
 ### Changed
 - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl)
