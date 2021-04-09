@@ -16,7 +16,8 @@ class PluginSettingsConfigurable : Configurable {
         val settings = PluginSettings.getInstance()
         return pluginSettingsWindow!!.showExecutionStarted != settings.showExecutionStarted ||
             pluginSettingsWindow!!.showExecutionEnded != settings.showExecutionEnded ||
-            pluginSettingsWindow!!.useWordWrapping != settings.useWordWrapping
+            pluginSettingsWindow!!.useWordWrapping != settings.useWordWrapping ||
+            pluginSettingsWindow!!.patreonKey != settings.patreonKey
     }
 
     override fun apply() {
@@ -24,6 +25,7 @@ class PluginSettingsConfigurable : Configurable {
         settings.showExecutionStarted = pluginSettingsWindow!!.showExecutionStarted
         settings.showExecutionEnded = pluginSettingsWindow!!.showExecutionEnded
         settings.useWordWrapping = pluginSettingsWindow!!.useWordWrapping
+        settings.patreonKey = pluginSettingsWindow!!.patreonKey
     }
 
     override fun reset() {
@@ -31,6 +33,7 @@ class PluginSettingsConfigurable : Configurable {
         pluginSettingsWindow!!.showExecutionStarted = settings.showExecutionStarted
         pluginSettingsWindow!!.showExecutionEnded = settings.showExecutionEnded
         pluginSettingsWindow!!.useWordWrapping = settings.useWordWrapping
+        pluginSettingsWindow!!.patreonKey = settings.patreonKey
     }
 
     override fun getDisplayName(): String {

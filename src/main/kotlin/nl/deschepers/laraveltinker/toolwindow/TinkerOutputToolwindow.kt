@@ -29,9 +29,10 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     private var titlePane: JTextPane? = null
     private var outputText: String = ""
     private var outputTime: String = ""
+    var plug = false
 
     private var timer = false
-    private val pluginSettings = PluginSettings.getInstance();
+    private val pluginSettings = PluginSettings.getInstance()
 
     init {
         tinkerOutput!!.addHyperlinkListener { e ->
@@ -47,8 +48,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         tinkerOutput!!.foreground = null
         tinkerOutput!!.disabledTextColor = null
         tinkerOutput!!.disabledTextColor = null
-
-        System.out.println(PatreonSupport.KEY)
     }
 
     fun resetOutput() {
@@ -116,6 +115,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                         .header {
                             font-weight: bold;
                         }
+                        a {
+                           color: $color;
+                        }
                     </style>
                 </head>
                 <body>
@@ -126,6 +128,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                         <pre>
                             <code>
                                 $highlightedOutput
+                                ${if (plug) "\n\n\n" + Strings.get("lt.consider.supporting") else ""}
                             </code>
                         </pre>
                     </div>

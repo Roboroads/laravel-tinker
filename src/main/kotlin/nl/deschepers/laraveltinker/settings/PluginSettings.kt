@@ -15,6 +15,7 @@ class PluginSettings : PersistentStateComponent<PluginSettings> {
     var showExecutionStarted = true
     var showExecutionEnded = true
     var useWordWrapping = true
+    var patreonKey = ""
 
     companion object {
         fun getInstance(): PluginSettings {

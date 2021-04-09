@@ -30,6 +30,7 @@ repositories {
 }
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0")
+    implementation("at.favre.lib:bcrypt:0.9.0")
 }
 
 // Configure gradle-intellij-plugin plugin.
