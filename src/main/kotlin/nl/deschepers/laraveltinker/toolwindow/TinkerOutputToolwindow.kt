@@ -3,15 +3,24 @@ package nl.deschepers.laraveltinker.toolwindow
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.wm.ToolWindow
 import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.PatreonSupport
 import nl.deschepers.laraveltinker.settings.PluginSettings
 import java.awt.Color
 import java.awt.Desktop
+import java.awt.Dimension
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Timer
 import javax.swing.JPanel
 import javax.swing.JTextPane
+import javax.swing.SizeRequirements
 import javax.swing.event.HyperlinkEvent
+import javax.swing.text.Element
+import javax.swing.text.View
+import javax.swing.text.ViewFactory
+import javax.swing.text.html.HTMLEditorKit
+import javax.swing.text.html.InlineView
+import javax.swing.text.html.ParagraphView
 import kotlin.concurrent.schedule
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
@@ -22,6 +31,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     private var outputTime: String = ""
 
     private var timer = false
+    private val pluginSettings = PluginSettings.getInstance();
 
     init {
         tinkerOutput!!.addHyperlinkListener { e ->
@@ -37,6 +47,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         tinkerOutput!!.foreground = null
         tinkerOutput!!.disabledTextColor = null
         tinkerOutput!!.disabledTextColor = null
+
+        System.out.println(PatreonSupport.KEY)
     }
 
     fun resetOutput() {
@@ -75,11 +87,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     fun updateView() {
-        val pluginSettings = PluginSettings.getInstance()
-
         val color = toHex(titlePane!!.foreground)
         val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
+
+
+        if(pluginSettings.useWordWrapping) {
+            setupWordWrapping()
+        } else {
+            tinkerOutput!!.editorKit = HTMLEditorKit()
+        }
 
         this.tinkerOutput!!.text =
             """
@@ -93,7 +110,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                         } 
                         .output {
                             padding: 5px; 
-                        } 
+                            ${if (pluginSettings.useWordWrapping) "padding-left: 10px;" else ""}
+                            ${if (pluginSettings.useWordWrapping) "text-indent: -5px;" else ""}                            
+                        }
                         .header {
                             font-weight: bold;
                         }
@@ -154,5 +173,67 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                     Regex("(=&gt;|:)\\s([0-9]+)"),
                     "$1 <font color=\"${toHex(numberColor)}\">$2</font>"
                 )
+    }
+
+    private fun setupWordWrapping() {
+        tinkerOutput!!.editorKit = object : HTMLEditorKit() {
+            override fun getViewFactory(): ViewFactory {
+                return object : HTMLFactory() {
+                    override fun create(e: Element): View {
+                        val view = super.create(e)
+                        if (view is InlineView) {
+                            return object : InlineView(e) {
+                                override fun getBreakWeight(
+                                    axis: Int,
+                                    pos: Float,
+                                    len: Float
+                                ): Int {
+                                    return GoodBreakWeight
+                                }
+
+                                override fun breakView(
+                                    axis: Int,
+                                    p0: Int,
+                                    pos: Float,
+                                    len: Float
+                                ): View {
+                                    if (axis == X_AXIS) {
+                                        checkPainter()
+                                        val p1 = glyphPainter.getBoundedPosition(this, p0, pos, len)
+                                        return if (p0 == startOffset && p1 == endOffset) {
+                                            this
+                                        } else createFragment(p0, p1)
+                                    }
+                                    return this
+                                }
+                            }
+                        } else if (view is ParagraphView) {
+                            return object : ParagraphView(e) {
+                                override fun calculateMinorAxisRequirements(
+                                    axis: Int,
+                                    r: SizeRequirements?
+                                ): SizeRequirements {
+                                    var sizeRequirements: SizeRequirements? = r
+                                    if (sizeRequirements == null) {
+                                        sizeRequirements = SizeRequirements()
+                                    }
+                                    val pref = layoutPool.getPreferredSpan(axis)
+                                    val min = layoutPool.getMinimumSpan(axis)
+                                    // Don't include insets, Box.getXXXSpan will include them.
+                                    sizeRequirements.minimum = min.toInt()
+                                    sizeRequirements.preferred = Math.max(sizeRequirements.minimum, pref.toInt())
+                                    sizeRequirements.maximum = Int.MAX_VALUE
+                                    sizeRequirements.alignment = 0.5f
+                                    return sizeRequirements
+                                }
+                            }
+                        }
+                        return view
+                    }
+                }
+            }
+        }
+        tinkerOutput!!.contentType = "text/html"
+        tinkerOutput!!.minimumSize = Dimension(0, 0)
     }
 }

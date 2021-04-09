@@ -4,3 +4,4 @@ build
 .vagrant
 .laravel
 /lib/
+keygen.sh

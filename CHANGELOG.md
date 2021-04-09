@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Dependabot
+- [[#35]](https://github.com/Roboroads/laravel-tinker/issues/35) Setting to enable/disable line wrapping in output window.
 ### Changed
 - [[#53]](https://github.com/Roboroads/laravel-tinker/issues/53) Updates compatibility with 2021.1
 - Updated all dependencies

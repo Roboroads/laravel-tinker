@@ -9,6 +9,7 @@ class PluginSettingsWindow {
     private var settingsPanel: JPanel
     private val showExecutionStartedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_start"))
     private val showExecutionEndedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_end"))
+    private val useWordWrappingCheckbox = JBCheckBox(Strings.get("lt.setting.use_word_wrapping"))
 
     var showExecutionStarted: Boolean
         get() = this.showExecutionStartedCheckbox.isSelected
@@ -20,11 +21,17 @@ class PluginSettingsWindow {
         set(value) {
             this.showExecutionEndedCheckbox.isSelected = value
         }
+    var useWordWrapping: Boolean
+        get() = this.useWordWrappingCheckbox.isSelected
+        set(value) {
+            this.useWordWrappingCheckbox.isSelected = value
+        }
 
     init {
         settingsPanel = FormBuilder.createFormBuilder()
             .addComponent(showExecutionStartedCheckbox)
             .addComponent(showExecutionEndedCheckbox)
+            .addComponent(useWordWrappingCheckbox)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }

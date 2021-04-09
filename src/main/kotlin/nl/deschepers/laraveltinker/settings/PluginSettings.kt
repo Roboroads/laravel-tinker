@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull
 class PluginSettings : PersistentStateComponent<PluginSettings> {
     var showExecutionStarted = true
     var showExecutionEnded = true
+    var useWordWrapping = true
 
     companion object {
         fun getInstance(): PluginSettings {
@@ -21,7 +22,7 @@ class PluginSettings : PersistentStateComponent<PluginSettings> {
         }
     }
 
-    override fun getState(): PluginSettings? {
+    override fun getState(): PluginSettings {
         return this
     }
 
