@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependabot
 ### Changed
 - [[#53]](https://github.com/Roboroads/laravel-tinker/issues/53) Updates compatibility with 2021.1
+- Updated all dependencies
 ### Removed
 - Tinker Consoles having an IS_TINKER_CONSOLE userdata key.
 ### Fixed
