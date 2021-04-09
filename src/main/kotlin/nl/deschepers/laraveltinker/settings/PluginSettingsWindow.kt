@@ -3,7 +3,6 @@ package nl.deschepers.laraveltinker.settings
 import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
-import com.intellij.ui.components.JBTextField
 import com.intellij.util.ui.FormBuilder
 import nl.deschepers.laraveltinker.Strings
 import javax.swing.JPanel

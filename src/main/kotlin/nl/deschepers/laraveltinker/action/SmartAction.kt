@@ -8,7 +8,6 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.settings.PatreonSupport
 import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
 
 /** The default 1.x tinker action:

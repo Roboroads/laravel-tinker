@@ -27,7 +27,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     private var firstLine = true
 
     override fun startNotified(event: ProcessEvent) {
-        if(!PatreonSupport.hasValidKey()) {
+        if (!PatreonSupport.hasValidKey()) {
             PersistentApplicationCache.instance.state.executionsCount++
         }
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = false
