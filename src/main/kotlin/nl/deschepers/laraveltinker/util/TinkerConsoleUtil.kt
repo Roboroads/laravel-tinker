@@ -11,11 +11,11 @@ import nl.deschepers.laraveltinker.Strings
 
 class TinkerConsoleUtil(val project: Project) {
     fun getLastOpenTinkerConsole(): VirtualFile? {
-        return getTinkerConsoleFiles()?.last()
+        return getTinkerConsoleFiles()?.lastOrNull()
     }
 
     fun getLastOpenOrCreateTinkerConsole(): VirtualFile {
-        val lastOpen = getTinkerConsoleFiles()?.last()
+        val lastOpen = getTinkerConsoleFiles()?.lastOrNull()
         return lastOpen ?: getTinkerConsole(ScratchFileService.Option.create_if_missing)!!
     }
 

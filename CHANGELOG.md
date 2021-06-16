@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - [[#34]](https://github.com/Roboroads/laravel-tinker/issues/34) Setting to change tinker execution root
+### Fixed
+- [[#75]](https://github.com/Roboroads/laravel-tinker/issues/75) Empty directory list of tinker consoles resulting in fatal error.
 ## [2.1.0]
 ### Added
 - Dependabot
