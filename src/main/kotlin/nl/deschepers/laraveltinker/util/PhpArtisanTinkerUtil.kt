@@ -18,17 +18,22 @@ import com.jetbrains.php.run.PhpEditInterpreterExecutionException
 import com.jetbrains.php.run.script.PhpScriptRunConfiguration
 import com.jetbrains.php.run.script.PhpScriptRuntimeConfigurationProducer
 import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotExistBalloon
+import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotHaveVendorBalloon
 import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
 import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
 import nl.deschepers.laraveltinker.listener.PhpProcessListener
+import nl.deschepers.laraveltinker.settings.ProjectSettingsState
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import java.io.BufferedReader
+import java.io.File
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.stream.Collectors
 
 class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: String) {
     fun run() {
+        val projectSettings = ProjectSettingsState.getInstance(project)
         FileDocumentManager.getInstance().saveAllDocuments()
 
         val runConfiguration = PhpScriptRunConfiguration(
@@ -43,10 +48,24 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             return
         }
 
-        val composerDirPath = ComposerUtils.findFileInProject(
+        var laravelRoot = ComposerUtils.findFileInProject(
             project,
             ComposerUtils.CONFIG_DEFAULT_FILENAME
         ).parent.path
+
+        if (projectSettings.laravelRoot.isNotEmpty()) {
+            val customLaravelRoot = File(projectSettings.laravelRoot)
+            if (customLaravelRoot.exists() && customLaravelRoot.isDirectory) {
+                val customComposerDir = File(customLaravelRoot.path + "/vendor")
+                if (customComposerDir.exists() && customComposerDir.isDirectory) {
+                    laravelRoot = projectSettings.laravelRoot
+                } else {
+                    LaravelRootDoesNotHaveVendorBalloon(project).show()
+                }
+            } else {
+                LaravelRootDoesNotExistBalloon(project).show()
+            }
+        }
 
         val inputStream = javaClass.classLoader.getResourceAsStream("scripts/tinker_run.php")
         val phpTinkerCodeRunnerCode = BufferedReader(
@@ -57,10 +76,10 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
 
         try {
             phpCommandSettings = PhpCommandSettingsBuilder(project, phpInterpreter).build()
-            phpCommandSettings.setWorkingDir(composerDirPath)
+            phpCommandSettings.setWorkingDir(laravelRoot)
             phpCommandSettings.importCommandLineSettings(
                 runConfiguration.settings.commandLineSettings,
-                composerDirPath
+                laravelRoot
             )
             phpCommandSettings.addArguments(
                 listOf(

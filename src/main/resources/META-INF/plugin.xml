@@ -71,12 +71,22 @@
           serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
           serviceInterface="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"/>
         <applicationService
-          serviceImplementation="nl.deschepers.laraveltinker.settings.PluginSettings"/>
+          serviceImplementation="nl.deschepers.laraveltinker.settings.GlobalSettingsState"/>
+        <projectService
+          serviceImplementation="nl.deschepers.laraveltinker.settings.ProjectSettingsState"/>
+
         <applicationConfigurable
           parentId="tools"
-          instance="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
-          id="nl.deschepers.laraveltinker.settings.PluginSettingsConfigurable"
+          instance="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
+          id="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
           displayName="Laravel Tinker"/>
+        <projectConfigurable
+          parentId="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
+          instance="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
+          id="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
+          displayName="Project Settings"
+          nonDefaultProject="true"
+        />
 
         <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
           language="PHP"/>

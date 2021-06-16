@@ -494,7 +494,7 @@ object PatreonSupport {
     }.toString()
 
     fun hasValidKey(): Boolean {
-        val pluginSettings = PluginSettings.getInstance()
+        val pluginSettings = GlobalSettingsState.getInstance()
         if (pluginSettings.patreonKey.isEmpty()) return false
 
         var actualKey = ""

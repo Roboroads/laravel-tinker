@@ -3,7 +3,7 @@ package nl.deschepers.laraveltinker.toolwindow
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.wm.ToolWindow
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.settings.PluginSettings
+import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import java.awt.Color
 import java.awt.Desktop
 import java.awt.Dimension
@@ -31,7 +31,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     var plug = false
 
     private var timer = false
-    private val pluginSettings = PluginSettings.getInstance()
+    private val pluginSettings = GlobalSettingsState.getInstance()
 
     init {
         tinkerOutput!!.addHyperlinkListener { e ->

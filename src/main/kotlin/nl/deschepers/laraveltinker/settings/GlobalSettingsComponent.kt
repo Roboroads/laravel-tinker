@@ -8,7 +8,7 @@ import nl.deschepers.laraveltinker.Strings
 import javax.swing.JPanel
 import javax.swing.JTextField
 
-class PluginSettingsWindow {
+class GlobalSettingsComponent {
     private var settingsPanel: JPanel
     private val showExecutionStartedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_start"))
     private val showExecutionEndedCheckbox = JBCheckBox(Strings.get("lt.setting.show_execution_end"))
@@ -37,7 +37,6 @@ class PluginSettingsWindow {
         }
 
     init {
-
         val outputSettingsPanel = FormBuilder.createFormBuilder()
             .addComponent(showExecutionStartedCheckbox)
             .addComponent(showExecutionEndedCheckbox)

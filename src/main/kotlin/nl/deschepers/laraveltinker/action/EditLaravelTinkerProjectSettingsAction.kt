@@ -4,18 +4,18 @@ import com.intellij.notification.Notification
 import com.intellij.notification.NotificationAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.options.ShowSettingsUtil
-import com.jetbrains.php.config.PhpProjectConfigurable
 import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable
 
-class EditPhpInterpreterSettingsAction : NotificationAction(
-    Strings.get("lt.settings.php_interpreter")
+class EditLaravelTinkerProjectSettingsAction : NotificationAction(
+    Strings.get("lt.settings.tinker_project_settings")
 ) {
     override fun actionPerformed(e: AnActionEvent, notification: Notification) {
         val project = e.project
         if (project != null) {
             ShowSettingsUtil.getInstance().showSettingsDialog(
                 project,
-                PhpProjectConfigurable::class.java
+                ProjectSettingsConfigurable::class.java
             )
         }
     }

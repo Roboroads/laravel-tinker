@@ -8,9 +8,9 @@ import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.settings.PatreonSupport
 import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
-import nl.deschepers.laraveltinker.settings.PluginSettings
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
 class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) : ProcessListener {
@@ -36,7 +36,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     override fun processTerminated(event: ProcessEvent) {
         ApplicationManager.getApplication().invokeLater(
             {
-                val pluginSettings = PluginSettings.getInstance()
+                val pluginSettings = GlobalSettingsState.getInstance()
 
                 if (pluginSettings.showExecutionEnded) {
                     TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.addOutput(

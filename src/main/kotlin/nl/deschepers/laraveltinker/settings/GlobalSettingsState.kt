@@ -11,23 +11,23 @@ import org.jetbrains.annotations.NotNull
     name = "org.intellij.sdk.settings.AppSettingsState",
     storages = [Storage("laravel-tinker-plugin-settings.xml")]
 )
-class PluginSettings : PersistentStateComponent<PluginSettings> {
+class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
     var showExecutionStarted = true
     var showExecutionEnded = true
     var useWordWrapping = true
     var patreonKey = ""
 
     companion object {
-        fun getInstance(): PluginSettings {
-            return ServiceManager.getService(PluginSettings::class.java)
+        fun getInstance(): GlobalSettingsState {
+            return ServiceManager.getService(GlobalSettingsState::class.java)
         }
     }
 
-    override fun getState(): PluginSettings {
+    override fun getState(): GlobalSettingsState {
         return this
     }
 
-    override fun loadState(state: @NotNull PluginSettings) {
+    override fun loadState(state: @NotNull GlobalSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
     }
 }
