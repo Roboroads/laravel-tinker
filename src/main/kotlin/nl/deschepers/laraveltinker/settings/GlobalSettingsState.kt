@@ -1,7 +1,7 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
-import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
@@ -19,7 +19,7 @@ class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
 
     companion object {
         fun getInstance(): GlobalSettingsState {
-            return ServiceManager.getService(GlobalSettingsState::class.java)
+            return ApplicationManager.getApplication().getService(GlobalSettingsState::class.java)
         }
     }
 

@@ -41,7 +41,7 @@ class TinkerConsoleUtil(val project: Project) {
         return false
     }
 
-    fun getTinkerConsoleFiles(): List<VirtualFile>? {
+    private fun getTinkerConsoleFiles(): List<VirtualFile>? {
         val consolesPath = ScratchFileServiceImpl.getInstance().getRootPath(LaravelTinkerConsolesRootType.getInstance())
         val consolesDir = LocalFileSystem.getInstance().findFileByPath(consolesPath)
 
@@ -58,12 +58,11 @@ class TinkerConsoleUtil(val project: Project) {
 
     private fun getTinkerConsole(option: ScratchFileService.Option, startingText: String = ""): VirtualFile? {
         getTinkerConsoleFiles()
-        val tinkerConsole = LaravelTinkerConsolesRootType.getInstance().createScratchFile(
+
+        return LaravelTinkerConsolesRootType.getInstance().createScratchFile(
             project,
             Strings.get("lt.console.default_content") + startingText,
             option
         )
-
-        return tinkerConsole
     }
 }

@@ -1,7 +1,7 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
-import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
@@ -13,7 +13,7 @@ import com.intellij.openapi.components.Storage
 class PersistentApplicationCache : PersistentStateComponent<PersistentApplicationCache.State> {
     companion object {
         val instance: PersistentApplicationCache
-            get() = ServiceManager.getService(PersistentApplicationCache::class.java)
+            get() = ApplicationManager.getApplication().getService(PersistentApplicationCache::class.java)
     }
 
     class State {

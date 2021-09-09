@@ -21,7 +21,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
         private const val SUPPORT_MESSAGE_EXECUTIONS = 10
     }
 
-    val processOutput = ArrayList<String>()
+    private val processOutput = ArrayList<String>()
 
     private var capturing = false
     private var firstLine = true

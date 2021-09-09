@@ -9,7 +9,7 @@ import java.awt.Desktop
 import java.awt.Dimension
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Timer
+import java.util.*
 import javax.swing.JPanel
 import javax.swing.JTextPane
 import javax.swing.SizeRequirements
@@ -21,6 +21,7 @@ import javax.swing.text.html.HTMLEditorKit
 import javax.swing.text.html.InlineView
 import javax.swing.text.html.ParagraphView
 import kotlin.concurrent.schedule
+import kotlin.math.max
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     private var tinkerOutputToolWindowContent: JPanel? = null
@@ -54,9 +55,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         outputTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         outputText = ""
 
-        if (toolWindow != null) {
-            toolWindow.show()
-        }
+        toolWindow?.show()
         updateView()
     }
 
@@ -74,17 +73,17 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
         }
     }
 
-    fun toHex(color: Color): String {
+    private fun toHex(color: Color): String {
         return "#" + Integer.toHexString(color.rgb).substring(2)
     }
 
-    fun sanitizeOutput(str: String): String {
+    private fun sanitizeOutput(str: String): String {
         return str.replace("<aside>⏎</aside>", "")
             .replace("<", "&lt;")
             .replace(">", "&gt;")
     }
 
-    fun updateView() {
+    private fun updateView() {
         val color = toHex(titlePane!!.foreground)
         val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
@@ -222,7 +221,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                                     val min = layoutPool.getMinimumSpan(axis)
                                     // Don't include insets, Box.getXXXSpan will include them.
                                     sizeRequirements.minimum = min.toInt()
-                                    sizeRequirements.preferred = Math.max(sizeRequirements.minimum, pref.toInt())
+                                    sizeRequirements.preferred = max(sizeRequirements.minimum, pref.toInt())
                                     sizeRequirements.maximum = Int.MAX_VALUE
                                     sizeRequirements.alignment = 0.5f
                                     return sizeRequirements

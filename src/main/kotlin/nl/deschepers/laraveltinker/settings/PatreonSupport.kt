@@ -7,11 +7,11 @@ import at.favre.lib.crypto.bcrypt.BCrypt
  * I just don't want to bother actual Patreon supporters with my donation message
  * Just note that decoding this does not give you any extra features - it JUST removes the "Please support me" message.
  * Consider supporting me to get a legit key:
- * @see https://www.patreon.com/roboroads
+ * see https://www.patreon.com/roboroads
  * ========== */
 
 object PatreonSupport {
-    val KEY = object : Any() {
+    private val KEY = object : Any() {
         var t = 0
         override fun toString(): String {
             val buf = ByteArray(237)
@@ -499,7 +499,7 @@ object PatreonSupport {
 
         var actualKey = ""
         for (i in 0..KEY.length step 6) {
-            actualKey += KEY.get(i)
+            actualKey += KEY[i]
         }
 
         return BCrypt.verifyer().verify(actualKey.toCharArray(), pluginSettings.patreonKey.toCharArray()).verified

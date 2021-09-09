@@ -14,16 +14,15 @@ open class Balloon(private val project: Project) {
 
     fun show() {
         val notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup("Laravel Tinker")
-        val notification: Notification
 
-        if (title != null) {
-            notification = notificationGroup.createNotification(
+        val notification: Notification = if (title != null) {
+            notificationGroup.createNotification(
                 title!!,
                 content,
                 if (isError) NotificationType.ERROR else NotificationType.INFORMATION
             )
         } else {
-            notification = notificationGroup.createNotification(
+            notificationGroup.createNotification(
                 content,
                 if (isError) NotificationType.ERROR else NotificationType.INFORMATION
             )
