@@ -5,25 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Added
-
 - [[#96]](https://github.com/Roboroads/laravel-tinker/issues/96) Added compatibility with newer API versions
-
 ## [2.2.0]
-
 ### Added
-
 - [[#34]](https://github.com/Roboroads/laravel-tinker/issues/34) Setting to change tinker execution root
-
 ### Fixed
-
 - [[#75]](https://github.com/Roboroads/laravel-tinker/issues/75) Empty directory list of tinker consoles resulting in fatal error.
-
 ## [2.1.0]
-
 ### Added
-
 - Dependabot
 - [[#35]](https://github.com/Roboroads/laravel-tinker/issues/35) Setting to enable/disable line wrapping in output window.
 - [[#33]](https://github.com/Roboroads/laravel-tinker/issues/33) Adds way for Patreon supporters to disable the support plug.
