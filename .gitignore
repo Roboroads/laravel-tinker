@@ -6,3 +6,4 @@ build
 .laravel
 /lib/
 keygen.sh
+/code-inspection.log
