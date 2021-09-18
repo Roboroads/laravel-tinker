@@ -88,8 +88,10 @@
           nonDefaultProject="true"
         />
 
-        <codeInsight.lineMarkerProvider implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
-          language="PHP"/>
+        <codeInsight.lineMarkerProvider
+          implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
+          language="PHP"
+        />
         <scratch.rootType implementation="nl.deschepers.laraveltinker.util.LaravelTinkerConsolesRootType"/>
 
         <toolWindow anchor="right"

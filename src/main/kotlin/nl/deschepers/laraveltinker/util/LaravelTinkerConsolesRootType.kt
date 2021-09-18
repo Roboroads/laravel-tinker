@@ -1,6 +1,5 @@
 package nl.deschepers.laraveltinker.util
 
-import com.intellij.icons.AllIcons
 import com.intellij.ide.scratch.RootType
 import com.intellij.ide.scratch.ScratchFileService
 import com.intellij.lang.Language
@@ -8,11 +7,10 @@ import com.intellij.openapi.command.UndoConfirmationPolicy
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.ui.LayeredIcon
 import com.intellij.ui.UIBundle
-import com.intellij.util.ObjectUtils
 import com.jetbrains.php.lang.PhpLanguage
 import nl.deschepers.laraveltinker.Strings
 import java.io.IOException
@@ -29,25 +27,29 @@ class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt
         }
     }
 
+    override fun substituteName(project: Project, file: VirtualFile): String? {
+        val matches = Regex("_([0-9]+)$").find(file.nameWithoutExtension)
+        val consoleNum = if (matches != null) " (${matches.groupValues[1]})" else ""
+        return Strings.get("lt.console.name") + consoleNum
+    }
+
     override fun substituteLanguage(project: Project, file: VirtualFile): Language? {
         return ScratchFileService.getInstance().scratchesMapping.getMapping(file)
     }
 
-    override fun substituteIcon(project: Project, file: VirtualFile): Icon? {
-        if (file.isDirectory) return null
-        val icon = ObjectUtils.notNull(super.substituteIcon(project, file), AllIcons.FileTypes.Text)
-        return LayeredIcon.create(icon, AllIcons.Actions.Scratch)
+    override fun substituteIcon(project: Project, file: VirtualFile): Icon {
+        return IconLoader.getIcon("icons/laravel-tinker-icon16.svg", javaClass)
     }
 
     @Suppress("SwallowedException")
-    fun createScratchFile(project: Project?, text: String?, option: ScratchFileService.Option?): VirtualFile? {
-        val fileName = Strings.get("lt.console.name")
+    fun createScratchFile(project: Project?, text: String?, option: ScratchFileService.Option): VirtualFile? {
+        val fileName = Strings.get("lt.console.filename")
         return try {
-            WriteCommandAction.writeCommandAction(project).withName(UIBundle.message("file.chooser.create.new.scratch.file.command.name"))
+            WriteCommandAction.writeCommandAction(project).withName(Strings.get("lt.menu.action.open_new_console"))
                 .withGlobalUndo().shouldRecordActionForActiveDocument(false)
                 .withUndoConfirmationPolicy(UndoConfirmationPolicy.REQUEST_CONFIRMATION).compute<VirtualFile, IOException> {
                     val fileService = ScratchFileService.getInstance()
-                    val file = fileService.findFile(this, fileName, option!!)
+                    val file = fileService.findFile(this, fileName, option)
                     // save text should go before any other manipulations that load document,
                     // otherwise undo will be broken
                     VfsUtil.saveText(file, text!!)
