@@ -9,6 +9,6 @@ exclude :
   - name : All
     paths :
       - .laravel
-      - .github`
+      - .github
       - .qodana
       - src/main/resources/scripts
