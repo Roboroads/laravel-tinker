@@ -83,7 +83,7 @@ jobs:
 
       # Run Qodana inspections
       - name : Qodana - Code Inspection
-        uses : JetBrains/qodana-action@v2.1.1-eap
+        uses : JetBrains/qodana-action@v2.2.1-eap
         with :
           fail-threshold : 10
           cache-dir : /home/runner/work/_temp/_github_home/qodana-cache
