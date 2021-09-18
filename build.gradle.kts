@@ -124,9 +124,13 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 
-    runIde {
+//    runIde {
 //        jvmArgs("--add-exports", "java.base/jdk.internal.vm=ALL-UNNAMED")
-        ideDir.set(File(properties("ideDir")))
+//        ideDir.set(File(properties("ideDir")))
 //        ideDirectory("C:\\Users\\vagrant\\AppData\\Local\\JetBrains\\Toolbox\\apps\\PhpStorm\\ch-0\\202.7660.42")
-    }
+//    }
+
+//    runInspections {
+//        dockerArg("-u 1000:1000")
+//    }
 }

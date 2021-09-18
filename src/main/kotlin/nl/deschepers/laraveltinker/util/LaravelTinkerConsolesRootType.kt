@@ -27,7 +27,7 @@ class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt
         }
     }
 
-    override fun substituteName(project: Project, file: VirtualFile): String? {
+    override fun substituteName(project: Project, file: VirtualFile): String {
         val matches = Regex("_([0-9]+)$").find(file.nameWithoutExtension)
         val consoleNum = if (matches != null) " (${matches.groupValues[1]})" else ""
         return Strings.get("lt.console.name") + consoleNum
