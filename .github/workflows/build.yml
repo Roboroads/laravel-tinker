@@ -88,6 +88,7 @@ jobs:
           fail-threshold : 10
           cache-dir : /home/runner/work/_temp/_github_home/qodana-cache
           inspected-dir : src
+          save-html-report : true
 
       # Run tests
       - name: Run Tests
