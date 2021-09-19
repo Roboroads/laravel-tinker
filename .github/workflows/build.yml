@@ -75,7 +75,7 @@ jobs:
           key : ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
       # Cache Qodana
-      - name : Setup Plugin Verifier IDEs Cache
+      - name : Setup Qodona Cache
         uses : actions/cache@v2.1.6
         with :
           path : /home/runner/work/_temp/_github_home/qodana-cache
