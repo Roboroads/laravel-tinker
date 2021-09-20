@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU
-  - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method.
+  - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method and testing my fix.
 
 ## [2.2.1]
 
