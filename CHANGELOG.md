@@ -6,33 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.2.2-beta.3]
 ### Added
-
 - Way of migrating to newer versions of this plugin
 
 ### Changed
-
 - Restyling of Tinker console tabs.
 
 ### Fixed
-
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU
   - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method.
 
 ## [2.2.1]
-
 ### Added
-
 - [[#96]](https://github.com/Roboroads/laravel-tinker/issues/96) Added compatibility with newer API versions
 
 ## [2.2.0]
-
 ### Added
-
 - [[#34]](https://github.com/Roboroads/laravel-tinker/issues/34) Setting to change tinker execution root
 
 ### Fixed
-
 - [[#75]](https://github.com/Roboroads/laravel-tinker/issues/75) Empty directory list of tinker consoles resulting in fatal error.
 
 ## [2.1.0]
