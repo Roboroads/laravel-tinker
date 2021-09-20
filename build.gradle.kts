@@ -26,6 +26,7 @@ repositories {
 
 dependencies {
     implementation("at.favre.lib:bcrypt:0.9.0")
+    implementation("de.skuzzle:semantic-version:2.1.1")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin

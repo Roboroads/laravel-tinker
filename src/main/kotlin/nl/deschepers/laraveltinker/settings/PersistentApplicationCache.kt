@@ -17,7 +17,8 @@ class PersistentApplicationCache : PersistentStateComponent<PersistentApplicatio
     }
 
     class State {
-        var executionsCount: Int = 0
+        var executionsCount = 0
+        var migrateVersion = "0.0.1"
     }
 
     private var cacheState: State = State()

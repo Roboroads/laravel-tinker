@@ -12,7 +12,7 @@
               id="nl.deschepers.laraveltinker.action.SmartAction"
               class="nl.deschepers.laraveltinker.action.SmartAction"
               description="Smart action"
-              text="Smart action"
+              text="Smart Action"
               icon="/icons/laravel-tinker-icon16.svg">
                 <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
                 <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
@@ -23,32 +23,32 @@
               id="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
               class="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
               description="Open new console"
-              text="Open new console">
+              text="Open New Console">
             </action>
             <action
               id="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
               class="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
               description="Reopen last console"
-              text="Reopen last console">
+              text="Reopen Last Console">
             </action>
             <action
               id="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
               class="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
               description="Switch to console tab"
-              text="Switch to console tab">
+              text="Switch to Console Tab">
             </action>
             <action
               id="nl.deschepers.laraveltinker.action.RunConsoleAction"
               class="nl.deschepers.laraveltinker.action.RunConsoleAction"
               description="Run console"
-              text="Run console"
+              text="Run Console"
               icon="runConfigurations/testState/run.svg">
             </action>
             <action
               id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
               class="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
               description="Close all tinker windows"
-              text="Close all tinker windows"
+              text="Close All Tinker Windows"
             />
         </group>
 
@@ -67,6 +67,8 @@
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="nl.deschepers.laraveltinker.startup.Migrations"/>
+
         <applicationService
           serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
           serviceInterface="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"/>
