@@ -14,7 +14,7 @@ class Migrations : StartupActivity {
         val currentPluginVersion = Version.parseVersion(PluginManagerCore.getPlugin(PluginId.getId("nl.deschepers.laraveltinker"))!!.version)
         if (currentMigrateVersion == currentPluginVersion) return
 
-        if (currentMigrateVersion < Version.parseVersion("2.2.2-rc.2")) MakeSureConsolesHaveExtensions().up()
+        if (currentMigrateVersion < Version.parseVersion("2.2.2-beta.3")) MakeSureConsolesHaveExtensions().up()
 
         PersistentApplicationCache.instance.state.migrateVersion = currentPluginVersion.toString()
     }
