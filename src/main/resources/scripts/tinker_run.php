@@ -19,15 +19,20 @@ $config = new \Psy\Configuration([
 $casters = [
     'Illuminate\Support\Collection' => 'Laravel\Tinker\TinkerCaster::castCollection',
     'Illuminate\Support\HtmlString' => 'Laravel\Tinker\TinkerCaster::castHtmlString',
+    'Illuminate\Support\Stringable' => 'Laravel\Tinker\TinkerCaster::castStringable',
+    'Illuminate\Database\Eloquent\Mode' => 'Laravel\Tinker\TinkerCaster::castModel',
+    'Illuminate\Foundation\Application' => 'Laravel\Tinker\TinkerCaster::castApplication',
 ];
-if (class_exists('Illuminate\Database\Eloquent\Model')) {
-    $casters['Illuminate\Database\Eloquent\Model'] = 'Laravel\Tinker\TinkerCaster::castModel';
-}
-if (class_exists('Illuminate\Foundation\Application')) {
-    $casters['Illuminate\Foundation\Application'] = 'Laravel\Tinker\TinkerCaster::castApplication';
+
+$existingCasters = [];
+foreach($casters as $castableClass => $casterMethod) {
+    list($casterClass, $casterClassMethod) = explode('::', $casterMethod);
+    if(class_exists($castableClass) && method_exists($casterClass, $casterClassMethod)) {
+        $existingCasters[$castableClass] = $casterMethod;
+    }
 }
 
-$config->getPresenter()->addCasters($casters);
+$config->getPresenter()->addCasters($existingCasters);
 
 $config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'nul' : '/dev/null');
 
