@@ -49,7 +49,6 @@ jobs:
 
       # Create pull request
       - name: Create Pull Request
-        if: ${{ github.event_name == 'released' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
