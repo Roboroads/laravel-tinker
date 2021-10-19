@@ -20,7 +20,7 @@ $casters = [
     'Illuminate\Support\Collection' => 'Laravel\Tinker\TinkerCaster::castCollection',
     'Illuminate\Support\HtmlString' => 'Laravel\Tinker\TinkerCaster::castHtmlString',
     'Illuminate\Support\Stringable' => 'Laravel\Tinker\TinkerCaster::castStringable',
-    'Illuminate\Database\Eloquent\Mode' => 'Laravel\Tinker\TinkerCaster::castModel',
+    'Illuminate\Database\Eloquent\Model' => 'Laravel\Tinker\TinkerCaster::castModel',
     'Illuminate\Foundation\Application' => 'Laravel\Tinker\TinkerCaster::castApplication',
 ];
 

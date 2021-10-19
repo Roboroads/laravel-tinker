@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- [[#112]](https://github.com/Roboroads/laravel-tinker/pull/112) Adds "Open new console" and "Reopen last console" actions to the tinker output toolwindow.
+- [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds "Open new console" and "Reopen last console" actions to the tinker output toolwindow.
 
 ### Changed
 
 - Cleaned up the output toolwindow a little bit.
+
+### Fixed
+
+- [[#110]](https://github.com/Roboroads/laravel-tinker/issues/110) Fixes typo in caster for the Model class
 
 ## [2.2.2]
 
