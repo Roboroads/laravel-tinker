@@ -23,10 +23,9 @@ import javax.swing.text.html.ParagraphView
 import kotlin.concurrent.schedule
 import kotlin.math.max
 
-class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
+class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private var tinkerOutputToolWindowContent: JPanel? = null
     private var tinkerOutput: JTextPane? = null
-    private var titlePane: JTextPane? = null
     private var outputText: String = ""
     private var outputTime: String = ""
     var plug = false
@@ -51,11 +50,11 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     fun resetOutput() {
-
+        toolWindow.title = "Output"
         outputTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         outputText = ""
 
-        toolWindow?.show()
+        toolWindow.show()
         updateView()
     }
 
@@ -84,7 +83,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
     }
 
     private fun updateView() {
-        val color = toHex(titlePane!!.foreground)
+        val color = toHex(DefaultLanguageHighlighterColors.LABEL.defaultAttributes.foregroundColor)
         val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
 
@@ -102,7 +101,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow?) {
                         body {
                            word-wrap:break-word;
                            color: $color;
-                           font-family: ${titlePane!!.font.family};
+                           font-family: ${tinkerOutputToolWindowContent!!.font.family};
                         } 
                         .output {
                             padding: 5px; 
