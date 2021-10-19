@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Cleaned up the output toolwindow a little bit.
+- Added dependabot updates #113 & #114
 
 ### Fixed
 
