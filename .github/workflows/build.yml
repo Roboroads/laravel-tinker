@@ -68,27 +68,15 @@ jobs:
           echo "::set-output name=pluginVerifierHomeDir::~/.pluginVerifier"
 
       # Cache Plugin Verifier IDEs
-      - name : Setup Plugin Verifier IDEs Cache
-        uses : actions/cache@v2.1.6
-        with :
-          path : ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key : ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
-
-      # Cache Qodana
-      - name : Setup Qodona Cache
-        uses : actions/cache@v2.1.6
-        with :
-          path : /home/runner/work/_temp/_github_home/qodana-cache
-          key : ${{ runner.os }}-qudona-cache
+      - name: Setup Plugin Verifier IDEs Cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
+          key: ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
       # Run Qodana inspections
-      - name : Qodana - Code Inspection
-        uses : JetBrains/qodana-action@v2.2.1-eap
-        with :
-          fail-threshold : 10
-          cache-dir : /home/runner/work/_temp/_github_home/qodana-cache
-          inspected-dir : src
-          save-html-report : true
+      - name: Qodana - Code Inspection
+        uses: JetBrains/qodana-action@v2.1-eap
 
       # Run tests
       - name: Run Tests
@@ -143,22 +131,15 @@ jobs:
           echo "::set-output name=changelog::$CHANGELOG"
 
       # Build artifact using buildPlugin Gradle task
-      - name : Build Plugin
-        run : ./gradlew buildPlugin
+      - name: Build Plugin
+        run: ./gradlew buildPlugin
 
       # Store built plugin as an artifact for downloading
-      - name : Upload artifacts
-        uses : actions/upload-artifact@v2.2.4
-        with :
-          name : "${{ steps.properties.outputs.name }} - ${{ steps.properties.outputs.version }}"
-          path : ./build/distributions/*
-
-      # Store built plugin as an artifact for downloading
-      - name : Upload artifacts
-        uses : actions/upload-artifact@v2.2.4
-        with :
-          name : "${{ steps.properties.outputs.name }} - ${{ steps.properties.outputs.version }} - Qodona results"
-          path : "${{ github.workspace }}/qodana"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: "${{ steps.properties.outputs.name }} - ${{ steps.properties.outputs.version }}"
+          path: ./build/distributions/*
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
