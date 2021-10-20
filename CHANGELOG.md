@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds "Open new console" and "Reopen last console" actions to the tinker output toolwindow.
+- [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.
 
 ### Changed
 
