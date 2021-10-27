@@ -6,50 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.3.0]
 ### Added
-
 - [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.
 
 ### Changed
-
 - Cleaned up the output toolwindow a little bit.
 - Added dependabot updates [#113](https://github.com/Roboroads/laravel-tinker/pull/113) & [#114](https://github.com/Roboroads/laravel-tinker/pull/114)
 
 ### Fixed
-
 - [[#110]](https://github.com/Roboroads/laravel-tinker/issues/110) Fixes typo in caster for the Model class
 
 ## [2.2.2]
-
 ### Added
-
 - Way of migrating to newer versions of this plugin
 - [[#105]](https://github.com/Roboroads/laravel-tinker/pull/105) Adds the stringable caster added in [laravel/tinker v2.6.1](https://github.com/laravel/tinker/pull/121)
   - Thanks [@emargareten](https://github.com/emargareten)
 
 ### Changed
-
 - Restyling of Tinker console tabs.
 
 ### Fixed
-
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU
   - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method and testing my fix.
 
 ## [2.2.1]
-
 ### Added
-
 - [[#96]](https://github.com/Roboroads/laravel-tinker/issues/96) Added compatibility with newer API versions
 
 ## [2.2.0]
-
 ### Added
-
 - [[#34]](https://github.com/Roboroads/laravel-tinker/issues/34) Setting to change tinker execution root
 
 ### Fixed
-
 - [[#75]](https://github.com/Roboroads/laravel-tinker/issues/75) Empty directory list of tinker consoles resulting in fatal error.
 
 ## [2.1.0]
