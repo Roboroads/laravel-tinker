@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Changes
 - Merged changes from JetBrains plugin template
+- [[#120]](https://github.com/Roboroads/laravel-tinker/issues/120) Changes remote tip text in settings
 ## [2.3.0]
 ### Added
 - [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.

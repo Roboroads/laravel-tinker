@@ -23,8 +23,10 @@ on:
 jobs:
 
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
-  gradleValidation:
-    name: Gradle Wrapper
+  # Run verifyPlugin, IntelliJ Plugin Verifier, and test Gradle tasks
+  # Build plugin and provide the artifact for the next workflow jobs
+  build:
+    name: Build
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
