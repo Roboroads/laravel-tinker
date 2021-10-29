@@ -75,7 +75,9 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
         val processHandler: ProcessHandler
 
         try {
-            phpCommandSettings = PhpCommandSettingsBuilder(project, phpInterpreter).build()
+            phpCommandSettings = PhpCommandSettingsBuilder(project, phpInterpreter)
+                .loadAndStartDebug()
+                .build()
             phpCommandSettings.setWorkingDir(laravelRoot)
             phpCommandSettings.importCommandLineSettings(
                 runConfiguration.settings.commandLineSettings,

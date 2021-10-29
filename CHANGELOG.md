@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+### Changes
+- Merged changes from JetBrains plugin template
 ## [2.3.0]
 ### Added
 - [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.
