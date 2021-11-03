@@ -5,15 +5,13 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
-@State(
-    reloadable = true,
-    name = "laravelTinker",
-    storages = [Storage("laravel-tinker-plugin.xml")]
-)
+@State(reloadable = true, name = "laravelTinker", storages = [Storage("laravel-tinker-plugin.xml")])
 class PersistentApplicationCache : PersistentStateComponent<PersistentApplicationCache.State> {
     companion object {
         val instance: PersistentApplicationCache
-            get() = ApplicationManager.getApplication().getService(PersistentApplicationCache::class.java)
+            get() =
+                ApplicationManager.getApplication()
+                    .getService(PersistentApplicationCache::class.java)
     }
 
     class State {

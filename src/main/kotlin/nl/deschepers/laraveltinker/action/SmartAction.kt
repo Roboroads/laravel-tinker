@@ -10,11 +10,10 @@ import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
 
-/** The default 1.x tinker action:
- *   Opens the last console if none is open
- *   or Opens a new console with your selected text
- *   or Switches to the tinker console tab is one is open
- *   or Runs the currently viewing tinker tab.
+/**
+ *  The default 1.x tinker action: Opens the last console if none is open or Opens a new console
+ * with your selected text or Switches to the tinker console tab is one is open or Runs the
+ * currently viewing tinker tab.
  */
 class SmartAction : AnAction() {
     override fun update(e: AnActionEvent) {
@@ -22,7 +21,8 @@ class SmartAction : AnAction() {
 
         e.presentation.isVisible = true
         e.presentation.isEnabled = false
-        e.presentation.text = Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_new_console"))
+        e.presentation.text =
+            Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_new_console"))
         val project = e.project ?: return
         val tinkerConsoleUtil = TinkerConsoleUtil(project)
 
@@ -30,19 +30,25 @@ class SmartAction : AnAction() {
 
         val virtualFile: VirtualFile? = e.getData(CommonDataKeys.VIRTUAL_FILE)
         if (virtualFile != null && tinkerConsoleUtil.isTinkerConsole(virtualFile)) {
-            e.presentation.text = Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.run_console"))
+            e.presentation.text =
+                Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.run_console"))
             return
         }
 
         for (editor in FileEditorManager.getInstance(project).selectedEditors) {
             if (editor.file != null && tinkerConsoleUtil.isTinkerConsole(editor.file!!)) {
-                e.presentation.text = Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.switch_to_tinker_console"))
+                e.presentation.text =
+                    Strings.get(
+                        "lt.menu.action.smart",
+                        Strings.get("lt.menu.action.switch_to_tinker_console")
+                    )
                 return
             }
         }
 
         if (tinkerConsoleUtil.getLastOpenTinkerConsole() != null) {
-            e.presentation.text = Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_last_console"))
+            e.presentation.text =
+                Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_last_console"))
         }
     }
 
@@ -52,21 +58,21 @@ class SmartAction : AnAction() {
 
         // First smart action - running with a console open: run
         val virtualFile: VirtualFile? = e.getData(CommonDataKeys.VIRTUAL_FILE)
-        if (
-            virtualFile != null &&
-            tinkerConsoleUtil.isTinkerConsole(virtualFile) &&
+        if (virtualFile != null && tinkerConsoleUtil.isTinkerConsole(virtualFile) &&
             tinkerConsoleUtil.runTinkerWithFile(virtualFile)
-        ) return
+        )
+            return
 
         // Second action: Open a new console with the selected text
         val currentEditor: Editor? = e.getData(CommonDataKeys.EDITOR)
         val isFile = currentEditor != null && virtualFile != null
-        if (
-            isFile &&
-            virtualFile!!.fileType is PhpFileType &&
+        if (isFile && virtualFile!!.fileType is PhpFileType &&
             currentEditor!!.selectionModel.hasSelection()
         ) {
-            val tinkerConsole = tinkerConsoleUtil.createNewTinkerConsole("\n${currentEditor.selectionModel.selectedText!!}\n")
+            val tinkerConsole =
+                tinkerConsoleUtil.createNewTinkerConsole(
+                    "\n${currentEditor.selectionModel.selectedText!!}\n"
+                )
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
         }
 

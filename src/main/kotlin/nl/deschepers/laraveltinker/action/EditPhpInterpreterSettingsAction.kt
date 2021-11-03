@@ -7,16 +7,14 @@ import com.intellij.openapi.options.ShowSettingsUtil
 import com.jetbrains.php.config.PhpProjectConfigurable
 import nl.deschepers.laraveltinker.Strings
 
-class EditPhpInterpreterSettingsAction : NotificationAction(
-    Strings.get("lt.settings.php_interpreter")
-) {
+class EditPhpInterpreterSettingsAction :
+    NotificationAction(Strings.get("lt.settings.php_interpreter")) {
+
     override fun actionPerformed(e: AnActionEvent, notification: Notification) {
         val project = e.project
         if (project != null) {
-            ShowSettingsUtil.getInstance().showSettingsDialog(
-                project,
-                PhpProjectConfigurable::class.java
-            )
+            ShowSettingsUtil.getInstance()
+                .showSettingsDialog(project, PhpProjectConfigurable::class.java)
         }
     }
 }

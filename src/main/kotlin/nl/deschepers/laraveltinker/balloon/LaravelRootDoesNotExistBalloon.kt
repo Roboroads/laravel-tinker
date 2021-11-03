@@ -8,8 +8,7 @@ import nl.deschepers.laraveltinker.action.EditLaravelTinkerProjectSettingsAction
 class LaravelRootDoesNotExistBalloon(project: Project) : Balloon(project) {
     override var isError: Boolean = false
     override var title: String? = Strings.get("lt.error.laravel_root.does_not_exist.title")
-    override var content: String =
-        Strings.get("lt.error.laravel_root.does_not_exist.message")
+    override var content: String = Strings.get("lt.error.laravel_root.does_not_exist.message")
 
     override fun getActions(): List<NotificationAction> {
         return listOf(EditLaravelTinkerProjectSettingsAction())

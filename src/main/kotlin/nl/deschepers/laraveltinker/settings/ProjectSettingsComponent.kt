@@ -6,8 +6,8 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.FormBuilder
-import nl.deschepers.laraveltinker.Strings
 import javax.swing.JPanel
+import nl.deschepers.laraveltinker.Strings
 
 class ProjectSettingsComponent {
     private var settingsPanel: JPanel
@@ -21,25 +21,28 @@ class ProjectSettingsComponent {
 
     init {
         laravelRootTextField.addBrowseFolderListener(
-            TextBrowseFolderListener(
-                FileChooserDescriptorFactory
-                    .createSingleFolderDescriptor()
-            )
+            TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
         )
 
-        val projectSettingsPanel = FormBuilder.createFormBuilder()
-            .addLabeledComponent(JBLabel(Strings.get("lt.setting.laravel_root")), laravelRootTextField)
-            .addTooltip(Strings.get("lt.setting.laravel_root.tooltip1"))
-            .addTooltip(Strings.get("lt.setting.laravel_root.tooltip2"))
-            .addTooltip(Strings.get("lt.setting.laravel_root.tooltip3"))
-            .addComponentFillVertically(JPanel(), 0)
-            .panel
-        projectSettingsPanel.border = IdeBorderFactory.createTitledBorder(Strings.get("lt.settings.project_settings"))
+        val projectSettingsPanel =
+            FormBuilder.createFormBuilder()
+                .addLabeledComponent(
+                    JBLabel(Strings.get("lt.setting.laravel_root")),
+                    laravelRootTextField
+                )
+                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip1"))
+                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip2"))
+                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip3"))
+                .addComponentFillVertically(JPanel(), 0)
+                .panel
+        projectSettingsPanel.border =
+            IdeBorderFactory.createTitledBorder(Strings.get("lt.settings.project_settings"))
 
-        settingsPanel = FormBuilder.createFormBuilder()
-            .addComponent(projectSettingsPanel)
-            .addComponentFillVertically(JPanel(), 0)
-            .panel
+        settingsPanel =
+            FormBuilder.createFormBuilder()
+                .addComponent(projectSettingsPanel)
+                .addComponentFillVertically(JPanel(), 0)
+                .panel
     }
 
     fun getPanel(): JPanel {

@@ -30,10 +30,7 @@ class TinkerConsoleUtil(val project: Project) {
     fun runTinkerWithFile(file: VirtualFile): Boolean {
         val document = FileDocumentManager.getInstance().getDocument(file)
         if (document !== null) {
-            PhpArtisanTinkerUtil(
-                project,
-                document.text
-            ).run()
+            PhpArtisanTinkerUtil(project, document.text).run()
 
             return true
         }
@@ -42,7 +39,9 @@ class TinkerConsoleUtil(val project: Project) {
     }
 
     private fun getTinkerConsoleFiles(): List<VirtualFile>? {
-        val consolesPath = ScratchFileServiceImpl.getInstance().getRootPath(LaravelTinkerConsolesRootType.getInstance())
+        val consolesPath =
+            ScratchFileServiceImpl.getInstance()
+                .getRootPath(LaravelTinkerConsolesRootType.getInstance())
         val consolesDir = LocalFileSystem.getInstance().findFileByPath(consolesPath)
 
         return consolesDir?.children?.asList()
@@ -51,18 +50,20 @@ class TinkerConsoleUtil(val project: Project) {
     fun initializeExistingTinkerConsoles() {
         val files = getTinkerConsoleFiles()
         val fileService = ScratchFileService.getInstance()
-        files?.forEach {
-            fileService.scratchesMapping.setMapping(it, PhpLanguage.INSTANCE)
-        }
+        files?.forEach { fileService.scratchesMapping.setMapping(it, PhpLanguage.INSTANCE) }
     }
 
-    private fun getTinkerConsole(option: ScratchFileService.Option, startingText: String = ""): VirtualFile? {
+    private fun getTinkerConsole(
+        option: ScratchFileService.Option,
+        startingText: String = ""
+    ): VirtualFile? {
         getTinkerConsoleFiles()
 
-        return LaravelTinkerConsolesRootType.getInstance().createScratchFile(
-            project,
-            Strings.get("lt.console.default_content") + startingText,
-            option
-        )
+        return LaravelTinkerConsolesRootType.getInstance()
+            .createScratchFile(
+                project,
+                Strings.get("lt.console.default_content") + startingText,
+                option
+            )
     }
 }

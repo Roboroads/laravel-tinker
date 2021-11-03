@@ -9,6 +9,9 @@ private const val BUNDLE = "strings.strings"
 
 object Strings : AbstractBundle(BUNDLE) {
     @JvmStatic
-    fun get(@PropertyKey(resourceBundle = BUNDLE) key: String, vararg params: Any) =
-        getMessage(key, *params)
+    fun get(
+        @PropertyKey(resourceBundle = BUNDLE)
+        key: String,
+        vararg params: Any
+    ) = getMessage(key, *params)
 }

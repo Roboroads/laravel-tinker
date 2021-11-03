@@ -13,7 +13,9 @@ import nl.deschepers.laraveltinker.settings.PatreonSupport
 import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
-class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) : ProcessListener {
+class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) :
+    ProcessListener {
+
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
@@ -34,23 +36,25 @@ class PhpProcessListener(private val project: Project, private val processHandle
     }
 
     override fun processTerminated(event: ProcessEvent) {
-        ApplicationManager.getApplication().invokeLater(
-            {
-                val pluginSettings = GlobalSettingsState.getInstance()
+        ApplicationManager.getApplication()
+            .invokeLater(
+                {
+                    val pluginSettings = GlobalSettingsState.getInstance()
 
-                if (pluginSettings.showExecutionEnded) {
-                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.addOutput(
-                        Strings.get("lt.execution.finished")
-                    )
-                }
+                    if (pluginSettings.showExecutionEnded) {
+                        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
+                            ?.addOutput(Strings.get("lt.execution.finished"))
+                    }
 
-                if (PersistentApplicationCache.instance.state.executionsCount >= SUPPORT_MESSAGE_EXECUTIONS && !PatreonSupport.hasValidKey()) {
-                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = true
-                    PersistentApplicationCache.instance.state.executionsCount = 0
-                }
-            },
-            ModalityState.NON_MODAL
-        )
+                    if (PersistentApplicationCache.instance.state.executionsCount >=
+                        SUPPORT_MESSAGE_EXECUTIONS && !PatreonSupport.hasValidKey()
+                    ) {
+                        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = true
+                        PersistentApplicationCache.instance.state.executionsCount = 0
+                    }
+                },
+                ModalityState.NON_MODAL
+            )
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
@@ -66,9 +70,10 @@ class PhpProcessListener(private val project: Project, private val processHandle
         }
 
         if (!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
-            capText = capText.substring(
-                capText.indexOf(OUTPUT_START_SEQUENCE) + OUTPUT_START_SEQUENCE.length
-            )
+            capText =
+                capText.substring(
+                    capText.indexOf(OUTPUT_START_SEQUENCE) + OUTPUT_START_SEQUENCE.length
+                )
             capturing = true
         }
         if (capturing && capText.contains(OUTPUT_END_SEQUENCE)) {
@@ -79,10 +84,14 @@ class PhpProcessListener(private val project: Project, private val processHandle
 
         if (capturing) {
             processOutput.add(capText)
-            ApplicationManager.getApplication().invokeLater(
-                { TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.addOutput(capText) },
-                ModalityState.NON_MODAL
-            )
+            ApplicationManager.getApplication()
+                .invokeLater(
+                    {
+                        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
+                            ?.addOutput(capText)
+                    },
+                    ModalityState.NON_MODAL
+                )
         }
     }
 }

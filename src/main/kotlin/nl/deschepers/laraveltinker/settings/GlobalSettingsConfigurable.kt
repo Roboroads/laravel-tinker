@@ -1,8 +1,8 @@
 package nl.deschepers.laraveltinker.settings
 
 import com.intellij.openapi.options.Configurable
-import nl.deschepers.laraveltinker.Strings
 import javax.swing.JComponent
+import nl.deschepers.laraveltinker.Strings
 
 class GlobalSettingsConfigurable : Configurable {
     private var appSettingsComponent: GlobalSettingsComponent? = null

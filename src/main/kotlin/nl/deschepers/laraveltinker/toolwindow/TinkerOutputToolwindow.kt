@@ -2,10 +2,7 @@ package nl.deschepers.laraveltinker.toolwindow
 
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.HighlighterColors
-import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.wm.ToolWindow
-import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import java.awt.Color
 import java.awt.Desktop
 import java.awt.Dimension
@@ -24,6 +21,8 @@ import javax.swing.text.html.InlineView
 import javax.swing.text.html.ParagraphView
 import kotlin.concurrent.schedule
 import kotlin.math.max
+import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private var tinkerOutputToolWindowContent: JPanel? = null
@@ -36,14 +35,14 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private val pluginSettings = GlobalSettingsState.getInstance()
 
     init {
-        tinkerOutput!!.addHyperlinkListener { e ->
-            if (
-                e.eventType == HyperlinkEvent.EventType.ACTIVATED &&
-                Desktop.isDesktopSupported()
-            ) {
-                Desktop.getDesktop().browse(e.url.toURI())
+        tinkerOutput!!
+            .addHyperlinkListener { e ->
+                if (e.eventType == HyperlinkEvent.EventType.ACTIVATED &&
+                    Desktop.isDesktopSupported()
+                ) {
+                    Desktop.getDesktop().browse(e.url.toURI())
+                }
             }
-        }
 
         tinkerOutput!!.background = null
         tinkerOutput!!.foreground = null
@@ -66,11 +65,12 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
         if (!timer) {
             timer = true
 
-            Timer("UpdateTinkerOutput", false).schedule(250) {
-                outputText = outputText.replace("%%EOT%%", "")
-                updateView()
-                timer = false
-            }
+            Timer("UpdateTinkerOutput", false)
+                .schedule(250) {
+                    outputText = outputText.replace("%%EOT%%", "")
+                    updateView()
+                    timer = false
+                }
         }
     }
 
@@ -79,14 +79,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     }
 
     private fun sanitizeOutput(str: String): String {
-        return str.replace("<aside>⏎</aside>", "")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
+        return str.replace("<aside>⏎</aside>", "").replace("<", "&lt;").replace(">", "&gt;")
     }
 
     private fun updateView() {
         val color = toHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
-        val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
+        val timeString =
+            if (pluginSettings.showExecutionStarted)
+                Strings.get("lt.started.at", outputTime)
+            else
+                ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
 
         if (pluginSettings.useWordWrapping) {
@@ -140,10 +142,13 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     }
 
     private fun highlightSyntax(text: String): String {
-        val stringColor = DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor ?: Color.BLACK
-        val numberColor = DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor ?: Color.BLACK
-        val propColor = DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes
-            .foregroundColor ?: Color.BLACK
+        val stringColor =
+            DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor ?: Color.BLACK
+        val numberColor =
+            DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor ?: Color.BLACK
+        val propColor =
+            DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes.foregroundColor
+                ?: Color.BLACK
 
         val regex = Regex("(.*\n=&gt;)(.*)", RegexOption.DOT_MATCHES_ALL)
 
@@ -155,8 +160,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
             text.replace(regex, "$2")
                 .replace( // Strings in array before =>
                     Regex("\"((?:[^\"\\\\]|\\\\.)*)\"\\s=&gt;"),
-                    "&quot;<font color=\"${toHex(propColor)}\">$1</font>&quot;" +
-                        " =&gt;"
+                    "&quot;<font color=\"${toHex(propColor)}\">$1</font>&quot;" + " =&gt;"
                 )
                 .replace( // Ints in array before =>
                     Regex("([0-9]+)\\s=&gt;"),
@@ -203,7 +207,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                                         val p1 = glyphPainter.getBoundedPosition(this, p0, pos, len)
                                         return if (p0 == startOffset && p1 == endOffset) {
                                             this
-                                        } else createFragment(p0, p1)
+                                        } else
+                                            createFragment(p0, p1)
                                     }
                                     return this
                                 }
@@ -222,7 +227,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                                     val min = layoutPool.getMinimumSpan(axis)
                                     // Don't include insets, Box.getXXXSpan will include them.
                                     sizeRequirements.minimum = min.toInt()
-                                    sizeRequirements.preferred = max(sizeRequirements.minimum, pref.toInt())
+                                    sizeRequirements.preferred =
+                                        max(sizeRequirements.minimum, pref.toInt())
                                     sizeRequirements.maximum = Int.MAX_VALUE
                                     sizeRequirements.alignment = 0.5f
                                     return sizeRequirements

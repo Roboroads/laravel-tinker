@@ -12,15 +12,18 @@ import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.UIBundle
 import com.jetbrains.php.lang.PhpLanguage
-import nl.deschepers.laraveltinker.Strings
 import java.io.IOException
 import javax.swing.Icon
+import nl.deschepers.laraveltinker.Strings
 
 /**
  * Most content is copied from ScratchRootType - but that class is final so I can't extend it.
+ *
  * @see com.intellij.ide.scratch.ScratchRootType
  */
-class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt.console.menu_title")) {
+class LaravelTinkerConsolesRootType :
+    RootType("laravel-tinker", Strings.get("lt.console.menu_title")) {
+
     companion object {
         fun getInstance(): LaravelTinkerConsolesRootType {
             return findByClass(LaravelTinkerConsolesRootType::class.java)
@@ -42,12 +45,19 @@ class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt
     }
 
     @Suppress("SwallowedException")
-    fun createScratchFile(project: Project?, text: String?, option: ScratchFileService.Option): VirtualFile? {
+    fun createScratchFile(
+        project: Project?,
+        text: String?,
+        option: ScratchFileService.Option
+    ): VirtualFile? {
         val fileName = Strings.get("lt.console.filename")
         return try {
-            WriteCommandAction.writeCommandAction(project).withName(Strings.get("lt.menu.action.open_new_console"))
-                .withGlobalUndo().shouldRecordActionForActiveDocument(false)
-                .withUndoConfirmationPolicy(UndoConfirmationPolicy.REQUEST_CONFIRMATION).compute<VirtualFile, IOException> {
+            WriteCommandAction.writeCommandAction(project)
+                .withName(Strings.get("lt.menu.action.open_new_console"))
+                .withGlobalUndo()
+                .shouldRecordActionForActiveDocument(false)
+                .withUndoConfirmationPolicy(UndoConfirmationPolicy.REQUEST_CONFIRMATION)
+                .compute<VirtualFile, IOException> {
                     val fileService = ScratchFileService.getInstance()
                     val file = fileService.findFile(this, fileName, option)
                     // save text should go before any other manipulations that load document,
@@ -58,10 +68,7 @@ class LaravelTinkerConsolesRootType : RootType("laravel-tinker", Strings.get("lt
                 }
         } catch (e: IOException) {
             Messages.showMessageDialog(
-                UIBundle.message(
-                    "create.new.file.could.not.create.file.error.message",
-                    fileName
-                ),
+                UIBundle.message("create.new.file.could.not.create.file.error.message", fileName),
                 UIBundle.message("error.dialog.title"),
                 Messages.getErrorIcon()
             )

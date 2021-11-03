@@ -31,7 +31,10 @@ class OpenNewConsoleWithSelectionAction : AnAction() {
         val currentEditor: Editor = e.getData(CommonDataKeys.EDITOR) ?: return
 
         if (currentEditor.selectionModel.hasSelection()) {
-            val tinkerConsole = tinkerConsoleUtil.createNewTinkerConsole("\n${currentEditor.selectionModel.selectedText!!}\n")
+            val tinkerConsole =
+                tinkerConsoleUtil.createNewTinkerConsole(
+                    "\n${currentEditor.selectionModel.selectedText!!}\n"
+                )
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
         }
     }

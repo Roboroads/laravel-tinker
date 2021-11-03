@@ -10,11 +10,16 @@ import nl.deschepers.laraveltinker.startup.migrations.MakeSureConsolesHaveExtens
 
 class Migrations : StartupActivity {
     override fun runActivity(project: Project) {
-        val currentMigrateVersion = Version.parseVersion(PersistentApplicationCache.instance.state.migrateVersion)
-        val currentPluginVersion = Version.parseVersion(PluginManagerCore.getPlugin(PluginId.getId("nl.deschepers.laraveltinker"))!!.version)
+        val currentMigrateVersion =
+            Version.parseVersion(PersistentApplicationCache.instance.state.migrateVersion)
+        val currentPluginVersion =
+            Version.parseVersion(
+                PluginManagerCore.getPlugin(PluginId.getId("nl.deschepers.laraveltinker"))!!.version
+            )
         if (currentMigrateVersion == currentPluginVersion) return
 
-        if (currentMigrateVersion < Version.parseVersion("2.2.2-beta.3")) MakeSureConsolesHaveExtensions().up()
+        if (currentMigrateVersion < Version.parseVersion("2.2.2-beta.3"))
+            MakeSureConsolesHaveExtensions().up()
 
         PersistentApplicationCache.instance.state.migrateVersion = currentPluginVersion.toString()
     }
