@@ -1,6 +1,8 @@
 package nl.deschepers.laraveltinker.toolwindow
 
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.openapi.editor.HighlighterColors
+import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.wm.ToolWindow
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
@@ -83,7 +85,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     }
 
     private fun updateView() {
-        val color = toHex(DefaultLanguageHighlighterColors.LABEL.defaultAttributes.foregroundColor)
+        val color = toHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
         val timeString = if (pluginSettings.showExecutionStarted) Strings.get("lt.started.at", outputTime) else ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
 
@@ -138,10 +140,10 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     }
 
     private fun highlightSyntax(text: String): String {
-        val stringColor = DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor
-        val numberColor = DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor
+        val stringColor = DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor ?: Color.BLACK
+        val numberColor = DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor ?: Color.BLACK
         val propColor = DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes
-            .foregroundColor
+            .foregroundColor ?: Color.BLACK
 
         val regex = Regex("(.*\n=&gt;)(.*)", RegexOption.DOT_MATCHES_ALL)
 
