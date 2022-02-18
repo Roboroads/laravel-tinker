@@ -22,7 +22,9 @@ group = properties("pluginGroup")
 version = properties("pluginVersion")
 
 // Configure project's dependencies
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     implementation("at.favre.lib:bcrypt:0.9.0")
@@ -34,15 +36,14 @@ intellij {
     pluginName.set(properties("pluginName"))
     version.set(properties("platformVersion"))
     type.set(properties("platformType"))
+    downloadSources.set(properties("platformDownloadSources").toBoolean())
+    updateSinceUntilBuild.set(true)
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(
-        properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty)
-    )
+    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
-// Configure Gradle Changelog Plugin - read more:
-// https://github.com/JetBrains/gradle-changelog-plugin
+// Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
     groups.set(emptyList())
@@ -53,54 +54,53 @@ qodana {
     cachePath.set(projectDir.resolve(".qodana").canonicalPath)
     reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
     saveReport.set(true)
-    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
+    showReport.set(System.getenv("QODANA_SHOW_REPORT").toBoolean())
 }
 
 tasks {
     // Set the JVM compatibility versions
-    properties("javaVersion")
-        .let {
-            withType<JavaCompile> {
-                sourceCompatibility = it
-                targetCompatibility = it
-            }
-            withType<KotlinCompile> { kotlinOptions.jvmTarget = it }
+    properties("javaVersion").let {
+        withType<JavaCompile> {
+            sourceCompatibility = it
+            targetCompatibility = it
         }
+        withType<KotlinCompile> {
+            kotlinOptions.jvmTarget = it
+        }
+    }
 
-    wrapper { gradleVersion = properties("gradleVersion") }
+    wrapper {
+        gradleVersion = properties("gradleVersion")
+    }
 
     patchPluginXml {
         version.set(properties("pluginVersion"))
         sinceBuild.set(properties("pluginSinceBuild"))
         untilBuild.set("")
 
-        // Extract the <!-- Plugin description --> section from README.md and provide for the
-        // plugin's manifest
+        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
-            projectDir.resolve("README.md")
-                .readText()
-                .lines()
-                .run {
-                    val start = "<!-- Plugin description -->"
-                    val end = "<!-- Plugin description end -->"
+            projectDir.resolve("README.md").readText().lines().run {
+                val start = "<!-- Plugin description -->"
+                val end = "<!-- Plugin description end -->"
 
-                    if (!containsAll(listOf(start, end))) {
-                        throw GradleException(
-                            "Plugin description section not found in README.md:\n$start ... $end"
-                        )
-                    }
-                    subList(indexOf(start) + 1, indexOf(end))
+                if (!containsAll(listOf(start, end))) {
+                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
                 }
-                .joinToString("\n")
-                .run { markdownToHTML(this) }
+                subList(indexOf(start) + 1, indexOf(end))
+            }.joinToString("\n").run { markdownToHTML(this) }
         )
 
         // Get the latest available change notes from the changelog file
-        changeNotes.set(
-            provider {
-                changelog.run { getOrNull(properties("pluginVersion")) ?: getLatest() }.toHTML()
-            }
-        )
+        changeNotes.set(provider {
+            changelog.run {
+                getOrNull(properties("pluginVersion")) ?: getLatest()
+            }.toHTML()
+        })
+    }
+
+    runPluginVerifier {
+        ideVersions.set(properties("pluginVerifierIdeVersions").split(',').map(String::trim).filter(String::isNotEmpty))
     }
 
     // Configure UI tests plugin
@@ -121,15 +121,9 @@ tasks {
     publishPlugin {
         dependsOn("patchChangelog")
         token.set(System.getenv("PUBLISH_TOKEN"))
-        // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release
-        // labels, like 2.1.7-alpha.3
-        // Specify pre-release label to publish the plugin in a custom Release Channel
-        // automatically. Read more:
+        // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
+        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(
-            listOf(
-                properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()
-            )
-        )
+        channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
