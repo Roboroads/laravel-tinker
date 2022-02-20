@@ -10,7 +10,6 @@
 #
 # GitHub Actions reference: https://help.github.com/en/actions
 #
-## JBIJPPTPL
 
 name: Build
 on:
