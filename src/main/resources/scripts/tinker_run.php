@@ -1,5 +1,7 @@
 /*<?php /**/
 
+const SINGLE_DOLLAR = '$';
+const TINKER_CODE = <<<'PHP'
 define('LARAVEL_START', microtime(true));
 
 echo "%%START-OUTPUT%%";
@@ -47,7 +49,7 @@ if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
 }
 
 $code = array_reduce(
-    token_get_all($argv[1]),
+    token_get_all(str_replace(SINGLE_DOLLAR, chr(36), $argv[1])),
     function ($carry, $token) {
         if (is_string($token)) {
             return $carry . $token;
@@ -71,3 +73,6 @@ $closure->execute();
 if(isset($loader)) {
     $loader->unregister();
 }
+PHP;
+
+eval(str_replace(SINGLE_DOLLAR, chr(36), TINKER_CODE));
