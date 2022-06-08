@@ -1,6 +1,7 @@
 package nl.deschepers.laraveltinker.toolwindow
 
 import com.intellij.openapi.actionSystem.ActionManager
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -23,7 +24,7 @@ class TinkerOutputToolWindowFactory : ToolWindowFactory {
 
         val instance = TinkerOutputToolwindow(toolWindow)
         tinkerOutputToolWindow[project] = instance
-        val contentFactory = ContentFactory.SERVICE.getInstance()
+        val contentFactory = ApplicationManager.getApplication().getService(ContentFactory::class.java)
         val content: Content = contentFactory.createContent(instance.getContent(), "", false)
         toolWindow.contentManager.addContent(content)
     }

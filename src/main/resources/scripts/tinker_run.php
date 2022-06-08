@@ -46,25 +46,20 @@ if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
     $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
 }
 
-$code = array_reduce(
-    token_get_all($argv[1]),
-    function ($carry, $token) {
-        if (is_string($token)) {
-            return $carry . $token;
-        }
-
-        [$id, $text] = $token;
-
+$unsanitizedRunCode = token_get_all($argv[1]);
+$sanitizedRunCode = '';
+foreach($unsanitizedRunCode as $token) {
+    if (!is_string($token)) {
+        [$id, $token] = $token;
         if (in_array($id, [T_COMMENT, T_DOC_COMMENT, T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO, T_CLOSE_TAG], true)) {
-            $text = '';
+            continue;
         }
+    }
 
-        return $carry . $text;
-    },
-    ''
-);
+    $sanitizedRunCode .= $token;
+}
 
-$shell->addInput($code, true);
+$shell->addInput($sanitizedRunCode . "; exit('%%END-OUTPUT%%');", true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 

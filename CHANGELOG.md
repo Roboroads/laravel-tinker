@@ -5,9 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Fixes execution on docker
+  - ℹ️ This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
+- [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) ~~Fixes~~ Workarounds endless execution of the tinker process.
 
 ## [2.3.3]
-### Removed
+_This version is removed_
 
 ## [2.3.2]
 ### Changed
@@ -23,7 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.
 
 ### Changed
-- Cleaned up the output toolwindow a little bit.
+- Cleaned up the output toolwindow a little.
 - Added dependabot updates [#113](https://github.com/Roboroads/laravel-tinker/pull/113) & [#114](https://github.com/Roboroads/laravel-tinker/pull/114).
 
 ### Fixed
@@ -32,15 +36,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [2.2.2]
 ### Added
 - Way of migrating to newer versions of this plugin.
-- [[#105]](https://github.com/Roboroads/laravel-tinker/pull/105) Adds the stringable caster added in [laravel/tinker v2.6.1](https://github.com/laravel/tinker/pull/121).
-  - Thanks [@emargareten](https://github.com/emargareten).
+- [[#105]](https://github.com/Roboroads/laravel-tinker/pull/105) Adds the stringable caster added in [laravel/tinker v2.6.1](https://github.com/laravel/tinker/pull/121). (by [@emargareten](https://github.com/emargareten))
 
 ### Changed
 - Restyling of Tinker console tabs.
 
 ### Fixed
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU.
-  - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method and testing my fix.
+
+### Credits 🙏
+  - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method and testing my fix for the re-indexing issue.
 
 ## [2.2.1]
 ### Added
@@ -83,17 +88,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - BREAKING: [[#39]](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles".
 - [[#37]](https://github.com/Roboroads/laravel-tinker/issues/37) [[#38]](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text.
-  - This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
+  - ℹ This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
 
 ### Changed
 - BREAKING: Every action is now independently listed.
-  - The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
+  - ℹ The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
 - Every action this plugin can do is now individually bindable in your keymap.
 
 ### Removed
 - BREAKING: Per-project cache (which stored your last executed tinker code).
-  - You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it!
-  - `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
+  - ℹ You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it! `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
 
 ### Other
 - Reorganization of a lot of classes.
@@ -117,8 +121,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 - The title of the tinker screen was editable - now it isn't.
-- [[#28]](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again.
-  - Credits to [@emargareten](https://github.com/emargareten).
+- [[#28]](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again. (by [@emargareten](https://github.com/emargareten))
 
 ## [1.2.1]
 ### Added
@@ -137,14 +140,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#18]](https://github.com/Roboroads/laravel-tinker/issues/18) Added the LARAVEL_START constant to the tinker run script.
 - [[#19]](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
 - [[#12]](https://github.com/Roboroads/laravel-tinker/issues/12) [[#20]](https://github.com/Roboroads/laravel-tinker/issues/20) Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
-  - By just checking if it exists before loading it.
-  - Should fix the plugin for laravel/tinker versions `<= 1.0.1`.
+  - ℹ Fixes the plugin for laravel/tinker versions `<= 1.0.1`.
 
 ## [1.1.1]
 ### Added
 - [[#10]](https://github.com/Roboroads/laravel-tinker/issues/10) Your last command will now be saved (on per-project level).
 - Non-obtrusive reminder you can support this package.
- 
 
 ### Changed
 - [[#6]](https://github.com/Roboroads/laravel-tinker/issues/6) Output window now (hopefully) always inherits the font and color of the IDE
@@ -160,7 +161,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Cleaned output of tinker output window
 - PHP Runner script is now a php file, makes it easier to work with in the IDE.
- 
 
 ### Fixed
 - Default keybinding in Mac OS.
@@ -178,7 +178,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Better code splitting in message balloons.
 - More text in the readme.
 - Better formatting in tinker output.
- 
 
 ### Fixed
 - Laravel now actually gets bootstrapped.

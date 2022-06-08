@@ -67,7 +67,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
             Timer("UpdateTinkerOutput", false)
                 .schedule(250) {
-                    outputText = outputText.replace("%%EOT%%", "")
+                    outputText = outputText
+                        .replace("%%EOT%%", "")
+                        .replace(Regex("Exit:  Goodbye$"), "")
                     updateView()
                     timer = false
                 }
