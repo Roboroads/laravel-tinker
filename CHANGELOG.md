@@ -7,14 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Fixed
 - [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Execution on docker
-  - ℹ️ This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
-- [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) ~~Fixes~~ Workarounds endless execution of the tinker process.
-- Compatibility issue with JB version 2022.2 regarding `ContentFactory.SERVICE`
+  - ℹ️This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
+- [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) Endless execution of the tinker process in several usecases (like JB 2022.2 EAP)
+- Compatibility issue with JB 2022.2 (EAP) regarding `ContentFactory.SERVICE`
 
 ## [2.3.3]
 ### Removed
 - [[#136]](https://github.com/Roboroads/laravel-tinker/issues/136) Upper version limit for JB products.
-  - ℹ️This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
+  - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up. 
 
 ## [2.3.2]
 ### Changed

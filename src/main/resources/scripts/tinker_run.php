@@ -13,7 +13,7 @@ $config = new \Psy\Configuration([
     'updateCheck' => 'never',
     'usePcntl' => false,
     'useReadline' => false,
-    'prompt' => '%%EOT%%'
+    'prompt' => '%%END-OUTPUT%%'
 ]);
 
 $casters = [
@@ -59,7 +59,8 @@ foreach($unsanitizedRunCode as $token) {
     $sanitizedRunCode .= $token;
 }
 
-$shell->addInput($sanitizedRunCode . "; exit('%%END-OUTPUT%%');", true);
+$shell->addInput($sanitizedRunCode, true);
+$shell->addInput('throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 

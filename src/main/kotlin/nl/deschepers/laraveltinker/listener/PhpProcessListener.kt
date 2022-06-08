@@ -19,7 +19,6 @@ class PhpProcessListener(private val project: Project, private val processHandle
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
-        private const val OUTPUT_EOT_PROMPT = "%%EOT%%"
         private const val SUPPORT_MESSAGE_EXECUTIONS = 10
     }
 
@@ -58,16 +57,13 @@ class PhpProcessListener(private val project: Project, private val processHandle
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
+//        print(event.text) //DEBUG: Print full command output to console
         if (firstLine) {
             firstLine = false
             return
         }
 
         var capText = event.text
-
-        if (capText == OUTPUT_EOT_PROMPT) {
-            processHandler.destroyProcess()
-        }
 
         if (!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
             capText =
@@ -77,8 +73,6 @@ class PhpProcessListener(private val project: Project, private val processHandle
             capturing = true
         }
         if (capturing && capText.contains(OUTPUT_END_SEQUENCE)) {
-            capText = capText.substring(0, capText.indexOf(OUTPUT_END_SEQUENCE))
-            processOutput.add(capText)
             capturing = false
         }
 
