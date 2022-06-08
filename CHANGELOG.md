@@ -11,7 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) ~~Fixes~~ Workarounds endless execution of the tinker process.
 
 ## [2.3.3]
-_This version is removed_
+### Removed
+- [[#136]](https://github.com/Roboroads/laravel-tinker/issues/136) Upper version limit for JB products.
+  - ℹ️This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
 
 ## [2.3.2]
 ### Changed
