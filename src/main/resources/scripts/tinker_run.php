@@ -15,7 +15,7 @@ $config = new \Psy\Configuration([
     'updateCheck' => 'never',
     'usePcntl' => false,
     'useReadline' => false,
-    'prompt' => '%%END-OUTPUT%%'
+    'prompt' => ''
 ]);
 
 $casters = [
@@ -66,7 +66,7 @@ $shell->addInput('echo "%%END-OUTPUT%%";', true);
 if($projectSettings->terminateApp) {
     $shell->addInput('app()->terminate()', true);
 }
-$shell->addInput('throw new \Psy\Exception\BreakException("Tinker execution finished.");', true);
+$shell->addInput('throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 
