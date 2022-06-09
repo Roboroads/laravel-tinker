@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.3.4]
 ### Fixed
 - [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Execution on docker
   - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
@@ -15,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [2.3.3]
 ### Removed
 - [[#136]](https://github.com/Roboroads/laravel-tinker/issues/136) Upper version limit for JB products.
-  - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up. 
+  - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
 
 ## [2.3.2]
 ### Changed
@@ -47,9 +49,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU.
-
-### Credits 🙏
-  - Big thanks to [@fawzanm](https://github.com/fawzanm) who helped me figure out a reproduction method and testing my fix for the re-indexing issue.
 
 ## [2.2.1]
 ### Added
