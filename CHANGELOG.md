@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Fixed
 - [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Execution on docker
+  - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
   - ℹ️This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
 - [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) Endless execution of the tinker process in several usecases (like JB 2022.2 EAP)
 - Compatibility issue with JB 2022.2 (EAP) regarding `ContentFactory.SERVICE`
