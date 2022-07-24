@@ -132,10 +132,8 @@ tasks {
 
     runIde {
         autoReloadPlugins.set(true)
-        jvmArgs?.add("-XX:+UnlockDiagnosticVMOptions")
-        jvmArgs?.add("-Xmx 2048")
+        maxHeapSize = "2g"
     }
-
 
     buildSearchableOptions {
         enabled = false;
