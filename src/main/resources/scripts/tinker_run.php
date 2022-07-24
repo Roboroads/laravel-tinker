@@ -60,7 +60,7 @@ foreach($unsanitizedRunCode as $token) {
 }
 
 $shell->addInput($sanitizedRunCode, true);
-$shell->addInput('throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
+$shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 
