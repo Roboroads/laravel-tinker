@@ -35,13 +35,12 @@ foreach($casters as $castableClass => $casterMethod) {
 }
 
 $config->getPresenter()->addCasters($existingCasters);
-
 $config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'nul' : '/dev/null');
 
 $shell = new \Psy\Shell($config);
-
 $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 $shell->setOutput($output);
+$closure = new \Psy\ExecutionLoopClosure($shell);
 
 $autoloadClassMap = __DIR__ . '/vendor/composer/autoload_classmap.php';
 if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
@@ -61,13 +60,12 @@ foreach($unsanitizedRunCode as $token) {
     $sanitizedRunCode .= $token;
 }
 
-if($projectSettings->terminateApp) {
-    $sanitizedRunCode .= '; echo "%%END-OUTPUT%%"; app()->terminate();';
-}
-$sanitizedRunCode .= '; usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");';
-
 $shell->addInput($sanitizedRunCode, true);
-$closure = new \Psy\ExecutionLoopClosure($shell);
+if($projectSettings->terminateApp) {
+    $shell->addInput('echo "%%END-OUTPUT%%";', true);
+    $shell->addInput('app()->terminate();', true);
+}
+$shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure->execute();
 
 if(isset($loader)) {
