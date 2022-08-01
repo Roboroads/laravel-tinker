@@ -119,6 +119,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                         }
                         a {
                            color: $color;
+                           text-decoration: underline;
                         }
                     </style>
                 </head>

@@ -66,7 +66,7 @@ $shell->addInput('echo "%%END-OUTPUT%%";', true);
 if($projectSettings->terminateApp) {
     $shell->addInput('app()->terminate()', true);
 }
-$shell->addInput('throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
+$shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 
