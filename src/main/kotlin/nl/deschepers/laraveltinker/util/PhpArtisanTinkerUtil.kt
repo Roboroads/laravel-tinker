@@ -83,7 +83,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 runConfiguration.settings.commandLineSettings,
                 laravelRoot
             )
-            phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode))
+            phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, projectSettings.parseJson()))
 
             processHandler = runConfiguration.createProcessHandler(project, phpCommandSettings)
             ProcessTerminatedListener.attach(processHandler, project, "")

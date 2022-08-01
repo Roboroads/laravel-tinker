@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.google.gson.JsonObject
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
@@ -13,6 +14,7 @@ import org.jetbrains.annotations.NotNull
 )
 class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
     var laravelRoot = ""
+    var terminateApp = false
 
     companion object {
         fun getInstance(project: Project): ProjectSettingsState {
@@ -26,5 +28,12 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
 
     override fun loadState(state: @NotNull ProjectSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
+    }
+
+    fun parseJson(): String {
+        val settingsObject = JsonObject()
+        settingsObject.addProperty("laravelRoot", this.laravelRoot)
+        settingsObject.addProperty("terminateApp", this.terminateApp)
+        return settingsObject.toString()
     }
 }

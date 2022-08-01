@@ -15,17 +15,20 @@ class ProjectSettingsConfigurable(private var project: Project) : Configurable {
 
     override fun isModified(): Boolean {
         val projectSettings = ProjectSettingsState.getInstance(project)
-        return projectSettingsComponent!!.laravelRoot != projectSettings.laravelRoot
+        return projectSettingsComponent!!.laravelRoot != projectSettings.laravelRoot ||
+            projectSettingsComponent!!.terminateApp != projectSettings.terminateApp
     }
 
     override fun apply() {
         val projectSettings = ProjectSettingsState.getInstance(project)
         projectSettings.laravelRoot = projectSettingsComponent!!.laravelRoot
+        projectSettings.terminateApp = projectSettingsComponent!!.terminateApp
     }
 
     override fun reset() {
         val projectSettings = ProjectSettingsState.getInstance(project)
         projectSettingsComponent!!.laravelRoot = projectSettings.laravelRoot
+        projectSettingsComponent!!.terminateApp = projectSettings.terminateApp
     }
 
     override fun getDisplayName(): String {

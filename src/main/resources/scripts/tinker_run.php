@@ -4,6 +4,8 @@ define('LARAVEL_START', microtime(true));
 
 echo "%%START-OUTPUT%%";
 
+$projectSettings = json_decode($argv[2]) ?? new stdClass();
+
 require __DIR__ . '/vendor/autoload.php';
 $app = require_once __DIR__ . '/bootstrap/app.php';
 $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
@@ -13,7 +15,7 @@ $config = new \Psy\Configuration([
     'updateCheck' => 'never',
     'usePcntl' => false,
     'useReadline' => false,
-    'prompt' => '%%END-OUTPUT%%'
+    'prompt' => ''
 ]);
 
 $casters = [
@@ -60,6 +62,10 @@ foreach($unsanitizedRunCode as $token) {
 }
 
 $shell->addInput($sanitizedRunCode, true);
+$shell->addInput('echo "%%END-OUTPUT%%";', true);
+if($projectSettings->terminateApp) {
+    $shell->addInput('app()->terminate()', true);
+}
 $shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
