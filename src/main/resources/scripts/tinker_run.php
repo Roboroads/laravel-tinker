@@ -61,12 +61,12 @@ foreach($unsanitizedRunCode as $token) {
     $sanitizedRunCode .= $token;
 }
 
-$shell->addInput($sanitizedRunCode, true);
-$shell->addInput('echo "%%END-OUTPUT%%";', true);
 if($projectSettings->terminateApp) {
-    $shell->addInput('app()->terminate()', true);
+    $sanitizedRunCode .= '; echo "%%END-OUTPUT%%"; app()->terminate();';
 }
-$shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
+$sanitizedRunCode .= '; usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");';
+
+$shell->addInput($sanitizedRunCode, true);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 $closure->execute();
 
