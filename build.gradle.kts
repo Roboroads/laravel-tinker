@@ -28,7 +28,7 @@ repositories {
 dependencies {
     implementation("at.favre.lib:bcrypt:0.9.0")
     implementation("de.skuzzle:semantic-version:2.1.1")
-    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.9.1")
 }
 //END CUSTOM
 
