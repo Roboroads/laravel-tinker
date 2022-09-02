@@ -61,7 +61,8 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 if (customComposerDir.exists() && customComposerDir.isDirectory) {
                     laravelRoot = projectSettings.laravelRoot
                 } else {
-                    LaravelRootDoesNotHaveVendorBalloon(project).show()
+                    //LaravelRootDoesNotHaveVendorBalloon(project).show()
+                    // fixme: i dont know what to do with the balloon
                 }
             } else {
                 LaravelRootDoesNotExistBalloon(project).show()

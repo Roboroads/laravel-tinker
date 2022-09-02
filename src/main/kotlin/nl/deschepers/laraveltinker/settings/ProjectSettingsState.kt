@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull
 )
 class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
     var laravelRoot = ""
+    var vendorRoot = ""
     var terminateApp = false
 
     companion object {
@@ -32,7 +33,13 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
 
     fun parseJson(): String {
         val settingsObject = JsonObject()
+
+        if (this.vendorRoot.isEmpty()) {
+            this.vendorRoot = this.laravelRoot
+        }
+
         settingsObject.addProperty("laravelRoot", this.laravelRoot)
+        settingsObject.addProperty("vendorRoot", this.vendorRoot)
         settingsObject.addProperty("terminateApp", this.terminateApp)
         return settingsObject.toString()
     }
