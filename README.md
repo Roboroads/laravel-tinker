@@ -6,7 +6,7 @@ Adds a way to write php in PhpStorm/IDEA and run it directly as if through `lara
 Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ctrl + Shift + T` to let tinker smartly guess what you want to do (opening/running/etc.).
 
  - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
- - [🙏🏼 Patreon](https://www.patreon.com/roboroads): Consider supporting this project if it helped you 😊
+ - [🙏🏼 Patreon](https://www.patreon.com/roboroads) / [PayPal](https://www.paypal.com/donate/?business=GVP8H97X2KWPS&no_recurring=0&currency_code=EUR): Consider supporting this project if it helped you 😊
  - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 <!-- Plugin description end -->
 
