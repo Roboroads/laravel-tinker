@@ -14,7 +14,7 @@ class ProjectSettingsComponent {
     private var settingsPanel: JPanel
     private val laravelRootTextField = TextFieldWithBrowseButton()
     private val vendorRootTextField = TextFieldWithBrowseButton()
-    private val terminateAppCheckBox = JBCheckBox(Strings.get("lt.setting.terminate_app"))
+    private val terminateAppCheckBox = JBCheckBox(Strings.get("lt.settings.terminate_app"))
 
     var laravelRoot: String
         get() = this.laravelRootTextField.text
@@ -45,16 +45,16 @@ class ProjectSettingsComponent {
         val projectSettingsPanel =
             FormBuilder.createFormBuilder()
                 .addLabeledComponent(
-                    JBLabel(Strings.get("lt.setting.laravel_root")),
+                    JBLabel(Strings.get("lt.settings.laravel_root")),
                     laravelRootTextField
                 )
                 .addLabeledComponent(
-                    JBLabel(Strings.get("lt.setting.vendor_root")),
+                    JBLabel(Strings.get("lt.settings.vendor_root")),
                     vendorRootTextField
                 )
-                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip1"))
-                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip2"))
-                .addTooltip(Strings.get("lt.setting.laravel_root.tooltip3"))
+                .addTooltip(Strings.get("lt.settings.laravel_root.tooltip1"))
+                .addTooltip(Strings.get("lt.settings.laravel_root.tooltip2"))
+                .addTooltip(Strings.get("lt.settings.laravel_root.tooltip3"))
                 .addComponent(terminateAppCheckBox)
                 .addComponentFillVertically(JPanel(), 0)
                 .panel

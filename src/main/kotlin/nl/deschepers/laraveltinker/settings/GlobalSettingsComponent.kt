@@ -7,14 +7,15 @@ import com.intellij.util.ui.FormBuilder
 import javax.swing.JPanel
 import javax.swing.JTextField
 import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.listener.PhpProcessListener
 
 class GlobalSettingsComponent {
     private var settingsPanel: JPanel
     private val showExecutionStartedCheckbox =
-        JBCheckBox(Strings.get("lt.setting.show_execution_start"))
+        JBCheckBox(Strings.get("lt.settings.show_execution_start"))
     private val showExecutionEndedCheckbox =
-        JBCheckBox(Strings.get("lt.setting.show_execution_end"))
-    private val useWordWrappingCheckbox = JBCheckBox(Strings.get("lt.setting.use_word_wrapping"))
+        JBCheckBox(Strings.get("lt.settings.show_execution_end"))
+    private val useWordWrappingCheckbox = JBCheckBox(Strings.get("lt.settings.use_word_wrapping"))
     private val patreonKeyTextField = JTextField()
 
     var showExecutionStarted: Boolean
@@ -52,11 +53,11 @@ class GlobalSettingsComponent {
         val otherSettingsPanel =
             FormBuilder.createFormBuilder()
                 .addLabeledComponent(
-                    JBLabel(Strings.get("lt.setting.patreon_key")),
+                    JBLabel(Strings.get("lt.settings.patreon_key")),
                     patreonKeyTextField
                 )
-                .addTooltip(Strings.get("lt.setting.patreon_key.tooltip"))
-                .addTooltip(Strings.get("lt.setting.patreon_key.tooltip_patreon"))
+                .addTooltip(Strings.get("lt.settings.patreon_key.tooltip", PhpProcessListener.SUPPORT_MESSAGE_EXECUTIONS))
+                .addTooltip(Strings.get("lt.settings.patreon_key.tooltip_patreon"))
                 .addComponentFillVertically(JPanel(), 0)
                 .panel
         otherSettingsPanel.border =

@@ -88,7 +88,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
         val color = toHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
         val timeString =
             if (pluginSettings.showExecutionStarted)
-                Strings.get("lt.started.at", outputTime)
+                Strings.get("lt.started_at", outputTime)
             else
                 ""
         val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
@@ -131,7 +131,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                         <pre>
                             <code>
                                 $highlightedOutput
-                                ${if (plug) "\n\n\n" + Strings.get("lt.consider.supporting") else ""}
+                                ${if (plug) "\n\n\n" + Strings.get("lt.consider_supporting") else ""}
                             </code>
                         </pre>
                     </div>

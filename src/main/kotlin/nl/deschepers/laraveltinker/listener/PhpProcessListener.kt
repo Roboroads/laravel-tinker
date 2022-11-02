@@ -19,7 +19,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
-        private const val SUPPORT_MESSAGE_EXECUTIONS = 10
+        internal const val SUPPORT_MESSAGE_EXECUTIONS = 10
     }
 
     private val processOutput = ArrayList<String>()
@@ -42,7 +42,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
 
                     if (pluginSettings.showExecutionEnded) {
                         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
-                            ?.addOutput(Strings.get("lt.execution.finished"))
+                            ?.addOutput(Strings.get("lt.execution_finished"))
                     }
 
                     if (PersistentApplicationCache.instance.state.executionsCount >=
