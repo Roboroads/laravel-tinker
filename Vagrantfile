@@ -1,7 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "gusztavvargadr/windows-10"
 
-
   config.vm.provider "virtualbox" do |v|
     v.gui = true
     v.memory = 4096
