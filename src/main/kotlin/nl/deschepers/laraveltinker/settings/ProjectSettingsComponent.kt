@@ -13,12 +13,18 @@ import nl.deschepers.laraveltinker.Strings
 class ProjectSettingsComponent {
     private var settingsPanel: JPanel
     private val laravelRootTextField = TextFieldWithBrowseButton()
+    private val vendorRootTextField = TextFieldWithBrowseButton()
     private val terminateAppCheckBox = JBCheckBox(Strings.get("lt.setting.terminate_app"))
 
     var laravelRoot: String
         get() = this.laravelRootTextField.text
         set(value) {
             this.laravelRootTextField.text = value
+        }
+    var vendorRoot: String
+        get() = this.vendorRootTextField.text
+        set(value) {
+            this.vendorRootTextField.text = value
         }
     var terminateApp: Boolean
         get() = this.terminateAppCheckBox.isSelected
@@ -32,11 +38,19 @@ class ProjectSettingsComponent {
             TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
         )
 
+        vendorRootTextField.addBrowseFolderListener(
+            TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
+        )
+
         val projectSettingsPanel =
             FormBuilder.createFormBuilder()
                 .addLabeledComponent(
                     JBLabel(Strings.get("lt.setting.laravel_root")),
                     laravelRootTextField
+                )
+                .addLabeledComponent(
+                    JBLabel(Strings.get("lt.setting.vendor_root")),
+                    vendorRootTextField
                 )
                 .addTooltip(Strings.get("lt.setting.laravel_root.tooltip1"))
                 .addTooltip(Strings.get("lt.setting.laravel_root.tooltip2"))
