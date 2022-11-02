@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Miscellaneous
 - Added option for one-time donations through PayPal.
+- Updated dependencies
 
 ## [2.4.0]
 ### Added
