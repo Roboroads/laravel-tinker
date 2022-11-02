@@ -24,7 +24,7 @@ import java.nio.charset.StandardCharsets
 import java.util.stream.Collectors
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotExistBalloon
-import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotHaveVendorBalloon
+import nl.deschepers.laraveltinker.balloon.VendorFolderNotFound
 import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
 import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
 import nl.deschepers.laraveltinker.listener.PhpProcessListener
@@ -54,19 +54,26 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 .parent
                 .path
 
+        // If the user has set a custom path, use that instead
         if (projectSettings.laravelRoot.isNotEmpty()) {
-            val customLaravelRoot = File(projectSettings.laravelRoot)
-            if (customLaravelRoot.exists() && customLaravelRoot.isDirectory) {
-                val customComposerDir = File(customLaravelRoot.path + "/vendor")
-                if (customComposerDir.exists() && customComposerDir.isDirectory) {
-                    laravelRoot = projectSettings.laravelRoot
-                } else {
-                    //LaravelRootDoesNotHaveVendorBalloon(project).show()
-                    // fixme: i dont know what to do with the balloon
-                }
+            val customLaravelRoot = File(projectSettings.laravelRoot + "/bootstrap/app.php")
+            if (customLaravelRoot.exists() && customLaravelRoot.isFile) {
+                laravelRoot = projectSettings.laravelRoot
             } else {
-                LaravelRootDoesNotExistBalloon(project).show()
+                LaravelRootDoesNotExistBalloon(project, projectSettings.laravelRoot).show()
+                return
             }
+        }
+
+        // Check if the vendor path exists
+        var vendorPath = projectSettings.vendorRoot.ifEmpty { laravelRoot }
+        if(!vendorPath.endsWith("/vendor")) {
+            vendorPath = "$vendorPath/vendor"
+        }
+        val vendorDir = File(vendorPath)
+        if (!vendorDir.exists() || !vendorDir.isDirectory) {
+            VendorFolderNotFound(project, vendorPath).show()
+            return
         }
 
         val inputStream = javaClass.classLoader.getResourceAsStream("scripts/tinker_run.php")
@@ -91,14 +98,14 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
         } catch (ex: ExecutionException) {
             PhpInterpreterErrorBalloon(
                 project,
-                ex.message ?: Strings.get("lt.error.php.interpreter.error")
+                ex.message ?: Strings.get("lt.error.php_interpreter_error")
             ).show()
 
             return
         } catch (ex: PhpEditInterpreterExecutionException) {
             PhpInterpreterErrorBalloon(
                 project,
-                ex.message ?: Strings.get("lt.error.php.interpreter.error")
+                ex.message ?: Strings.get("lt.error.php_interpreter_error")
             ).show()
 
             return

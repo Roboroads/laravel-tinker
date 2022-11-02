@@ -5,10 +5,10 @@ import com.intellij.openapi.project.Project
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.action.EditLaravelTinkerProjectSettingsAction
 
-class LaravelRootDoesNotHaveVendorBalloon(project: Project) : Balloon(project) {
-    override var isError: Boolean = false
-    override var title: String? = Strings.get("lt.error.laravel_root.no_vendor.title")
-    override var content: String = Strings.get("lt.error.laravel_root.no_vendor.message")
+class VendorFolderNotFound(project: Project, vendorPath: String) : Balloon(project) {
+    override var isError: Boolean = true
+    override var title: String? = Strings.get("lt.error.laravel_root_no_vendor.title")
+    override var content: String = Strings.get("lt.error.laravel_root_no_vendor.message", vendorPath)
 
     override fun getActions(): List<NotificationAction> {
         return listOf(EditLaravelTinkerProjectSettingsAction())
