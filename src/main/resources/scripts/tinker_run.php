@@ -6,8 +6,8 @@ echo "%%START-OUTPUT%%";
 
 $projectSettings = json_decode($argv[2]) ?? new stdClass();
 
-require $projectSettings->vendorRoot . '/vendor/autoload.php';
-$app = require $projectSettings->laravelRoot . '/bootstrap/app.php';
+require ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/autoload.php';
+$app = require_once ($projectSettings->laravelRoot ?: __DIR__) . '/bootstrap/app.php';
 $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
@@ -42,7 +42,7 @@ $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 $shell->setOutput($output);
 $closure = new \Psy\ExecutionLoopClosure($shell);
 
-$autoloadClassMap = $projectSettings->vendorRoot . '/vendor/composer/autoload_classmap.php';
+$autoloadClassMap = ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/composer/autoload_classmap.php';
 if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
     $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
 }
