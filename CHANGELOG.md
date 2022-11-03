@@ -7,10 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 ### Added
 - [[#190]](https://github.com/Roboroads/laravel-tinker/issues/190) Add way to customize vendor path. (Thanks [@bobisdacool1](https://github.com/bobisdacool1)!)
+  - Also fixed the bug from this PR where it crashed if you didn't configure anything.
+
+### Changed
+- Due to demand: added more ways to support this plugin, like Ko-Fi and sharing options.
+  - Adding these ways to a rotation for the support message every 10 executions.
+  - Adding these ways to `FUNDING.yml`.
+  - Generalize "Patereon" to "Support" in the code.
 
 ### Miscellaneous
-- Added option for one-time donations through PayPal.
-- Updated dependencies
+- Updated dependencies (Thanks [@dependabot](https://github.com/apps/dependabot)!)
 
 ## [2.4.0]
 ### Added

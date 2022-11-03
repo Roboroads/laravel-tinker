@@ -1,16 +1,36 @@
-package nl.deschepers.laraveltinker.settings
+package nl.deschepers.laraveltinker.util
 
 import at.favre.lib.crypto.bcrypt.BCrypt
+import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.settings.GlobalSettingsState
+import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 
 /**
  * ==========
- * Before you place a bug: I am aware this is insecure. I just don't want to bother actual Patreon
- * supporters with my donation message Just note that decoding this does not give you any extra
- * features - it JUST removes the "Please support me" message. Consider supporting me to get a legit
- * key: see https://www.patreon.com/roboroads
+ * Before you place a bug: I am aware this is insecure. I just don't want to bother actual supporters
+ * with my donation message Just note that decoding this does not give you any extra features, it
+ * JUST removes the "Concider supporting" message. Consider financially supporting me to get a legit key <3
  * ==========
  */
-object PatreonSupport {
+object PlugUtil {
+    internal const val SUPPORT_MESSAGE_EXECUTIONS = 10
+
+    fun getPlug(): String? {
+        if (!hasValidKey()) {
+            PersistentApplicationCache.instance.state.executionsCount++
+
+            if (PersistentApplicationCache.instance.state.executionsCount >=
+                SUPPORT_MESSAGE_EXECUTIONS
+            ) {
+                PersistentApplicationCache.instance.state.executionsCount = 0
+                val plugType = listOf("patreon","paypal","kofi","linktree","colleagues").asSequence().shuffled().find{true}
+                return Strings.get("lt.consider_supporting", Strings.get("lt.consider_supporting.$plugType"))
+            }
+        }
+
+        return null
+    }
+
     private val KEY =
         object : Any() {
             var t = 0

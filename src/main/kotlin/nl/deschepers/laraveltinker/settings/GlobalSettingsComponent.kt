@@ -7,7 +7,7 @@ import com.intellij.util.ui.FormBuilder
 import javax.swing.JPanel
 import javax.swing.JTextField
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.listener.PhpProcessListener
+import nl.deschepers.laraveltinker.util.PlugUtil.SUPPORT_MESSAGE_EXECUTIONS
 
 class GlobalSettingsComponent {
     private var settingsPanel: JPanel
@@ -53,11 +53,11 @@ class GlobalSettingsComponent {
         val otherSettingsPanel =
             FormBuilder.createFormBuilder()
                 .addLabeledComponent(
-                    JBLabel(Strings.get("lt.settings.patreon_key")),
+                    JBLabel(Strings.get("lt.settings.support_key")),
                     patreonKeyTextField
                 )
-                .addTooltip(Strings.get("lt.settings.patreon_key.tooltip", PhpProcessListener.SUPPORT_MESSAGE_EXECUTIONS))
-                .addTooltip(Strings.get("lt.settings.patreon_key.tooltip_patreon"))
+                .addTooltip(Strings.get("lt.settings.support_key.tooltip", SUPPORT_MESSAGE_EXECUTIONS))
+                .addTooltip(Strings.get("lt.settings.support_key.tooltip_support_options"))
                 .addComponentFillVertically(JPanel(), 0)
                 .panel
         otherSettingsPanel.border =

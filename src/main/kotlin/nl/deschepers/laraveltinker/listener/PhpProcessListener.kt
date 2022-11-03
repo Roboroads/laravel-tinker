@@ -5,21 +5,22 @@ import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
+import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
-import nl.deschepers.laraveltinker.settings.PatreonSupport
-import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
+import nl.deschepers.laraveltinker.util.PlugUtil
 
+
+private val LOG = logger<PhpProcessListener>()
 class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) :
     ProcessListener {
 
     companion object {
         private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
         private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
-        internal const val SUPPORT_MESSAGE_EXECUTIONS = 10
     }
 
     private val processOutput = ArrayList<String>()
@@ -28,10 +29,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     private var firstLine = true
 
     override fun startNotified(event: ProcessEvent) {
-        if (!PatreonSupport.hasValidKey()) {
-            PersistentApplicationCache.instance.state.executionsCount++
-        }
-        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = false
+        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = null
     }
 
     override fun processTerminated(event: ProcessEvent) {
@@ -45,12 +43,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
                             ?.addOutput(Strings.get("lt.execution_finished"))
                     }
 
-                    if (PersistentApplicationCache.instance.state.executionsCount >=
-                        SUPPORT_MESSAGE_EXECUTIONS && !PatreonSupport.hasValidKey()
-                    ) {
-                        TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = true
-                        PersistentApplicationCache.instance.state.executionsCount = 0
-                    }
+                    TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = PlugUtil.getPlug()
                 },
                 ModalityState.NON_MODAL
             )

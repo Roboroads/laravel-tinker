@@ -29,7 +29,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private var tinkerOutput: JTextPane? = null
     private var outputText: String = ""
     private var outputTime: String = ""
-    var plug = false
+    var plug: String? = null
 
     private var timer = false
     private val pluginSettings = GlobalSettingsState.getInstance()
@@ -69,7 +69,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                 .schedule(250) {
                     outputText = outputText
                         .replace("%%EOT%%", "")
-                        .replace(Regex("Exit:  Goodbye$"), "")
+                        .replace(Regex("Exit: {2}Goodbye$"), "")
                     updateView()
                     timer = false
                 }
@@ -131,7 +131,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                         <pre>
                             <code>
                                 $highlightedOutput
-                                ${if (plug) "\n\n\n" + Strings.get("lt.consider_supporting") else ""}
+                                ${if (plug != null) "\n\n" + plug else ""}
                             </code>
                         </pre>
                     </div>
