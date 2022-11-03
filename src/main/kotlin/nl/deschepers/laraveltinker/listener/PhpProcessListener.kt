@@ -50,7 +50,8 @@ class PhpProcessListener(private val project: Project, private val processHandle
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
-//        print(event.text) //DEBUG: Print full command output to console
+        LOG.debug(event.text)
+
         if (firstLine) {
             firstLine = false
             return
