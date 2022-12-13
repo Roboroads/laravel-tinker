@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 - Rexeg-replace-guessing in the output window, replaced with ANSI mode parsing.
+- [[#217]](https://github.com/Roboroads/laravel-tinker/issues/217) Removed the deprecated ProjectManagerListener.projectOpened event. Didn't replace it with a postStartupActivity because it apparently works without just fine.
 
 ### Fixed
 - [[#212]](https://github.com/Roboroads/laravel-tinker/issues/212) Whisper tags now get parsed to a span with text color set to gray.
@@ -25,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Miscellaneous
 - Updated dependencies (Thanks [@dependabot](https://github.com/apps/dependabot)!)
+- Removed some now unused code due to removing of ProjectManagerListener.projectOpened event.
 
 ## [2.4.0]
 ### Added

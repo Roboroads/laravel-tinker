@@ -47,12 +47,6 @@ class TinkerConsoleUtil(val project: Project) {
         return consolesDir?.children?.asList()
     }
 
-    fun initializeExistingTinkerConsoles() {
-        val files = getTinkerConsoleFiles()
-        val fileService = ScratchFileService.getInstance()
-        files?.forEach { fileService.scratchesMapping.setMapping(it, PhpLanguage.INSTANCE) }
-    }
-
     private fun getTinkerConsole(
         option: ScratchFileService.Option,
         startingText: String = ""
