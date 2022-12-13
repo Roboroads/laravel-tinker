@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Filing a bug
+        # Filing a bug
         
         Thanks for taking the time to file a bug! Note that I might take a while to respond, depending on how busy I am. Please be patient.
   - type: input
@@ -51,7 +51,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Environment
+        # Environment
         
         And now for the annoying part, telling exactly how your environment is set up. This is important, because it helps me to reproduce the bug. It is very common for a bug to only happen in a specific environment, so please be as detailed as possible.
   - type: input
