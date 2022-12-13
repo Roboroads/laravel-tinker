@@ -14,7 +14,6 @@ import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import nl.deschepers.laraveltinker.util.PlugUtil
 
 
-private val LOG = logger<PhpProcessListener>()
 class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) :
     ProcessListener {
 
@@ -50,7 +49,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
-        LOG.debug(event.text)
+        print(event.text)
 
         if (firstLine) {
             firstLine = false

@@ -27,11 +27,11 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
         return this
     }
 
-    override fun loadState(state: @NotNull ProjectSettingsState) {
+    override fun loadState(state: ProjectSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
     }
 
-    fun parseJson(): String {
+    fun parseJson(): JsonObject {
         val settingsObject = JsonObject()
 
         if (this.vendorRoot.isEmpty()) {
@@ -41,6 +41,6 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
         settingsObject.addProperty("laravelRoot", this.laravelRoot)
         settingsObject.addProperty("vendorRoot", this.vendorRoot)
         settingsObject.addProperty("terminateApp", this.terminateApp)
-        return settingsObject.toString()
+        return settingsObject
     }
 }

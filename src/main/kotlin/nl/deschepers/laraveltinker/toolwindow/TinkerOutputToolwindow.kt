@@ -23,6 +23,7 @@ import kotlin.concurrent.schedule
 import kotlin.math.max
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
+import nl.deschepers.laraveltinker.util.HelperUtil
 
 class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private var tinkerOutputToolWindowContent: JPanel? = null
@@ -46,7 +47,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
         tinkerOutput!!.background = null
         tinkerOutput!!.foreground = null
-        tinkerOutput!!.disabledTextColor = null
         tinkerOutput!!.disabledTextColor = null
     }
 
@@ -76,22 +76,13 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
         }
     }
 
-    private fun toHex(color: Color): String {
-        return "#" + Integer.toHexString(color.rgb).substring(2)
-    }
-
-    private fun sanitizeOutput(str: String): String {
-        return str.replace("<aside>⏎</aside>", "").replace("<", "&lt;").replace(">", "&gt;")
-    }
-
     private fun updateView() {
-        val color = toHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
+        val color = HelperUtil.colorToHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
         val timeString =
             if (pluginSettings.showExecutionStarted)
                 Strings.get("lt.started_at", outputTime)
             else
                 ""
-        val highlightedOutput = highlightSyntax("\n" + sanitizeOutput(outputText))
 
         if (pluginSettings.useWordWrapping) {
             setupWordWrapping()
@@ -105,7 +96,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                 <head>
                     <style>
                         body {
-                           word-wrap:break-word;
+                           word-wrap: break-word;
                            color: $color;
                            font-family: ${tinkerOutputToolWindowContent!!.font.family};
                         } 
@@ -128,12 +119,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                         $timeString
                     </div>
                     <div class="output">
-                        <pre>
-                            <code>
-                                $highlightedOutput
-                                ${if (plug != null) "\n\n" + plug else ""}
-                            </code>
-                        </pre>
+                        <pre><code>$outputText${if (plug != null) "\n\n" + plug else ""}</code></pre>
                     </div>
                 </body>
             </html>
@@ -142,45 +128,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
     fun getContent(): JPanel? {
         return tinkerOutputToolWindowContent
-    }
-
-    private fun highlightSyntax(text: String): String {
-        val stringColor =
-            DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor ?: Color.BLACK
-        val numberColor =
-            DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor ?: Color.BLACK
-        val propColor =
-            DefaultLanguageHighlighterColors.INSTANCE_FIELD.defaultAttributes.foregroundColor
-                ?: Color.BLACK
-
-        val regex = Regex("(.*\n=&gt;)(.*)", RegexOption.DOT_MATCHES_ALL)
-
-        if (!text.matches(regex)) {
-            return text
-        }
-
-        return text.replace(regex, "$1") +
-            text.replace(regex, "$2")
-                .replace( // Strings in array before =>
-                    Regex("\"((?:[^\"\\\\]|\\\\.)*)\"\\s=&gt;"),
-                    "&quot;<font color=\"${toHex(propColor)}\">$1</font>&quot;" + " =&gt;"
-                )
-                .replace( // Ints in array before =>
-                    Regex("([0-9]+)\\s=&gt;"),
-                    "<font color=\"${toHex(propColor)}\">$1</font> =&gt;"
-                )
-                .replace( // String in objects before :
-                    Regex("\\+\"((?:[^\"\\\\]|\\\\.)*)\":"),
-                    "+&quot;<b>$1</b>&quot;:"
-                )
-                .replace( // Strings as values
-                    Regex("(=&gt;|:)\\s\"((?:[^\"\\\\]|\\\\.)*)\""),
-                    "$1 &quot;<font color=\"${toHex(stringColor)}\">$2</font>&quot;"
-                )
-                .replace( // Ints as values
-                    Regex("(=&gt;|:)\\s([0-9]+)"),
-                    "$1 <font color=\"${toHex(numberColor)}\">$2</font>"
-                )
     }
 
     private fun setupWordWrapping() {

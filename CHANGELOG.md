@@ -8,12 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - [[#190]](https://github.com/Roboroads/laravel-tinker/issues/190) Add way to customize vendor path. (Thanks [@bobisdacool1](https://github.com/bobisdacool1)!)
   - Also fixed the bug from this PR where it crashed if you didn't configure anything.
+- [[#171]](https://github.com/Roboroads/laravel-tinker/issues/171) Add ANSI mode parsing (instead of regex-replace-guessing in the output window)
 
 ### Changed
 - Due to demand: added more ways to support this plugin, like Ko-Fi and sharing options.
   - Adding these ways to a rotation for the support message every 10 executions.
   - Adding these ways to `FUNDING.yml`.
   - Generalize "Patereon" to "Support" in the code.
+
+### Removed
+- Rexeg-replace-guessing in the output window, replaced with ANSI mode parsing.
+
+### Fixed
+- [[#212]](https://github.com/Roboroads/laravel-tinker/issues/212) Whisper tags now get parsed to a span with text color set to gray.
+- "INFO" being left after execution because of Laravel's new error parsing in the console.
 
 ### Miscellaneous
 - Updated dependencies (Thanks [@dependabot](https://github.com/apps/dependabot)!)

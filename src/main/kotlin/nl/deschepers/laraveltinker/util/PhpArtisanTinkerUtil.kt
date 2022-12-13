@@ -3,6 +3,7 @@ package nl.deschepers.laraveltinker.util
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessTerminatedListener
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.progress.ProcessCanceledException
 import com.intellij.openapi.progress.ProgressIndicator
@@ -91,7 +92,14 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 runConfiguration.settings.commandLineSettings,
                 laravelRoot
             )
-            phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, projectSettings.parseJson()))
+
+            val tinkerRunSettings = projectSettings.parseJson()
+            tinkerRunSettings.addProperty("keywordColor", HelperUtil.colorToHex(DefaultLanguageHighlighterColors.KEYWORD.defaultAttributes.foregroundColor))
+            tinkerRunSettings.addProperty("intColor", HelperUtil.colorToHex(DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor))
+            tinkerRunSettings.addProperty("stringColor", HelperUtil.colorToHex(DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor))
+            tinkerRunSettings.addProperty("floatColor", HelperUtil.colorToHex(DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor))
+
+            phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, tinkerRunSettings.toString()))
 
             processHandler = runConfiguration.createProcessHandler(project, phpCommandSettings)
             ProcessTerminatedListener.attach(processHandler, project, "")
