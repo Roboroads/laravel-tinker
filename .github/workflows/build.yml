@@ -115,7 +115,9 @@ jobs:
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2022.3.0
+        uses: JetBrains/qodana-action@main
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
 
       # Prepare plugin archive content for creating artifact
       - name: Prepare Plugin Artifact
