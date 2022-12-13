@@ -54,7 +54,6 @@ body:
         ## Environment
         
         And now for the annoying part, telling exactly how your environment is set up. This is important, because it helps me to reproduce the bug. It is very common for a bug to only happen in a specific environment, so please be as detailed as possible.
-
   - type: input
     attributes:
       label: IDE & Version
@@ -65,19 +64,19 @@ body:
     attributes:
       label: PHP Version
       description: "Find out with `php -v`"
-      placeholder: 8.1
+      placeholder: "8.1"
     validations:
       required: true
   - type: input
     attributes:
       label: OS and version
-      placeholder: Windows 11
+      placeholder: "Windows 11"
     validations:
       required: true
   - type: input
     attributes:
       label: Laravel Tinker plugin version
-      placeholder: 2.4.0
+      placeholder: "2.4.0"
     validations:
       required: true
   - type: dropdown
@@ -96,21 +95,21 @@ body:
     attributes:
       label: Laravel Version
       description: "Find out with `composer show laravel/framework | grep versions`"
-      placeholder: 9.2.0
+      placeholder: "9.2.0"
     validations:
       required: true
   - type: input
     attributes:
       label: Tinker version
       description: "Find out with `composer show laravel/tinker | grep versions`"
-      placeholder: 2.4.0
+      placeholder: "2.4.0"
     validations:
       required: true
   - type: input
     attributes:
       label: Psysh version
       description: "Find out with `composer show psy/psysh | grep versions`"
-      placeholder: 0.11.9
+      placeholder: "0.11.9"
     validations:
       required: true
 
