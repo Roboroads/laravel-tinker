@@ -1,18 +1,17 @@
 # Changelog
-
 All notable changes to this project will be documented in this file.
-
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.5.0] - 2022-12-13
+
 ### Added
-- [[#190]](https://github.com/Roboroads/laravel-tinker/issues/190) Add way to customize vendor path. (Thanks [@bobisdacool1](https://github.com/bobisdacool1)!)
-  - Also fixed the bug from this PR where it crashed if you didn't configure anything.
+- - Also fixed the bug from this PR where it crashed if you didn't configure anything.
 - [[#171]](https://github.com/Roboroads/laravel-tinker/issues/171) Add ANSI mode parsing (instead of regex-replace-guessing in the output window)
 
 ### Changed
-- Due to demand: added more ways to support this plugin, like Ko-Fi and sharing options.
-  - Adding these ways to a rotation for the support message every 10 executions.
+- - Adding these ways to a rotation for the support message every 10 executions.
   - Adding these ways to `FUNDING.yml`.
   - Generalize "Patereon" to "Support" in the code.
 
@@ -29,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Removed some now unused code due to removing of ProjectManagerListener.projectOpened event.
 
 ## [2.4.0]
+
 ### Added
 - [[#169]](https://github.com/Roboroads/laravel-tinker/issues/169) Option to call app termination after running code.
 
@@ -36,19 +36,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#178]](https://github.com/Roboroads/laravel-tinker/issues/178) Process exiting before full output is available.
 
 ## [2.3.4]
+
 ### Fixed
-- [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Execution on docker
-  - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
+- - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
   - ℹ️This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
 - [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) Endless execution of the tinker process in several usecases (like JB 2022.2 EAP)
 - Compatibility issue with JB 2022.2 (EAP) regarding `ContentFactory.SERVICE`
 
 ## [2.3.3]
+
 ### Removed
-- [[#136]](https://github.com/Roboroads/laravel-tinker/issues/136) Upper version limit for JB products.
-  - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
+- - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
 
 ## [2.3.2]
+
 ### Changed
 - Updated dependencies.
 
@@ -58,6 +59,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [2.3.1]
 
 ## [2.3.0]
+
 ### Added
 - [[#112]](https://github.com/Roboroads/laravel-tinker/issues/112) Adds <kbd>Open new console</kbd> and <kbd>Reopen last console</kbd> actions to the tinker output toolwindow.
 
@@ -69,6 +71,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#110]](https://github.com/Roboroads/laravel-tinker/issues/110) Fixes typo in caster for the Model class.
 
 ## [2.2.2]
+
 ### Added
 - Way of migrating to newer versions of this plugin.
 - [[#105]](https://github.com/Roboroads/laravel-tinker/pull/105) Adds the stringable caster added in [laravel/tinker v2.6.1](https://github.com/laravel/tinker/pull/121). (Thanks [@emargareten](https://github.com/emargareten)!)
@@ -80,10 +83,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#61]](https://github.com/Roboroads/laravel-tinker/issues/61) Fixes re-indexing issue causing infinite errors and 100% CPU. (Thanks [@fawzanm](https://github.com/fawzanm)!)
 
 ## [2.2.1]
+
 ### Added
 - [[#96]](https://github.com/Roboroads/laravel-tinker/issues/96) Added compatibility with newer API versions.
 
 ## [2.2.0]
+
 ### Added
 - [[#34]](https://github.com/Roboroads/laravel-tinker/issues/34) Setting to change tinker execution root.
 
@@ -91,6 +96,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#75]](https://github.com/Roboroads/laravel-tinker/issues/75) Empty directory list of tinker consoles resulting in fatal error.
 
 ## [2.1.0]
+
 ### Added
 - Dependabot.
 - [[#35]](https://github.com/Roboroads/laravel-tinker/issues/35) Setting to enable/disable line wrapping in output window.
@@ -109,6 +115,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#41]](https://github.com/Roboroads/laravel-tinker/issues/41) When pressing the x icon on the progress bar to stop the PHP execution, the process now gets destroyed within 250ms.
 
 ## [2.0.1]
+
 ### Changed
 - New branding by [Joey "Veritas" de Vries](https://joeyveritas.nl).
 
@@ -117,25 +124,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Tinker files not being PHP when project reloads.
 
 ## [2.0.0]
+
 ### Added
 - BREAKING: [[#39]](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles".
-- [[#37]](https://github.com/Roboroads/laravel-tinker/issues/37) [[#38]](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a new console opens with your selected text.
-  - ℹ This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
+- - ℹ This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
 
 ### Changed
-- BREAKING: Every action is now independently listed.
-  - ℹ The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
+- - ℹ The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
 - Every action this plugin can do is now individually bindable in your keymap.
 
 ### Removed
-- BREAKING: Per-project cache (which stored your last executed tinker code).
-  - ℹ You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it! `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
+- - ℹ You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it! `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
 
 ### Other
 - Reorganization of a lot of classes.
 - Dependencies have been updated.
 
 ## [1.3.1]
+
 ### Changed
 - Updated dependencies.
 
@@ -143,6 +149,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Compatibility with 2020.3.
 
 ## [1.3.0]
+
 ### Added
 - Laravel Tinker settings page (under Tools).
 - [[#30]](https://github.com/Roboroads/laravel-tinker/issues/30) Ability to disable start and finish messages in output.
@@ -156,6 +163,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#28]](https://github.com/Roboroads/laravel-tinker/issues/28) Ending your tinker console with a comment now works correctly again. (Thanks [@emargareten](https://github.com/emargareten)!)
 
 ## [1.2.1]
+
 ### Added
 - [[#25]](https://github.com/Roboroads/laravel-tinker/issues/25) When running tinker it will now save all documents before executing.
 
@@ -163,18 +171,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#23]](https://github.com/Roboroads/laravel-tinker/issues/23) Fixed a bug where output would display twice when the output highlighter didn't find output to highlight.
 
 ## [1.2.0]
+
 ### Added
 - [[#7]](https://github.com/Roboroads/laravel-tinker/issues/7) Output syntax highlighting.
 
 ### Fixed
-- [[#11]](https://github.com/Roboroads/laravel-tinker/issues/11) Plugin won't create a null file anymore on windows. 
+- [[#11]](https://github.com/Roboroads/laravel-tinker/issues/11) Plugin won't create a null file anymore on windows.
 - [[#16]](https://github.com/Roboroads/laravel-tinker/issues/16) Only 1 tinker console will be open at all times.
 - [[#18]](https://github.com/Roboroads/laravel-tinker/issues/18) Added the LARAVEL_START constant to the tinker run script.
 - [[#19]](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
-- [[#12]](https://github.com/Roboroads/laravel-tinker/issues/12) [[#20]](https://github.com/Roboroads/laravel-tinker/issues/20) Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
-  - ℹ Fixes the plugin for laravel/tinker versions `<= 1.0.1`.
+- - ℹ Fixes the plugin for laravel/tinker versions `<= 1.0.1`.
 
 ## [1.1.1]
+
 ### Added
 - [[#10]](https://github.com/Roboroads/laravel-tinker/issues/10) Your last command will now be saved (on per-project level).
 - Non-obtrusive reminder you can support this package.
@@ -187,6 +196,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#9]](https://github.com/Roboroads/laravel-tinker/issues/9) Output showing slow on larger outputs.
 
 ## [1.1.0]
+
 ### Added
 - Run button at the opening tag of the tinker console.
 
@@ -202,6 +212,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Tinker process not shutting down because of waiting for non-existent input.
 
 ## [1.0.0]
+
 ### Added
 - [[#1]](https://github.com/Roboroads/laravel-tinker/issues/1) A correct way to interact with remote interpreters.
 
@@ -218,5 +229,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Campatibility issues that arose in 0.0.1-ALPHA.
 
 ## [0.0.1-ALPHA]
+
 ### Added
 - Everything.
+
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.4...v2.4.0
+[2.3.4]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.3...v2.3.4
+[2.3.3]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.2...v2.3.3
+[2.3.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.1...v2.3.2
+[2.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.0...v2.3.1
+[2.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.2.2...v2.3.0
+[2.2.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.2.1...v2.2.2
+[2.2.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.2.0...v2.2.1
+[2.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.0.1...v2.1.0
+[2.0.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.1...v2.0.0
+[1.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.1...v1.3.0
+[1.2.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.1...v1.2.0
+[1.1.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v0.0.1-ALPHA...v1.0.0
+[0.0.1-ALPHA]: https://github.com/JetBrains/intellij-platform-plugin-template/commits/v0.0.1-ALPHA
