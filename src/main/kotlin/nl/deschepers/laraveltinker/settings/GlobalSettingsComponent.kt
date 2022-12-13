@@ -4,10 +4,10 @@ import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.FormBuilder
-import javax.swing.JPanel
-import javax.swing.JTextField
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.util.PlugUtil.SUPPORT_MESSAGE_EXECUTIONS
+import javax.swing.JPanel
+import javax.swing.JTextField
 
 class GlobalSettingsComponent {
     private var settingsPanel: JPanel

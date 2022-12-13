@@ -12,9 +12,9 @@ import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.UIBundle
 import com.jetbrains.php.lang.PhpLanguage
+import nl.deschepers.laraveltinker.Strings
 import java.io.IOException
 import javax.swing.Icon
-import nl.deschepers.laraveltinker.Strings
 
 /**
  * Most content is copied from ScratchRootType - but that class is final so I can't extend it.

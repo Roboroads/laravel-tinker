@@ -6,9 +6,9 @@ import com.intellij.icons.AllIcons.RunConfigurations.TestState.Run
 import com.intellij.openapi.editor.markup.GutterIconRenderer.Alignment.RIGHT
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
-import java.awt.event.MouseEvent
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import java.awt.event.MouseEvent
 
 class TinkerRunLineMarkerProvider : LineMarkerProvider {
     companion object {

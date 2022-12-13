@@ -18,19 +18,19 @@ import com.jetbrains.php.config.commandLine.PhpCommandSettingsBuilder
 import com.jetbrains.php.run.PhpEditInterpreterExecutionException
 import com.jetbrains.php.run.script.PhpScriptRunConfiguration
 import com.jetbrains.php.run.script.PhpScriptRuntimeConfigurationProducer
+import nl.deschepers.laraveltinker.Strings
+import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotExistBalloon
+import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
+import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
+import nl.deschepers.laraveltinker.balloon.VendorFolderNotFound
+import nl.deschepers.laraveltinker.listener.PhpProcessListener
+import nl.deschepers.laraveltinker.settings.ProjectSettingsState
+import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.stream.Collectors
-import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotExistBalloon
-import nl.deschepers.laraveltinker.balloon.VendorFolderNotFound
-import nl.deschepers.laraveltinker.balloon.NoPhpInterpreterBalloon
-import nl.deschepers.laraveltinker.balloon.PhpInterpreterErrorBalloon
-import nl.deschepers.laraveltinker.listener.PhpProcessListener
-import nl.deschepers.laraveltinker.settings.ProjectSettingsState
-import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 
 class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: String) {
     fun run() {
@@ -68,7 +68,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
 
         // Check if the vendor path exists
         var vendorPath = projectSettings.vendorRoot.ifEmpty { laravelRoot }
-        if(!vendorPath.endsWith("/vendor")) {
+        if (!vendorPath.endsWith("/vendor")) {
             vendorPath = "$vendorPath/vendor"
         }
         val vendorDir = File(vendorPath)

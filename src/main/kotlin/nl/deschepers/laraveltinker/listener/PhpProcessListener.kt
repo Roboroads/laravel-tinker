@@ -11,7 +11,6 @@ import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import nl.deschepers.laraveltinker.util.PlugUtil
 
-
 class PhpProcessListener(private val project: Project) :
     ProcessListener {
 

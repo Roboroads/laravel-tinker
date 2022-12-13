@@ -23,7 +23,7 @@ object PlugUtil {
                 SUPPORT_MESSAGE_EXECUTIONS
             ) {
                 PersistentApplicationCache.instance.state.executionsCount = 0
-                val plugType = listOf("patreon","paypal","kofi","linktree","colleagues").asSequence().shuffled().find{true}
+                val plugType = listOf("patreon", "paypal", "kofi", "linktree", "colleagues").asSequence().shuffled().find { true }
                 return Strings.get("lt.consider_supporting", Strings.get("lt.consider_supporting.$plugType"))
             }
         }

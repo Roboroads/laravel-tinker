@@ -2,8 +2,8 @@ package nl.deschepers.laraveltinker.settings
 
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.project.Project
-import javax.swing.JComponent
 import nl.deschepers.laraveltinker.Strings
+import javax.swing.JComponent
 
 class ProjectSettingsConfigurable(private var project: Project) : Configurable {
     private var projectSettingsComponent: ProjectSettingsComponent? = null

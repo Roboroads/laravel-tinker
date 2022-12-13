@@ -1,8 +1,8 @@
 package nl.deschepers.laraveltinker.startup.migrations
 
 import com.intellij.ide.scratch.ScratchFileService
-import java.io.File
 import nl.deschepers.laraveltinker.util.LaravelTinkerConsolesRootType
+import java.io.File
 
 class MakeSureConsolesHaveExtensions {
 

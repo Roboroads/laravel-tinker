@@ -7,8 +7,8 @@ import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.FormBuilder
-import javax.swing.JPanel
 import nl.deschepers.laraveltinker.Strings
+import javax.swing.JPanel
 
 class ProjectSettingsComponent {
     private var settingsPanel: JPanel
@@ -31,7 +31,6 @@ class ProjectSettingsComponent {
         set(value) {
             this.terminateAppCheckBox.isSelected = value
         }
-
 
     init {
         laravelRootTextField.addBrowseFolderListener(
