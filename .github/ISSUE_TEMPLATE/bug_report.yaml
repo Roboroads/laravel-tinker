@@ -1,0 +1,122 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: [ "bug" ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Filing a bug
+        
+        Thanks for taking the time to file a bug! Note that I might take a while to respond, depending on how busy I am. Please be patient.
+  - type: input
+    attributes:
+      label: Short bug description
+      description: Write here a clear and concise description of what the bug is.
+      placeholder: When I run tinker whilst standing on my head the world explodes.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Extended bug description
+      description: All the information you wanted to put in the short description, but couldn't.
+      placeholder: I have tried this multiple times and it always happens, except when drinking water beforehand.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: How to reproduce?
+      description: A list of steps required to reproduce the bug.
+      placeholder: |
+        1. Type some code
+        2. Stand on you head
+        3. Press run
+        4. The world now explodes
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: What dod you expect to happen?
+      placeholder: The world should not explode.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: Paste here your screenshots, if you have any.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Environment
+        
+        And now for the annoying part, telling exactly how your environment is set up. This is important, because it helps me to reproduce the bug. It is very common for a bug to only happen in a specific environment, so please be as detailed as possible.
+
+  - type: input
+    attributes:
+      label: IDE & Version
+      placeholder: PHPStorm 2022.3.2
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: PHP Version
+      description: "Find out with `php -v`"
+      placeholder: 8.1
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: OS and version
+      placeholder: Windows 11
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Laravel Tinker plugin version
+      placeholder: 2.4.0
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Interpreter type
+      description: What version of our software are you running?
+      multiple: false
+      options:
+        - label: Local
+        - label: Remote
+        - label: Docker (NOT compose)
+        - label: Docker compose
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Laravel Version
+      description: "Find out with `composer show laravel/framework | grep versions`"
+      placeholder: 9.2.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Tinker version
+      description: "Find out with `composer show laravel/tinker | grep versions`"
+      placeholder: 2.4.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Psysh version
+      description: "Find out with `composer show psy/psysh | grep versions`"
+      placeholder: 0.11.9
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Anything else you want to add?
+    validations:
+      required: false
