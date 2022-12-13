@@ -49,7 +49,7 @@ class PhpProcessListener(private val project: Project, private val processHandle
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
-        print(event.text)
+//        print(event.text)
 
         if (firstLine) {
             firstLine = false
