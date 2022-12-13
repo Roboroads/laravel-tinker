@@ -6,7 +6,6 @@ import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
-import com.jetbrains.php.lang.PhpLanguage
 import nl.deschepers.laraveltinker.Strings
 
 class TinkerConsoleUtil(val project: Project) {

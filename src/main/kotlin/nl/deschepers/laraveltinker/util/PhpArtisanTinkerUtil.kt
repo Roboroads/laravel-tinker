@@ -119,7 +119,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             return
         }
 
-        val phpProcessListener = PhpProcessListener(project, processHandler)
+        val phpProcessListener = PhpProcessListener(project)
         processHandler.addProcessListener(phpProcessListener)
 
         ToolWindowManager.getInstance(project).getToolWindow("Laravel Tinker")?.activate(null)

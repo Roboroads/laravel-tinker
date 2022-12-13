@@ -73,7 +73,7 @@
 
         <applicationService
           serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
-          serviceInterface="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"/>
+        />
         <applicationService
           serviceImplementation="nl.deschepers.laraveltinker.settings.GlobalSettingsState"/>
         <projectService

@@ -138,7 +138,7 @@ tasks {
     }
 
     buildSearchableOptions {
-        enabled = false;
+        enabled = false
     }
     //END CUSTOM
 }

@@ -1,11 +1,9 @@
 package nl.deschepers.laraveltinker.listener
 
 import com.intellij.execution.process.ProcessEvent
-import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
-import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import nl.deschepers.laraveltinker.Strings
@@ -14,7 +12,7 @@ import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import nl.deschepers.laraveltinker.util.PlugUtil
 
 
-class PhpProcessListener(private val project: Project, private val processHandler: ProcessHandler) :
+class PhpProcessListener(private val project: Project) :
     ProcessListener {
 
     companion object {

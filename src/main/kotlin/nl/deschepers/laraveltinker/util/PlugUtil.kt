@@ -9,7 +9,7 @@ import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
  * ==========
  * Before you place a bug: I am aware this is insecure. I just don't want to bother actual supporters
  * with my donation message Just note that decoding this does not give you any extra features, it
- * JUST removes the "Concider supporting" message. Consider financially supporting me to get a legit key <3
+ * JUST removes the "Consider supporting" message. Consider financially supporting me to get a legit key <3
  * ==========
  */
 object PlugUtil {
@@ -514,7 +514,7 @@ object PlugUtil {
             }
         }.toString()
 
-    fun hasValidKey(): Boolean {
+    private fun hasValidKey(): Boolean {
         val pluginSettings = GlobalSettingsState.getInstance()
         if (pluginSettings.patreonKey.isEmpty()) return false
 

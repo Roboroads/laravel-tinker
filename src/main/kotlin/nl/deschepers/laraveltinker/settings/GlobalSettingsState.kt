@@ -27,7 +27,7 @@ class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
         return this
     }
 
-    override fun loadState(state: @NotNull GlobalSettingsState) {
+    override fun loadState(state: GlobalSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
     }
 }
