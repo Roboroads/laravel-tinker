@@ -4,6 +4,7 @@ import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.icons.AllIcons.RunConfigurations.TestState.Run
 import com.intellij.openapi.editor.markup.GutterIconRenderer.Alignment.RIGHT
+import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import nl.deschepers.laraveltinker.Strings
@@ -23,7 +24,7 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
             return LineMarkerInfo(
                 element,
                 element.textRange,
-                Run,
+                IconLoader.getIcon("icons/tinker-run.svg", javaClass),
                 null,
                 { _: MouseEvent, psiElement: PsiElement ->
                     tinkerConsoleUtil.runTinkerWithFile(psiElement.containingFile.virtualFile)

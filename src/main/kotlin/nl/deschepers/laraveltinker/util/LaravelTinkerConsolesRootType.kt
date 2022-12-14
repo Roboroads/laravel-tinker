@@ -41,7 +41,7 @@ class LaravelTinkerConsolesRootType :
     }
 
     override fun substituteIcon(project: Project, file: VirtualFile): Icon {
-        return IconLoader.getIcon("icons/laravel-tinker-icon16.svg", javaClass)
+        return IconLoader.getIcon("icons/icon.svg", javaClass)
     }
 
     @Suppress("SwallowedException")

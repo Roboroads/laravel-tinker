@@ -2,7 +2,7 @@
     <actions>
         <group
           id="nl.deschepers.laraveltinker.MenuActions"
-          icon="/icons/laravel-tinker-icon16.svg"
+          icon="/icons/icon.svg"
           text="Laravel Tinker"
           description="Laravel Tinker actions"
           popup="true">
@@ -13,7 +13,7 @@
               class="nl.deschepers.laraveltinker.action.SmartAction"
               description="Smart action"
               text="Smart Action"
-              icon="/icons/laravel-tinker-icon16.svg">
+              icon="/icons/icon.svg">
                 <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
                 <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
                 <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
@@ -44,7 +44,7 @@
               class="nl.deschepers.laraveltinker.action.RunConsoleAction"
               description="Run console"
               text="Run Console"
-              icon="runConfigurations/testState/run.svg">
+              icon="/icons/tinker-run.svg">
             </action>
             <action
               id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
@@ -58,8 +58,16 @@
           class="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
           text="Open Tinker Console With Selection"
           description="Opens a new tinker console with the code you have currently selected."
-          icon="/icons/laravel-tinker-icon16.svg">
+          icon="/icons/icon.svg">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+          id="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
+          class="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
+          text="Run Tinker Console"
+          icon="/icons/tinker-run.svg"
+        >
+            <add-to-group group-id="EditorPopupMenu.Run" anchor="before" relative-to-action="RunContextPopupGroup"/>
         </action>
     </actions>
 
@@ -100,7 +108,7 @@
 
         <toolWindow anchor="right"
           factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
-          icon="/icons/laravel-tinker-icon13.svg"
+          icon="/icons/icon@13.svg"
           id="Laravel Tinker"
         />
 

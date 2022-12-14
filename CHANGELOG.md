@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- [[#220]](https://github.com/Roboroads/laravel-tinker/issues/220) Add context menu action in tinker consoles to run the console.
+- Replace JB run icon with a green tinker run icon.
+
 ## [2.5.0] - 2022-12-13
 
 ### Added
