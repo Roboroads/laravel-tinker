@@ -1,7 +1,13 @@
 package nl.deschepers.laraveltinker.toolwindow
 
+import com.intellij.application.options.EditorFontsConstants
+import com.intellij.ide.ui.UISettings
+import com.intellij.openapi.editor.EditorSettings
 import com.intellij.openapi.editor.HighlighterColors
+import com.intellij.openapi.editor.colors.EditorColorsManager
+import com.intellij.openapi.options.FontSize
 import com.intellij.openapi.wm.ToolWindow
+import com.intellij.util.FontUtil
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.util.HelperUtil
@@ -77,6 +83,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
 
     private fun updateView() {
         val color = HelperUtil.colorToHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
+        val globalScheme = EditorColorsManager.getInstance().globalScheme
         val timeString =
             if (pluginSettings.showExecutionStarted)
                 Strings.get("lt.started_at", outputTime)
@@ -98,11 +105,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                            word-wrap: break-word;
                            color: $color;
                            font-family: ${tinkerOutputToolWindowContent!!.font.family};
+                           font-size: ${globalScheme.editorFontSize}pt;
+                        } 
+                        pre, code {
+                           font-family: '${globalScheme.editorFontName}';
+                           font-size: ${globalScheme.editorFontSize}pt;
                         } 
                         .output {
                             padding: 5px; 
                             ${if (pluginSettings.useWordWrapping) "padding-left: 10px;" else ""}
-                            ${if (pluginSettings.useWordWrapping) "text-indent: -5px;" else ""}                            
+                            ${if (pluginSettings.useWordWrapping) "text-indent: -5px;" else ""}
                         }
                         .header {
                             font-weight: bold;
