@@ -25,7 +25,7 @@ class TinkerOutputToolWindowFactory : ToolWindowFactory {
         val instance = TinkerOutputToolwindow(toolWindow)
         tinkerOutputToolWindow[project] = instance
         val contentFactory = ApplicationManager.getApplication().getService(ContentFactory::class.java)
-        val content: Content = contentFactory.createContent(instance.getContent(), "", false)
+        val content: Content = contentFactory.createContent(instance, "", false)
         toolWindow.contentManager.addContent(content)
     }
 }

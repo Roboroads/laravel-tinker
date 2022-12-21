@@ -1,23 +1,18 @@
 package nl.deschepers.laraveltinker.toolwindow
 
-import com.intellij.application.options.EditorFontsConstants
-import com.intellij.ide.ui.UISettings
-import com.intellij.openapi.editor.EditorSettings
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
-import com.intellij.openapi.options.FontSize
+import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.openapi.wm.ToolWindow
-import com.intellij.util.FontUtil
+import com.intellij.ui.JBColor
+import com.intellij.ui.components.JBScrollPane
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.util.HelperUtil
-import java.awt.Color
 import java.awt.Desktop
-import java.awt.Dimension
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import javax.swing.JPanel
 import javax.swing.JTextPane
 import javax.swing.SizeRequirements
 import javax.swing.event.HyperlinkEvent
@@ -30,9 +25,26 @@ import javax.swing.text.html.ParagraphView
 import kotlin.concurrent.schedule
 import kotlin.math.max
 
-class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
-    private var tinkerOutputToolWindowContent: JPanel? = null
-    private var tinkerOutput: JTextPane? = null
+class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWindowPanel(
+    true,
+    true
+) {
+    private var tinkerOutput: JTextPane = JTextPane().apply {
+        contentType = "text/html"
+        background = null
+        foreground = null
+        disabledTextColor = null
+        editorKit = HTMLEditorKit()
+        isEditable = false
+        addHyperlinkListener { e ->
+            if (e.eventType == HyperlinkEvent.EventType.ACTIVATED &&
+                Desktop.isDesktopSupported()
+            ) {
+                Desktop.getDesktop().browse(e.url.toURI())
+            }
+        }
+        text = "Text<br/>".repeat(100)
+    }
     private var outputText: String = ""
     private var outputTime: String = ""
     var plug: String? = null
@@ -41,23 +53,18 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     private val pluginSettings = GlobalSettingsState.getInstance()
 
     init {
-        tinkerOutput!!
-            .addHyperlinkListener { e ->
-                if (e.eventType == HyperlinkEvent.EventType.ACTIVATED &&
-                    Desktop.isDesktopSupported()
-                ) {
-                    Desktop.getDesktop().browse(e.url.toURI())
-                }
-            }
-
-        tinkerOutput!!.background = null
-        tinkerOutput!!.foreground = null
-        tinkerOutput!!.disabledTextColor = null
+        apply {
+            add(JBScrollPane(tinkerOutput).apply {
+                verticalScrollBar.unitIncrement = 1
+                horizontalScrollBar.unitIncrement = 1
+            })
+        }
     }
 
     fun resetOutput() {
         toolWindow.title = "Output"
-        outputTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        outputTime =
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         outputText = ""
 
         toolWindow.show()
@@ -82,7 +89,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
     }
 
     private fun updateView() {
-        val color = HelperUtil.colorToHex(HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: Color.BLACK)
+        val color = HelperUtil.colorToHex(
+            HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: JBColor.BLACK
+        )
         val globalScheme = EditorColorsManager.getInstance().globalScheme
         val timeString =
             if (pluginSettings.showExecutionStarted)
@@ -90,13 +99,10 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
             else
                 ""
 
-        if (pluginSettings.useWordWrapping) {
-            setupWordWrapping()
-        } else {
-            tinkerOutput!!.editorKit = HTMLEditorKit()
-        }
+        tinkerOutput.editorKit =
+            if (pluginSettings.useWordWrapping) wordWrappingEditorKit() else HTMLEditorKit()
 
-        this.tinkerOutput!!.text =
+        this.tinkerOutput.text =
             """
             <html>
                 <head>
@@ -104,7 +110,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
                         body {
                            word-wrap: break-word;
                            color: $color;
-                           font-family: ${tinkerOutputToolWindowContent!!.font.family};
+                           font-family: ${this.font.family};
                            font-size: ${globalScheme.editorFontSize}pt;
                         } 
                         pre, code {
@@ -137,71 +143,63 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) {
             """
     }
 
-    fun getContent(): JPanel? {
-        return tinkerOutputToolWindowContent
-    }
-
-    private fun setupWordWrapping() {
-        tinkerOutput!!.editorKit = object : HTMLEditorKit() {
-            override fun getViewFactory(): ViewFactory {
-                return object : HTMLFactory() {
-                    override fun create(e: Element): View {
-                        val view = super.create(e)
-                        if (view is InlineView) {
-                            return object : InlineView(e) {
-                                override fun getBreakWeight(
-                                    axis: Int,
-                                    pos: Float,
-                                    len: Float
-                                ): Int {
-                                    return GoodBreakWeight
-                                }
-
-                                override fun breakView(
-                                    axis: Int,
-                                    p0: Int,
-                                    pos: Float,
-                                    len: Float
-                                ): View {
-                                    if (axis == X_AXIS) {
-                                        checkPainter()
-                                        val p1 = glyphPainter.getBoundedPosition(this, p0, pos, len)
-                                        return if (p0 == startOffset && p1 == endOffset) {
-                                            this
-                                        } else
-                                            createFragment(p0, p1)
-                                    }
-                                    return this
-                                }
+    private fun wordWrappingEditorKit() = object : HTMLEditorKit() {
+        override fun getViewFactory(): ViewFactory {
+            return object : HTMLFactory() {
+                override fun create(e: Element): View {
+                    val view = super.create(e)
+                    if (view is InlineView) {
+                        return object : InlineView(e) {
+                            override fun getBreakWeight(
+                                axis: Int,
+                                pos: Float,
+                                len: Float
+                            ): Int {
+                                return GoodBreakWeight
                             }
-                        } else if (view is ParagraphView) {
-                            return object : ParagraphView(e) {
-                                override fun calculateMinorAxisRequirements(
-                                    axis: Int,
-                                    r: SizeRequirements?
-                                ): SizeRequirements {
-                                    var sizeRequirements: SizeRequirements? = r
-                                    if (sizeRequirements == null) {
-                                        sizeRequirements = SizeRequirements()
-                                    }
-                                    val pref = layoutPool.getPreferredSpan(axis)
-                                    val min = layoutPool.getMinimumSpan(axis)
-                                    // Don't include insets, Box.getXXXSpan will include them.
-                                    sizeRequirements.minimum = min.toInt()
-                                    sizeRequirements.preferred =
-                                        max(sizeRequirements.minimum, pref.toInt())
-                                    sizeRequirements.maximum = Int.MAX_VALUE
-                                    sizeRequirements.alignment = 0.5f
-                                    return sizeRequirements
+
+                            override fun breakView(
+                                axis: Int,
+                                p0: Int,
+                                pos: Float,
+                                len: Float
+                            ): View {
+                                if (axis == X_AXIS) {
+                                    checkPainter()
+                                    val p1 = glyphPainter.getBoundedPosition(this, p0, pos, len)
+                                    return if (p0 == startOffset && p1 == endOffset) {
+                                        this
+                                    } else
+                                        createFragment(p0, p1)
                                 }
+                                return this
                             }
                         }
-                        return view
+                    } else if (view is ParagraphView) {
+                        return object : ParagraphView(e) {
+                            override fun calculateMinorAxisRequirements(
+                                axis: Int,
+                                r: SizeRequirements?
+                            ): SizeRequirements {
+                                var sizeRequirements: SizeRequirements? = r
+                                if (sizeRequirements == null) {
+                                    sizeRequirements = SizeRequirements()
+                                }
+                                val pref = layoutPool.getPreferredSpan(axis)
+                                val min = layoutPool.getMinimumSpan(axis)
+                                // Don't include insets, Box.getXXXSpan will include them.
+                                sizeRequirements.minimum = min.toInt()
+                                sizeRequirements.preferred =
+                                    max(sizeRequirements.minimum, pref.toInt())
+                                sizeRequirements.maximum = Int.MAX_VALUE
+                                sizeRequirements.alignment = 0.5f
+                                return sizeRequirements
+                            }
+                        }
                     }
+                    return view
                 }
             }
         }
-        tinkerOutput!!.contentType = "text/html"
-        tinkerOutput!!.minimumSize = Dimension(0, 0)
     }
 }
