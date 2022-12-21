@@ -43,7 +43,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                 Desktop.getDesktop().browse(e.url.toURI())
             }
         }
-        text = "Text<br/>".repeat(100)
     }
     private var outputText: String = ""
     private var outputTime: String = ""
