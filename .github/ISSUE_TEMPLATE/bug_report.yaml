@@ -23,6 +23,14 @@ body:
       placeholder: I have tried this multiple times and it always happens, except when drinking water beforehand.
     validations:
       required: false
+ - type: checkboxes
+    attributes:
+      label: Fresh install
+      options:
+        - label: I tried using a fresh laravel install - I'm fairly certain it has nothing to do with my project.
+          required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: How to reproduce?
