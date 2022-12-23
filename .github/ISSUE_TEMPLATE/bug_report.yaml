@@ -65,32 +65,32 @@ body:
   - type: input
     attributes:
       label: IDE & Version
-      placeholder: PHPStorm 2022.3.2
+      placeholder: "E.g.: PHPStorm 2022.3.2"
     validations:
       required: true
   - type: input
     attributes:
       label: PHP Version
       description: "Find out with `php -v`"
-      placeholder: "8.1"
+      placeholder: "E.g.: 8.1"
     validations:
       required: true
   - type: input
     attributes:
       label: OS and version
-      placeholder: "Windows 11"
+      placeholder: "E.g.: Windows 11"
     validations:
       required: true
   - type: input
     attributes:
       label: Laravel Tinker plugin version
-      placeholder: "2.4.0"
+      placeholder: "E.g.: 2.4.0"
     validations:
       required: true
   - type: dropdown
     attributes:
       label: Interpreter type
-      description: What version of our software are you running?
+      description: How are you running PHP in your IDE?
       multiple: false
       options:
         - Local
@@ -103,21 +103,21 @@ body:
     attributes:
       label: Laravel Version
       description: "Find out with `composer show laravel/framework | grep versions`"
-      placeholder: "9.2.0"
+      placeholder: "E.g.: 9.2.0"
     validations:
       required: true
   - type: input
     attributes:
       label: Tinker version
       description: "Find out with `composer show laravel/tinker | grep versions`"
-      placeholder: "2.4.0"
+      placeholder: "E.g.: 2.4.0"
     validations:
       required: true
   - type: input
     attributes:
       label: Psysh version
       description: "Find out with `composer show psy/psysh | grep versions`"
-      placeholder: "0.11.9"
+      placeholder: "E.g.: 0.11.9"
     validations:
       required: true
 
