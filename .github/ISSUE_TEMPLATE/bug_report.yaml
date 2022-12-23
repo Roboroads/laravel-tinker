@@ -93,10 +93,10 @@ body:
       description: What version of our software are you running?
       multiple: false
       options:
-        - label: Local
-        - label: Remote
-        - label: Docker (NOT compose)
-        - label: Docker compose
+        - Local
+        - Remote
+        - Docker (NOT compose)
+        - Docker compose
     validations:
       required: true
   - type: input
