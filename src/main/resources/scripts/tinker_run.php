@@ -32,6 +32,7 @@ $casters = [
     'Illuminate\Support\Stringable' => 'Laravel\Tinker\TinkerCaster::castStringable',
     'Illuminate\Database\Eloquent\Model' => 'Laravel\Tinker\TinkerCaster::castModel',
     'Illuminate\Foundation\Application' => 'Laravel\Tinker\TinkerCaster::castApplication',
+    'Illuminate\Process\ProcessResult' => 'Laravel\Tinker\TinkerCaster::castProcessResult',
 ];
 
 $existingCasters = [];
