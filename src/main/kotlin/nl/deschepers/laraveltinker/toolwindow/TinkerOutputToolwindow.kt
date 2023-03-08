@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.toolwindow
 
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.ui.SimpleToolWindowPanel
@@ -9,6 +10,7 @@ import com.intellij.ui.components.JBScrollPane
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.util.HelperUtil
+import org.apache.commons.lang.StringEscapeUtils.escapeHtml
 import java.awt.Desktop
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -88,9 +90,10 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
     }
 
     private fun updateView() {
-        val color = HelperUtil.colorToHex(
+        val foregroundColor = HelperUtil.colorToHex(
             HighlighterColors.TEXT.defaultAttributes.foregroundColor ?: JBColor.BLACK
         )
+
         val globalScheme = EditorColorsManager.getInstance().globalScheme
         val timeString =
             if (pluginSettings.showExecutionStarted)
@@ -108,7 +111,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                     <style>
                         body {
                            word-wrap: break-word;
-                           color: $color;
+                           color: $foregroundColor;
                            font-family: ${this.font.family};
                            font-size: ${globalScheme.editorFontSize}pt;
                         } 
@@ -125,7 +128,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                             font-weight: bold;
                         }
                         a {
-                           color: $color;
+                           color: $foregroundColor;
                            text-decoration: underline;
                         }
                     </style>
@@ -135,11 +138,90 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                         $timeString
                     </div>
                     <div class="output">
-                        <pre><code>$outputText${if (plug != null) "\n\n" + plug else ""}</code></pre>
+                        <pre><code>${ansiToHtml(outputText)}${if (plug != null) "\n\n" + plug else ""}</code></pre>
                     </div>
                 </body>
             </html>
             """
+    }
+
+    private fun ansiToHtml(ansiText: String): String {
+        if (ansiText.isEmpty()) {
+            return ""
+        }
+
+        val keywordColor = HelperUtil.colorToHex(
+            DefaultLanguageHighlighterColors.KEYWORD.defaultAttributes.foregroundColor
+        )
+        val intColor = HelperUtil.colorToHex(
+            DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor
+        )
+        val stringColor = HelperUtil.colorToHex(
+            DefaultLanguageHighlighterColors.STRING.defaultAttributes.foregroundColor
+        )
+        val floatColor = HelperUtil.colorToHex(
+            DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor
+        )
+
+        val ansiRegex = Regex("\u001B\\[([0-9;]*)m")
+        val ansiCommands = ansiRegex.findAll(ansiText).map { it.groupValues[1] }.toMutableList()
+
+        if (ansiCommands.isEmpty()) {
+            return escapeHtml(ansiText)
+        }
+
+        val textParts = ansiText.split(ansiRegex).toMutableList()
+        var currentColor: String? = null
+        var isBold = false
+        var isUnderlined = false
+
+        var htmlText = escapeHtml(textParts.removeFirst())
+
+        while (ansiCommands.isNotEmpty()) {
+            val command = ansiCommands.removeFirst()
+            val text = textParts.removeFirst()
+
+            when (command) {
+                "0" -> {
+                    currentColor = null
+                    isBold = false
+                    isUnderlined = false
+                }
+
+                "1" -> isBold = true
+                "4" -> isUnderlined = true
+                "22" -> isBold = false
+                "24" -> isUnderlined = false
+                "32" -> currentColor = stringColor
+                "33" -> currentColor = floatColor
+                "35" -> currentColor = intColor
+                "36" -> currentColor = keywordColor
+                "39" -> currentColor = null
+                else -> {
+                    // Nothing we parse happened, no need to add a span
+                    htmlText += escapeHtml(text)
+                    continue
+                }
+            }
+
+            var style = "";
+            if (isBold) style += "font-weight: bold;"
+            if (isUnderlined) style += "text-decoration: underline;"
+            if (currentColor != null) style += "color: $currentColor;"
+
+            htmlText += "</span><span style=\"$style\">"
+            htmlText += escapeHtml(text)
+        }
+
+        // If residual text is in the buffer, which should not happen, add it to the output
+        if (textParts.isNotEmpty()) {
+            htmlText += escapeHtml(textParts.joinToString(""))
+        }
+
+        htmlText = htmlText.replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
+            .replace("&lt;/whisper&gt;", "</span>")
+
+        return "<span>$htmlText</span>"
     }
 
     private fun wordWrappingEditorKit() = object : HTMLEditorKit() {
