@@ -128,7 +128,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 object : Backgroundable(project, Strings.get("lt.running")) {
                     override fun run(progressIndicator: ProgressIndicator) {
                         processHandler.startNotify()
-                        processHandler.processInput.writer()?.write("\u0004")
+                        processHandler.processInput.writer().write("\u0004")
                         while (!processHandler.isProcessTerminated) {
                             Thread.sleep(250)
                             try {

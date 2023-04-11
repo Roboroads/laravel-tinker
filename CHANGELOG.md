@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added new `castProcessResult` tinker caster. (Thanks [@emargareten](https://github.com/emargareten)!)
 - ANSI Parser for the output window within the Kotlin part of the plugin.
+- Meta tag to set charset to UTF8 in toolwindow HTML.
 
 ### Changed
 
@@ -36,15 +37,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - [[#190]](https://github.com/Roboroads/laravel-tinker/issues/190) Add way to customize vendor path. (Thanks [@bobisdacool1](https://github.com/bobisdacool1)!)
-  - Also fixed the bug from this PR where it crashed if you didn't configure anything.
+    - Also fixed the bug from this PR where it crashed if you didn't configure anything.
 - [[#171]](https://github.com/Roboroads/laravel-tinker/issues/171) Add ANSI mode parsing (instead of regex-replace-guessing in the output window)
 
 ### Changed
 
 - Due to demand: added more ways to support this plugin, like Ko-Fi and sharing options.
-  - Adding these ways to a rotation for the support message every 10 executions.
-  - Adding these ways to `FUNDING.yml`.
-  - Generalize "Patereon" to "Support" in the code.
+    - Adding these ways to a rotation for the support message every 10 executions.
+    - Adding these ways to `FUNDING.yml`.
+    - Generalize "Patereon" to "Support" in the code.
 
 ### Removed
 
@@ -77,8 +78,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - [[#46]](https://github.com/Roboroads/laravel-tinker/issues/46) Execution on docker
-  - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
-  - ℹ️This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
+    - ℹ️If it doesn't work, please [read this](https://github.com/Roboroads/laravel-tinker/issues/167).
+    - ℹ️This does not fix the "string conversion" error found when using `docker exec`. You still have to use `docker run` for now.
 - [[#162]](https://github.com/Roboroads/laravel-tinker/issues/162) Endless execution of the tinker process in several usecases (like JB 2022.2 EAP)
 - Compatibility issue with JB 2022.2 (EAP) regarding `ContentFactory.SERVICE`
 
@@ -87,7 +88,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - [[#136]](https://github.com/Roboroads/laravel-tinker/issues/136) Upper version limit for JB products.
-  - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
+    - ℹ This will enable the plugin to be compatible for all JB products >= 211 until a compatibility issue shows up.
 
 ## [2.3.2]
 
@@ -191,18 +192,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - BREAKING: [[#39]](https://github.com/Roboroads/laravel-tinker/issues/39) Tinker consoles are now available under "Scratches and Consoles".
 - [[#37]](https://github.com/Roboroads/laravel-tinker/issues/37) [[#38]](https://github.com/Roboroads/laravel-tinker/issues/38) When selecting text and running the `Smart Action` a
   new console opens with your selected text.
-  - ℹ This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
+    - ℹ This can also be achieved by selecting text, right-clicking and selecting `Open Tinker Console With Selection`.
 
 ### Changed
 
 - BREAKING: Every action is now independently listed.
-  - ℹ The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
+    - ℹ The default action is now "Smart Action" which will have kind-of the same functionality as you have been using it up till now.
 - Every action this plugin can do is now individually bindable in your keymap.
 
 ### Removed
 
 - BREAKING: Per-project cache (which stored your last executed tinker code).
-  - ℹ You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it! `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
+    - ℹ You can probably find your last snippet still in `%Project%/.idea/laravel-tinker.xml` if you really need it! `%Project%/.idea/laravel-tinker.xml` can be deleted otherwise.
 
 ### Other
 
@@ -261,7 +262,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#19]](https://github.com/Roboroads/laravel-tinker/issues/19) Colors in output window now reset to IDE colors when running.
 - [[#12]](https://github.com/Roboroads/laravel-tinker/issues/12) [[#20]](https://github.com/Roboroads/laravel-tinker/issues/20)
   Fixes `Class 'Laravel\Tinker\ClassAliasAutoloader' not found`
-  - ℹ Fixes the plugin for laravel/tinker versions `<= 1.0.1`.
+    - ℹ Fixes the plugin for laravel/tinker versions `<= 1.0.1`.
 
 ## [1.1.1]
 

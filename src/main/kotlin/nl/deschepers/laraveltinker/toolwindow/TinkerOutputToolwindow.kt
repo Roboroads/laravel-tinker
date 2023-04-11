@@ -108,6 +108,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             """
             <html>
                 <head>
+                    <meta charset="UTF-8">
                     <style>
                         body {
                            word-wrap: break-word;
