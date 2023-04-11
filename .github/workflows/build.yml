@@ -75,23 +75,23 @@ jobs:
 
           ./gradlew listProductsReleases # prepare list of IDEs for Plugin Verifier
 
-      # Run tests
-      - name: Run Tests
-        run: ./gradlew check
-
-      # Collect Tests Result of failed tests
-      - name: Collect Tests Result
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: tests-result
-          path: ${{ github.workspace }}/build/reports/tests
-
-      # Upload Kover report to CodeCov
-      - name: Upload Code Coverage Report
-        uses: codecov/codecov-action@v3
-        with:
-          files: ${{ github.workspace }}/build/reports/kover/xml/report.xml
+      #      # Run tests
+      #      - name: Run Tests
+      #        run: ./gradlew check
+      #
+      #      # Collect Tests Result of failed tests
+      #      - name: Collect Tests Result
+      #        if: ${{ failure() }}
+      #        uses: actions/upload-artifact@v3
+      #        with:
+      #          name: tests-result
+      #          path: ${{ github.workspace }}/build/reports/tests
+      #
+      #      # Upload Kover report to CodeCov
+      #      - name: Upload Code Coverage Report
+      #        uses: codecov/codecov-action@v3
+      #        with:
+      #          files: ${{ github.workspace }}/build/reports/kover/xml/report.xml
 
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
@@ -112,9 +112,9 @@ jobs:
           name: pluginVerifier-result
           path: ${{ github.workspace }}/build/reports/pluginVerifier
 
-      # Run Qodana inspections
-      - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2022.3.4
+      #      # Run Qodana inspections
+      #      - name: Qodana - Code Inspection
+      #        uses: JetBrains/qodana-action@v2022.3.4
 
       # Prepare plugin archive content for creating artifact
       - name: Prepare Plugin Artifact

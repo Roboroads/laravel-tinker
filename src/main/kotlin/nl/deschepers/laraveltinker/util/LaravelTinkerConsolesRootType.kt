@@ -17,7 +17,7 @@ import java.io.IOException
 import javax.swing.Icon
 
 /**
- * Most content is copied from ScratchRootType - but that class is final so I can't extend it.
+ * Most content is copied from ScratchRootType - but that class is final, so I can't extend it.
  *
  * @see com.intellij.ide.scratch.ScratchRootType
  */
