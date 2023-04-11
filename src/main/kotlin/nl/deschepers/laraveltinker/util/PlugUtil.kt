@@ -6,11 +6,9 @@ import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 
 /**
- * ==========
  * Before you place a bug: I am aware this is insecure. I just don't want to bother actual supporters
- * with my donation message Just note that decoding this does not give you any extra features, it
- * JUST removes the "Consider supporting" message. Consider financially supporting me to get a legit key <3
- * ==========
+ * with my 'consider supporting' messages. Just note that decoding this does not give you any extra features, it
+ * JUST removes the 'consider supporting' message. Consider financially supporting me to get a legit key <3
  */
 object PlugUtil {
     internal const val SUPPORT_MESSAGE_EXECUTIONS = 10

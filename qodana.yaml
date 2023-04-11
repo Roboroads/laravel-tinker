@@ -10,5 +10,3 @@ exclude:
       - .laravel
       - .github
       - .qodana
-      - src/main/resources/scripts
-
