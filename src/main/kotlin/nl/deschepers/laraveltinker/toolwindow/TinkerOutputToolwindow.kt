@@ -180,9 +180,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
 
         var htmlText = escapeHtml(textParts.removeFirst())
 
-        println(ansiText)
-        println(ansiText.replace(Regex("\u001B"), ""))
-
         while (ansiCommands.isNotEmpty()) {
             val command = ansiCommands.removeFirst()
             val text = textParts.removeFirst()
