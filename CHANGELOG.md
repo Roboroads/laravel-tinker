@@ -7,10 +7,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
+
 - Added new `castProcessResult` tinker caster. (Thanks [@emargareten](https://github.com/emargareten)!)
+- ANSI Parser for the output window within the Kotlin part of the plugin.
 
 ### Changed
+
 - Now using the ToolWindow without use of a .form file, which was not supported in combination with Kotlin (even though it always had worked in the past).
+
+### Removed
+
+- Reverted to the pre-2.5 tinker_run.php, since the new method didn't work in all cases.
+
+### Miscellaneous
+
+- Pulled missed changes from the Intellij platform plugin template.
 
 ## [2.5.1] - 2022-12-14
 

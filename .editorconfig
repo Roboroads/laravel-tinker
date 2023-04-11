@@ -113,7 +113,7 @@ ij_java_for_statement_wrap = normal
 ij_java_generate_final_locals = false
 ij_java_generate_final_parameters = false
 ij_java_if_brace_force = always
-ij_java_imports_layout = $*,|,*
+ij_java_imports_layout = $*, |, *
 ij_java_indent_case_from_switch = true
 ij_java_insert_inner_class_imports = true
 ij_java_insert_override_annotation = true
@@ -611,7 +611,7 @@ ij_kotlin_wrap_first_method_in_call_chain = false
 
 [{*.yaml,*.yml}]
 ij_yaml_keep_indents_on_empty_lines = false
-ij_yaml_keep_line_breaks = true
-ij_yaml_space_before_colon = true
-ij_yaml_spaces_within_braces = true
-ij_yaml_spaces_within_brackets = true
+ij_yaml_keep_line_breaks = false
+ij_yaml_space_before_colon = false
+ij_yaml_spaces_within_braces = false
+ij_yaml_spaces_within_brackets = false

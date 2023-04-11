@@ -8,7 +8,6 @@ $projectSettings = json_decode($argv[2]) ?? new stdClass();
 
 require ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/autoload.php';
 $app = require_once ($projectSettings->laravelRoot ?: __DIR__) . '/bootstrap/app.php';
-\Symfony\Component\Console\Terminal::setColorMode(\Symfony\Component\Console\Output\AnsiColorMode::Ansi4);
 $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 

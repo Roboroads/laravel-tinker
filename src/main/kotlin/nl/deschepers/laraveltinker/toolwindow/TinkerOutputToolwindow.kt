@@ -162,6 +162,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
         val floatColor = HelperUtil.colorToHex(
             DefaultLanguageHighlighterColors.NUMBER.defaultAttributes.foregroundColor
         )
+        val commentColor = HelperUtil.colorToHex(
+            DefaultLanguageHighlighterColors.LINE_COMMENT.defaultAttributes.foregroundColor
+        )
 
         val ansiRegex = Regex("\u001B\\[([0-9;]*)m")
         val ansiCommands = ansiRegex.findAll(ansiText).map { it.groupValues[1] }.toMutableList()
@@ -176,6 +179,9 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
         var isUnderlined = false
 
         var htmlText = escapeHtml(textParts.removeFirst())
+
+        println(ansiText)
+        println(ansiText.replace(Regex("\u001B"), ""))
 
         while (ansiCommands.isNotEmpty()) {
             val command = ansiCommands.removeFirst()
@@ -193,10 +199,15 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                 "22" -> isBold = false
                 "24" -> isUnderlined = false
                 "32" -> currentColor = stringColor
+                "1;38;5;113" -> currentColor = stringColor
                 "33" -> currentColor = floatColor
                 "35" -> currentColor = intColor
+                "1;38;5;38" -> currentColor = intColor
                 "36" -> currentColor = keywordColor
+                "38;5;38" -> currentColor = keywordColor
+                "90" -> currentColor = commentColor
                 "39" -> currentColor = null
+                "0;38;5;208" -> currentColor = null
                 else -> {
                     // Nothing we parse happened, no need to add a span
                     htmlText += escapeHtml(text)
@@ -204,7 +215,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                 }
             }
 
-            var style = "";
+            var style = ""
             if (isBold) style += "font-weight: bold;"
             if (isUnderlined) style += "text-decoration: underline;"
             if (currentColor != null) style += "color: $currentColor;"
@@ -218,10 +229,16 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             htmlText += escapeHtml(textParts.joinToString(""))
         }
 
-        htmlText = htmlText.replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
+        htmlText = ("<span>$htmlText</span>")
+            // Remove unstyled spans
+            .replace(Regex("(<span style=\"\">|<span>)(.*?)</span>", RegexOption.DOT_MATCHES_ALL), "$2")
+            // Remove spans with only whitespace in it
+            .replace(Regex("<span[^>]*?>([\\s\\n]*)</span>"), "$1")
+            // Replace whisper with a gray span
+            .replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
             .replace("&lt;/whisper&gt;", "</span>")
 
-        return "<span>$htmlText</span>"
+        return htmlText
     }
 
     private fun wordWrappingEditorKit() = object : HTMLEditorKit() {

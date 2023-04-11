@@ -1,6 +1,8 @@
 package nl.deschepers.laraveltinker.util
 
 import com.intellij.execution.ExecutionException
+import com.intellij.execution.process.KillableProcessHandler
+import com.intellij.execution.process.OSProcessHandler
 import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.openapi.fileEditor.FileDocumentManager
@@ -15,6 +17,7 @@ import com.jetbrains.php.config.PhpProjectConfigurationFacade
 import com.jetbrains.php.config.commandLine.PhpCommandSettings
 import com.jetbrains.php.config.commandLine.PhpCommandSettingsBuilder
 import com.jetbrains.php.run.PhpEditInterpreterExecutionException
+import com.jetbrains.php.run.script.PhpScriptRunConfiguration
 import com.jetbrains.php.run.script.PhpScriptRuntimeConfigurationProducer
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.balloon.LaravelRootDoesNotExistBalloon
@@ -36,7 +39,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
         FileDocumentManager.getInstance().saveAllDocuments()
 
         val runConfiguration =
-            TinkerConsoleRunConfiguration(
+            PhpScriptRunConfiguration(
                 project,
                 PhpScriptRuntimeConfigurationProducer().configurationFactory,
                 "Laravel Tinker"
@@ -94,7 +97,9 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             val tinkerRunSettings = projectSettings.parseJson()
             phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, tinkerRunSettings.toString()))
 
-            processHandler = runConfiguration.createProcessHandler(project, phpCommandSettings, true)
+            val osProcessHandler = runConfiguration.createProcessHandler(project, phpCommandSettings, true) as OSProcessHandler
+            processHandler = KillableProcessHandler(osProcessHandler.process, osProcessHandler.commandLine)
+
             ProcessTerminatedListener.attach(processHandler, project, "")
         } catch (ex: ExecutionException) {
             PhpInterpreterErrorBalloon(
@@ -123,7 +128,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 object : Backgroundable(project, Strings.get("lt.running")) {
                     override fun run(progressIndicator: ProgressIndicator) {
                         processHandler.startNotify()
-                        processHandler.processInput?.writer()?.write("\u0004")
+                        processHandler.processInput.writer()?.write("\u0004")
                         while (!processHandler.isProcessTerminated) {
                             Thread.sleep(250)
                             try {
