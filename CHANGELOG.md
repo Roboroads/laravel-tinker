@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.6.0] - 2023-04-16
+
 ### Added
 
 - Added new `castProcessResult` tinker caster. (Thanks [@emargareten](https://github.com/emargareten)!)
