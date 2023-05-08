@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.6.1] - 2023-05-08
+
 ### Fixed
 
 - [[#252]](https://github.com/Roboroads/laravel-tinker/issues/252) Cast exception when running on an SSH interpreter
