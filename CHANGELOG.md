@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - [[#252]](https://github.com/Roboroads/laravel-tinker/issues/252) Cast exception when running on an SSH interpreter
+- [[#253]](https://github.com/Roboroads/laravel-tinker/issues/253) Remove unneeded `withPtty: true` from process handler
 
 ## [2.6.0] - 2023-04-16
 

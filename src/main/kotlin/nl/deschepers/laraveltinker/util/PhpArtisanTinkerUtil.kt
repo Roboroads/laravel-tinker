@@ -98,7 +98,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             val tinkerRunSettings = projectSettings.parseJson()
             phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, tinkerRunSettings.toString()))
 
-            processHandler = getAnsiUnfilteredProcessHandler(runConfiguration.createProcessHandler(project, phpCommandSettings, true))
+            processHandler = getAnsiUnfilteredProcessHandler(runConfiguration.createProcessHandler(project, phpCommandSettings))
 
             ProcessTerminatedListener.attach(processHandler, project, "")
         } catch (ex: ExecutionException) {
@@ -144,10 +144,6 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
     }
 
     private fun getAnsiUnfilteredProcessHandler(processHandler: ProcessHandler): ProcessHandler {
-        if (processHandler is KillableProcessHandler) {
-            return processHandler
-        }
-
         if (processHandler is OSProcessHandler) {
             return KillableProcessHandler(processHandler.process, processHandler.commandLine)
         }
@@ -156,7 +152,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             return BaseRemoteProcessHandler(processHandler.process, processHandler.commandLine, processHandler.charset)
         }
 
-        // Could not find suitable cast, return original
+        // Could not find suitable cast, return original (colorless, but working) handler
         return processHandler
     }
 }
