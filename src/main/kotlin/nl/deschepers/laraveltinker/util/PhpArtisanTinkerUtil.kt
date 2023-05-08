@@ -12,6 +12,7 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task.Backgroundable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindowManager
+import com.intellij.remote.BaseRemoteProcessHandler
 import com.jetbrains.php.composer.ComposerUtils
 import com.jetbrains.php.config.PhpProjectConfigurationFacade
 import com.jetbrains.php.config.commandLine.PhpCommandSettings
@@ -97,8 +98,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             val tinkerRunSettings = projectSettings.parseJson()
             phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, tinkerRunSettings.toString()))
 
-            val osProcessHandler = runConfiguration.createProcessHandler(project, phpCommandSettings, true) as OSProcessHandler
-            processHandler = KillableProcessHandler(osProcessHandler.process, osProcessHandler.commandLine)
+            processHandler = getAnsiUnfilteredProcessHandler(runConfiguration.createProcessHandler(project, phpCommandSettings, true))
 
             ProcessTerminatedListener.attach(processHandler, project, "")
         } catch (ex: ExecutionException) {
@@ -128,7 +128,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                 object : Backgroundable(project, Strings.get("lt.running")) {
                     override fun run(progressIndicator: ProgressIndicator) {
                         processHandler.startNotify()
-                        processHandler.processInput.writer().write("\u0004")
+                        processHandler.processInput?.writer()?.write("\u0004")
                         while (!processHandler.isProcessTerminated) {
                             Thread.sleep(250)
                             try {
@@ -141,5 +141,22 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                     }
                 }
             )
+    }
+
+    private fun getAnsiUnfilteredProcessHandler(processHandler: ProcessHandler): ProcessHandler {
+        if (processHandler is KillableProcessHandler) {
+            return processHandler
+        }
+
+        if (processHandler is OSProcessHandler) {
+            return KillableProcessHandler(processHandler.process, processHandler.commandLine)
+        }
+
+        if (processHandler is BaseRemoteProcessHandler<*>) {
+            return BaseRemoteProcessHandler(processHandler.process, processHandler.commandLine, processHandler.charset)
+        }
+
+        // Could not find suitable cast, return original
+        return processHandler
     }
 }
