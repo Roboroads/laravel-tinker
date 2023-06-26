@@ -172,6 +172,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
 
         if (ansiCommands.isEmpty()) {
             return escapeHtml(ansiText)
+                .replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
+                .replace("&lt;/whisper&gt;", "</span>")
         }
 
         val textParts = ansiText.split(ansiRegex).toMutableList()
@@ -235,6 +237,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             // Replace whisper with a gray span
             .replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
             .replace("&lt;/whisper&gt;", "</span>")
+
+        println(htmlText)
 
         return htmlText
     }

@@ -7,9 +7,13 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
     v.customize ["modifyvm", :id, "--vram", "256"]
     v.customize ["storageattach", :id,
-                    "--storagectl", "IDE Controller",
-                    "--port", "0", "--device", "1",
-                    "--type", "dvddrive",
-                    "--medium", "emptydrive"]
+                 "--storagectl", "IDE Controller",
+                 "--port", "0", "--device", "1",
+                 "--type", "dvddrive",
+                 "--medium", "emptydrive"]
   end
+
+  config.vm.provision "shell", privileged: "true", powershell_elevated_interactive: "true", inline: <<-SHELL
+       choco install -y git intellijidea-ultimate zulu11
+  SHELL
 end
