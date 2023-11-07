@@ -1,11 +1,11 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "gusztavvargadr/windows-10"
+  config.vm.box = "gusztavvargadr/windows-11"
 
   config.vm.provider "virtualbox" do |v|
     v.gui = true
-    v.memory = 4096
-    v.cpus = 2
-    v.customize ["modifyvm", :id, "--vram", "256"]
+    v.memory = 8192
+    v.cpus = 4
+    v.customize ["modifyvm", :id, "--vram", "256", "--monitorcount", "3"]
     v.customize ["storageattach", :id,
                  "--storagectl", "IDE Controller",
                  "--port", "0", "--device", "1",
