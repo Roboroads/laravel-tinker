@@ -41,7 +41,7 @@ class PhpProcessListener(private val project: Project) :
 
                     TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = PlugUtil.getPlug()
                 },
-                ModalityState.NON_MODAL
+                ModalityState.nonModal()
             )
     }
 
@@ -74,7 +74,7 @@ class PhpProcessListener(private val project: Project) :
                         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
                             ?.addOutput(capText)
                     },
-                    ModalityState.NON_MODAL
+                    ModalityState.nonModal()
                 )
         }
     }
