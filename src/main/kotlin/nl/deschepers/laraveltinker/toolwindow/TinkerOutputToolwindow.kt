@@ -10,7 +10,7 @@ import com.intellij.ui.components.JBScrollPane
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.util.HelperUtil
-import org.apache.commons.lang.StringEscapeUtils.escapeHtml
+import org.apache.commons.text.StringEscapeUtils.escapeHtml4
 import java.awt.Desktop
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -171,7 +171,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
         val ansiCommands = ansiRegex.findAll(ansiText).map { it.groupValues[1] }.toMutableList()
 
         if (ansiCommands.isEmpty()) {
-            return escapeHtml(ansiText)
+            return escapeHtml4(ansiText)
                 .replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
                 .replace("&lt;/whisper&gt;", "</span>")
         }
@@ -181,7 +181,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
         var isBold = false
         var isUnderlined = false
 
-        var htmlText = escapeHtml(textParts.removeFirst())
+        var htmlText = escapeHtml4(textParts.removeFirst())
 
         while (ansiCommands.isNotEmpty()) {
             val command = ansiCommands.removeFirst()
@@ -210,7 +210,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                 "0;38;5;208" -> currentColor = null
                 else -> {
                     // Nothing we parse happened, no need to add a span
-                    htmlText += escapeHtml(text)
+                    htmlText += escapeHtml4(text)
                     continue
                 }
             }
@@ -221,12 +221,12 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             if (currentColor != null) style += "color: $currentColor;"
 
             htmlText += "</span><span style=\"$style\">"
-            htmlText += escapeHtml(text)
+            htmlText += escapeHtml4(text)
         }
 
         // If residual text is in the buffer, which should not happen, add it to the output
         if (textParts.isNotEmpty()) {
-            htmlText += escapeHtml(textParts.joinToString(""))
+            htmlText += escapeHtml4(textParts.joinToString(""))
         }
 
         htmlText = ("<span>$htmlText</span>")
