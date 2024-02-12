@@ -23,7 +23,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Concidered alternatives
+      label: Considered alternatives
       description: A clear and concise description of any alternative solutions or features you've considered.
     validations:
       required: false
