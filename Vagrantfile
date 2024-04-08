@@ -14,6 +14,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", privileged: "true", powershell_elevated_interactive: "true", inline: <<-SHELL
-       choco install -y git intellijidea-ultimate zulu11
+       choco install -y git intellijidea-ultimate
   SHELL
 end
