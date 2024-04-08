@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.action
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -32,5 +33,9 @@ class RunConsoleEditorContextAction : AnAction() {
         if (tinkerConsoleUtil.isTinkerConsole(virtualFile)) {
             tinkerConsoleUtil.runTinkerWithFile(virtualFile)
         }
+    }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.EDT
     }
 }

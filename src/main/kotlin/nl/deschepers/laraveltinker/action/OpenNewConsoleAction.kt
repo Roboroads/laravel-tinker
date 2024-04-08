@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.action
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.fileEditor.FileEditorManager
@@ -22,5 +23,9 @@ class OpenNewConsoleAction : AnAction() {
         val tinkerConsoleUtil = TinkerConsoleUtil(project)
         val tinkerConsole = tinkerConsoleUtil.createNewTinkerConsole()
         FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
+    }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.EDT
     }
 }

@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.action
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -87,5 +88,9 @@ class SmartAction : AnAction() {
         // Else: (Re)open a tinker console
         val tinkerConsole = tinkerConsoleUtil.getLastOpenOrCreateTinkerConsole()
         FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
+    }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.EDT
     }
 }
