@@ -1,71 +1,71 @@
 <idea-plugin>
     <actions>
         <group
-          id="nl.deschepers.laraveltinker.MenuActions"
-          icon="/icons/icon.svg"
-          text="Laravel Tinker"
-          description="Laravel Tinker actions"
-          popup="true">
+            id="nl.deschepers.laraveltinker.MenuActions"
+            icon="/icons/icon.svg"
+            text="Laravel Tinker"
+            description="Laravel Tinker actions"
+            popup="true">
             <add-to-group anchor="last" group-id="ToolsMenu"/>
 
             <action
-              id="nl.deschepers.laraveltinker.action.SmartAction"
-              class="nl.deschepers.laraveltinker.action.SmartAction"
-              description="Smart action"
-              text="Smart Action"
-              icon="/icons/icon.svg">
+                id="nl.deschepers.laraveltinker.action.SmartAction"
+                class="nl.deschepers.laraveltinker.action.SmartAction"
+                description="Smart action"
+                text="Smart Action"
+                icon="/icons/icon.svg">
                 <keyboard-shortcut first-keystroke="control shift T" keymap="$default" replace-all="true"/>
                 <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X" replace-all="true"/>
                 <keyboard-shortcut first-keystroke="control shift T" keymap="Mac OS X 10.5+"
-                  replace-all="true"/>
+                    replace-all="true"/>
             </action>
             <action
-              id="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
-              class="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
-              description="Open new console"
-              text="Open New Console"
-              icon="general/add.svg">
+                id="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
+                class="nl.deschepers.laraveltinker.action.OpenNewConsoleAction"
+                description="Open new console"
+                text="Open New Console"
+                icon="general/add.svg">
             </action>
             <action
-              id="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
-              class="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
-              description="Reopen last console"
-              text="Reopen Last Console"
-              icon="toolwindows/toolWindowUIDesigner.svg">
+                id="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
+                class="nl.deschepers.laraveltinker.action.OpenLastConsoleAction"
+                description="Reopen last console"
+                text="Reopen Last Console"
+                icon="toolwindows/toolWindowUIDesigner.svg">
             </action>
             <action
-              id="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
-              class="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
-              description="Switch to console tab"
-              text="Switch to Console Tab">
+                id="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
+                class="nl.deschepers.laraveltinker.action.SwitchToConsoleTabAction"
+                description="Switch to console tab"
+                text="Switch to Console Tab">
             </action>
             <action
-              id="nl.deschepers.laraveltinker.action.RunConsoleAction"
-              class="nl.deschepers.laraveltinker.action.RunConsoleAction"
-              description="Run console"
-              text="Run Console"
-              icon="/icons/tinker-run.svg">
+                id="nl.deschepers.laraveltinker.action.RunConsoleAction"
+                class="nl.deschepers.laraveltinker.action.RunConsoleAction"
+                description="Run console"
+                text="Run Console"
+                icon="/icons/tinker-run.svg">
             </action>
             <action
-              id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
-              class="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
-              description="Close all tinker windows"
-              text="Close All Tinker Windows"
+                id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
+                class="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
+                description="Close all tinker windows"
+                text="Close All Tinker Windows"
             />
         </group>
 
         <action id="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
-          class="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
-          text="Open Tinker Console With Selection"
-          description="Opens a new tinker console with the code you have currently selected."
-          icon="/icons/icon.svg">
+            class="nl.deschepers.laraveltinker.action.OpenNewConsoleWithSelectionAction"
+            text="Open Tinker Console With Selection"
+            description="Opens a new tinker console with the code you have currently selected."
+            icon="/icons/icon.svg">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
-          id="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
-          class="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
-          text="Run Tinker Console"
-          icon="/icons/tinker-run.svg"
+            id="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
+            class="nl.deschepers.laraveltinker.action.RunConsoleEditorContextAction"
+            text="Run Tinker Console"
+            icon="/icons/tinker-run.svg"
         >
             <add-to-group group-id="EditorPopupMenu.Run" anchor="before" relative-to-action="RunContextPopupGroup"/>
         </action>
@@ -80,36 +80,34 @@
         <postStartupActivity implementation="nl.deschepers.laraveltinker.startup.Migrations"/>
 
         <applicationService
-          serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
+            serviceImplementation="nl.deschepers.laraveltinker.settings.PersistentApplicationCache"
         />
         <applicationService
-          serviceImplementation="nl.deschepers.laraveltinker.settings.GlobalSettingsState"/>
-        <projectService
-          serviceImplementation="nl.deschepers.laraveltinker.settings.ProjectSettingsState"/>
+            serviceImplementation="nl.deschepers.laraveltinker.settings.GlobalSettingsState"/>
 
         <applicationConfigurable
-          parentId="tools"
-          instance="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
-          id="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
-          displayName="Laravel Tinker"/>
+            parentId="tools"
+            instance="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
+            id="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
+            displayName="Laravel Tinker"/>
         <projectConfigurable
-          parentId="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
-          instance="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
-          id="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
-          displayName="Project Settings"
-          nonDefaultProject="true"
+            parentId="nl.deschepers.laraveltinker.settings.GlobalSettingsConfigurable"
+            instance="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
+            id="nl.deschepers.laraveltinker.settings.ProjectSettingsConfigurable"
+            displayName="Project Settings"
+            nonDefaultProject="true"
         />
 
         <codeInsight.lineMarkerProvider
-          implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
-          language="PHP"
+            implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
+            language="PHP"
         />
         <scratch.rootType implementation="nl.deschepers.laraveltinker.util.LaravelTinkerConsolesRootType"/>
 
         <toolWindow anchor="right"
-          factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
-          icon="/icons/icon@13.svg"
-          id="Laravel Tinker"
+            factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"
+            icon="/icons/icon@13.svg"
+            id="Laravel Tinker"
         />
 
         <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>

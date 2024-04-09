@@ -7,7 +7,7 @@ import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(
-    name = "org.intellij.sdk.settings.AppSettingsState",
+    name = "nl.deschepers.laraveltinker.settings.AppSettingsState",
     storages = [Storage("laravel-tinker-plugin-settings.xml")]
 )
 class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {

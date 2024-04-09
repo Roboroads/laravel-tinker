@@ -2,13 +2,15 @@ package nl.deschepers.laraveltinker.settings
 
 import com.google.gson.JsonObject
 import com.intellij.openapi.components.PersistentStateComponent
+import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.project.Project
 import com.intellij.util.xmlb.XmlSerializerUtil
 
+@Service(Service.Level.PROJECT)
 @State(
-    name = "org.intellij.sdk.settings.AppSettingsState",
+    name = "nl.deschepers.laraveltinker.settings.AppSettingsState",
     storages = [Storage("laravel-tinker.xml")]
 )
 class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
