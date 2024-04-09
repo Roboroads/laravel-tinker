@@ -6,12 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### BREAKING
+
+- Your tinker plugin settings might reset after the update - sorry for that :)
+
+### Fixed
+
+- Swapped out deprecated StringEscapeUtils.
+- Fixed ModalityState deprecation warning.
+- [[#316]](https://github.com/Roboroads/laravel-tinker/issues/316) Fixed ActionUpdateThread deprecation.
+- [[#312]](https://github.com/Roboroads/laravel-tinker/issues/312) Fixed app settings storage conflict with another plugin.
+- [[#255]](https://github.com/Roboroads/laravel-tinker/issues/255)[[#280]](https://github.com/Roboroads/laravel-tinker/issues/280) Fixed (worked around) characters not present in
+  windows-1252 charset being displayed weirdly on windows machines.
+- Fixed deprecation warnings coming from the Migrations.
+
+### Miscellaneous
+
+- Updated all dependencies to their latest versions.
+- Fixed a typo in feature request template. (Thanks [@igorsantos07](https://github.com/igorsantos07)!)
+- Changed minimal version to 2024.1, deprecating the plugin for older versions of IDEs.
+
 ## [2.6.1] - 2023-05-08
 
 ### Fixed
 
-- [[#252]](https://github.com/Roboroads/laravel-tinker/issues/252) Cast exception when running on an SSH interpreter
-- [[#253]](https://github.com/Roboroads/laravel-tinker/issues/253) Remove unneeded `withPtty: true` from process handler
+- [[#252]](https://github.com/Roboroads/laravel-tinker/issues/252) Cast exception when running on an SSH interpreter.
+- [[#253]](https://github.com/Roboroads/laravel-tinker/issues/253) Remove unneeded `withPtty: true` from process handler.
 - Fixed an early return when no ansicommands are found in the output, that also not parsed out the whisper tag.
 
 ## [2.6.0] - 2023-04-16
