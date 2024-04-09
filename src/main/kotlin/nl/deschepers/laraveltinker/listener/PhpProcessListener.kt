@@ -15,15 +15,7 @@ import java.util.*
 class PhpProcessListener(private val project: Project) :
     ProcessListener {
 
-    companion object {
-        private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
-        private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
-    }
-
     private val processOutput = ArrayList<String>()
-
-    private var capturing = false
-    private var firstLine = true
 
     override fun startNotified(event: ProcessEvent) {
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = null
