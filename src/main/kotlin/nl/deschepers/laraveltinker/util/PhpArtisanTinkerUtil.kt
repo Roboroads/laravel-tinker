@@ -1,8 +1,6 @@
 package nl.deschepers.laraveltinker.util
 
 import com.intellij.execution.ExecutionException
-import com.intellij.execution.process.KillableProcessHandler
-import com.intellij.execution.process.OSProcessHandler
 import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.openapi.fileEditor.FileDocumentManager
@@ -12,7 +10,6 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task.Backgroundable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindowManager
-import com.intellij.remote.BaseRemoteProcessHandler
 import com.jetbrains.php.composer.ComposerUtils
 import com.jetbrains.php.config.PhpProjectConfigurationFacade
 import com.jetbrains.php.config.commandLine.PhpCommandSettings
@@ -98,7 +95,7 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
             val tinkerRunSettings = projectSettings.parseJson()
             phpCommandSettings.addArguments(listOf("-r", phpTinkerCodeRunnerCode, phpCode, tinkerRunSettings.toString()))
 
-            processHandler = getAnsiUnfilteredProcessHandler(runConfiguration.createProcessHandler(project, phpCommandSettings))
+            processHandler = runConfiguration.createProcessHandler(project, phpCommandSettings)
 
             ProcessTerminatedListener.attach(processHandler, project, "")
         } catch (ex: ExecutionException) {
@@ -141,18 +138,5 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
                     }
                 }
             )
-    }
-
-    private fun getAnsiUnfilteredProcessHandler(processHandler: ProcessHandler): ProcessHandler {
-        if (processHandler is OSProcessHandler) {
-            return KillableProcessHandler(processHandler.process, processHandler.commandLine)
-        }
-
-        if (processHandler is BaseRemoteProcessHandler<*>) {
-            return BaseRemoteProcessHandler(processHandler.process, processHandler.commandLine, processHandler.charset)
-        }
-
-        // Could not find suitable cast, return original (colorless, but working) handler
-        return processHandler
     }
 }

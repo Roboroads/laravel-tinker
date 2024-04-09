@@ -10,6 +10,7 @@ import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.settings.GlobalSettingsState
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
 import nl.deschepers.laraveltinker.util.PlugUtil
+import java.util.*
 
 class PhpProcessListener(private val project: Project) :
     ProcessListener {
@@ -36,7 +37,7 @@ class PhpProcessListener(private val project: Project) :
 
                     if (pluginSettings.showExecutionEnded) {
                         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
-                            ?.addOutput(Strings.get("lt.execution_finished"))
+                            ?.addOutput("\n\n" + Strings.get("lt.execution_finished"))
                     }
 
                     TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = PlugUtil.getPlug()
@@ -46,36 +47,23 @@ class PhpProcessListener(private val project: Project) :
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
-//        print(event.text)
+        val capText = event.text.trim()
+        //print(capText) // DEV: Uncomment to see what the output is that comes from the PHP process.
 
-        if (firstLine) {
-            firstLine = false
-            return
-        }
-
-        var capText = event.text
-
-        if (!capturing && capText.contains(OUTPUT_START_SEQUENCE)) {
-            capText =
-                capText.substring(
-                    capText.indexOf(OUTPUT_START_SEQUENCE) + OUTPUT_START_SEQUENCE.length
-                )
-            capturing = true
-        }
-        if (capturing && capText.contains(OUTPUT_END_SEQUENCE)) {
-            capturing = false
-        }
-
-        if (capturing) {
-            processOutput.add(capText)
+        // try decoding base64
+        try {
+            val text = String(Base64.getDecoder().decode(capText))
+            processOutput.add(text)
             ApplicationManager.getApplication()
                 .invokeLater(
                     {
                         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]
-                            ?.addOutput(capText)
+                            ?.addOutput(text)
                     },
                     ModalityState.nonModal()
                 )
+        } catch (e: Exception) {
+            // do nothing, not tinker output.
         }
     }
 }
