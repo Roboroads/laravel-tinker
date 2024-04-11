@@ -7,8 +7,10 @@ import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
 
 /**
  * Before you place a bug: I am aware this is insecure. I just don't want to bother actual supporters
- * with my 'consider supporting' messages. Just note that decoding this does not give you any extra features, it
- * JUST removes the 'consider supporting' message. Consider financially supporting me to get a legit key <3
+ * with my 'consider supporting' messages without connecting to third party services. Just note that
+ * decoding this does not give you any extra features, it JUST removes the 'consider supporting' message.
+ *
+ * Consider financially supporting me to get a legit key <3
  */
 object PlugUtil {
     internal const val SUPPORT_MESSAGE_EXECUTIONS = 10
@@ -21,7 +23,7 @@ object PlugUtil {
                 SUPPORT_MESSAGE_EXECUTIONS
             ) {
                 PersistentApplicationCache.instance.state.executionsCount = 0
-                val plugType = listOf("patreon", "paypal", "kofi", "linktree", "colleagues", "rating").asSequence().shuffled().find { true }
+                val plugType = listOf("github", "kofi", "linktree", "colleagues", "rating").asSequence().shuffled().find { true }
                 return Strings.get("lt.consider_supporting", Strings.get("lt.consider_supporting.$plugType"))
             }
         }
