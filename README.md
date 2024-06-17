@@ -12,7 +12,7 @@ Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ct
 - [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
 - [🙏 Ko-Fi](https://ko-fi.com/roboroads) / [GitHub Sponsors](https://github.com/sponsors/Roboroads): Consider supporting this project if it helped you ❤️
 - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
-- [🔗 Share](https://linktr.ee/roboroads): Share the plugin to your network
+- [🔗 Share](https://linktr.ee/laraveltinkerplugin): Share the plugin to your network
 
 <!-- Plugin description end -->
 
