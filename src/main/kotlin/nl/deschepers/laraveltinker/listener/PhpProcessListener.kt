@@ -14,7 +14,15 @@ import nl.deschepers.laraveltinker.util.PlugUtil
 class PhpProcessListener(private val project: Project) :
     ProcessListener {
 
+    companion object {
+        private const val OUTPUT_START_SEQUENCE = "%%START-OUTPUT%%"
+        private const val OUTPUT_END_SEQUENCE = "%%END-OUTPUT%%"
+    }
+
     private val processOutput = ArrayList<String>()
+
+    private var capturing = false
+    private var firstLine = true
 
     override fun startNotified(event: ProcessEvent) {
         TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.plug = null
@@ -38,7 +46,7 @@ class PhpProcessListener(private val project: Project) :
     }
 
     override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
-//        print(event.text)
+        //print(event.text) // DEV: Uncomment to see what the output is that comes from the PHP process.
 
         if (firstLine) {
             firstLine = false
