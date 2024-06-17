@@ -1,5 +1,12 @@
 /*<?php /**/
 
+use Illuminate\Contracts\Console\Kernel;
+use Laravel\Tinker\ClassAliasAutoloader;
+use Psy\Configuration;
+use Psy\ExecutionLoopClosure;
+use Psy\Shell;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
 define('LARAVEL_START', microtime(true));
 
 echo "%%START-OUTPUT%%";
@@ -8,10 +15,10 @@ $projectSettings = json_decode($argv[2]) ?? new stdClass();
 
 require ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/autoload.php';
 $app = require_once ($projectSettings->laravelRoot ?: __DIR__) . '/bootstrap/app.php';
-$kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
+$kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
 
-$config = new \Psy\Configuration([
+$config = new Configuration([
     'updateCheck' => 'never',
     'usePcntl' => false,
     'useReadline' => false,
@@ -19,8 +26,8 @@ $config = new \Psy\Configuration([
     'theme' => 'compact',
 ]);
 $config->setRawOutput(true);
-$config->setColorMode(\Psy\Configuration::COLOR_MODE_FORCED);
-$config->setInteractiveMode(\Psy\Configuration::INTERACTIVE_MODE_DISABLED);
+$config->setColorMode(Configuration::COLOR_MODE_FORCED);
+$config->setInteractiveMode(Configuration::INTERACTIVE_MODE_DISABLED);
 
 $casters = [
     'Illuminate\Support\Collection' => 'Laravel\Tinker\TinkerCaster::castCollection',
@@ -42,14 +49,14 @@ foreach($casters as $castableClass => $casterMethod) {
 $config->getPresenter()->addCasters($existingCasters);
 $config->setHistoryFile(defined('PHP_WINDOWS_VERSION_BUILD') ? 'nul' : '/dev/null');
 
-$shell = new \Psy\Shell($config);
-$output = new \Symfony\Component\Console\Output\ConsoleOutput();
+$shell = new Shell($config);
+$output = new ConsoleOutput();
 $shell->setOutput($output);
-$closure = new \Psy\ExecutionLoopClosure($shell);
+$closure = new ExecutionLoopClosure($shell);
 
 $autoloadClassMap = ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/composer/autoload_classmap.php';
 if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
-    $loader = \Laravel\Tinker\ClassAliasAutoloader::register($shell, $autoloadClassMap);
+    $loader = ClassAliasAutoloader::register($shell, $autoloadClassMap);
 }
 
 $unsanitizedRunCode = token_get_all($argv[1]);
