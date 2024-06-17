@@ -6,7 +6,7 @@
 /.idea/gradle.xml
 /.idea/dictionaries
 /.idea/libraries/*.xml
-/.idea/*.iml
+/.idea/**/*.iml
 .qodana
 build
 .vagrant

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
-  <component name="AdditionalModuleElements">
-    <content url="file://$MODULE_DIR$/../.." dumb="true">
-      <excludeFolder url="file://$MODULE_DIR$/../../.laravel" />
-      <excludeFolder url="file://$MODULE_DIR$/../../.laravel/vendor/laravel/homestead" />
-    </content>
-  </component>
-</module>
