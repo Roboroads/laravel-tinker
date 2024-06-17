@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fixed by windows destroyed characters in a different way
+- [[#255]](https://github.com/Roboroads/laravel-tinker/issues/255)[[#280]](https://github.com/Roboroads/laravel-tinker/issues/280) Fixed by windows destroyed characters in a
+  different way
 
 ## [2.7.1] - 2024-06-17
 
