@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", privileged: "true", powershell_elevated_interactive: "true", inline: <<-SHELL
+       Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
        choco install -y git intellijidea-ultimate php
        choco install -y correttojdk --version=20.0.0
   SHELL

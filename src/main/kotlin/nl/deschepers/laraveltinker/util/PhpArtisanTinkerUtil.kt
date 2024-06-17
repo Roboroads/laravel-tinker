@@ -145,11 +145,11 @@ class PhpArtisanTinkerUtil(private val project: Project, private val phpCode: St
 
     private fun getAnsiUnfilteredProcessHandler(processHandler: ProcessHandler): ProcessHandler {
         if (processHandler is OSProcessHandler) {
-            return KillableProcessHandler(processHandler.process, processHandler.commandLine)
+            return KillableProcessHandler(processHandler.process, processHandler.commandLine, StandardCharsets.UTF_8)
         }
 
         if (processHandler is BaseRemoteProcessHandler<*>) {
-            return BaseRemoteProcessHandler(processHandler.process, processHandler.commandLine, processHandler.charset)
+            return BaseRemoteProcessHandler(processHandler.process, processHandler.commandLine, StandardCharsets.UTF_8)
         }
 
         // Could not find suitable cast, return original (colorless, but working) handler
