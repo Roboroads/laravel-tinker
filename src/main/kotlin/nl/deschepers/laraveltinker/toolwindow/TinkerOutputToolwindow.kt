@@ -81,6 +81,7 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             Timer("UpdateTinkerOutput", false)
                 .schedule(250) {
                     outputText = outputText
+                        .replace("%%EOT%%", "")
                         .replace(Regex("Exit: {2}Goodbye$"), "")
                     updateView()
                     timer = false
@@ -236,6 +237,8 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
             // Replace whisper with a gray span
             .replace("&lt;whisper&gt;", "<span style=\"color: gray;\">")
             .replace("&lt;/whisper&gt;", "</span>")
+
+        println(htmlText)
 
         return htmlText
     }
