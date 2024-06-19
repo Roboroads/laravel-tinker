@@ -14,6 +14,7 @@ Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ct
 - [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
 - [🔗 Share](https://linktr.ee/laraveltinkerplugin): Share the plugin to your network
 
+This plugin does work without your code being a laravel project as well - make sure you have psy/psysh required in your project for it to work, though with limited functionality.
 <!-- Plugin description end -->
 
 ## Credits

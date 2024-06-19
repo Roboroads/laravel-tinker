@@ -7,16 +7,32 @@ use Psy\ExecutionLoopClosure;
 use Psy\Shell;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-define('LARAVEL_START', microtime(true));
-
 echo "%%START-OUTPUT%%";
 
 $projectSettings = json_decode($argv[2]) ?? new stdClass();
 
+$composerJsonFile = ($projectSettings->vendorRoot ?: __DIR__) . '/composer.json';
+if (!file_exists($composerJsonFile)) {
+    throw new Exception($composerJsonFile . ' does not exist. Please check your project settings.');
+}
+$psyshComposerJsonFile = ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/psy/psysh/composer.json';
+if (!file_exists($psyshComposerJsonFile)) {
+    throw new Exception($psyshComposerJsonFile . ' does not exist. Make sure your composer dependencies are installed and laravel/tinker (or, at minimum, psy/psysh) is required.');
+}
+
+$composerJson = json_decode(file_get_contents($composerJsonFile));
+$isLaravelProject = isset($composerJson->require->{"laravel/framework"});
+
+if ($isLaravelProject) {
+    define('LARAVEL_START', microtime(true));
+}
+
 require ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/autoload.php';
-$app = require_once ($projectSettings->laravelRoot ?: __DIR__) . '/bootstrap/app.php';
-$kernel = $app->make(Kernel::class);
-$kernel->bootstrap();
+if ($isLaravelProject) {
+    $app = require_once ($projectSettings->laravelRoot ?: __DIR__) . '/bootstrap/app.php';
+    $kernel = $app->make(Kernel::class);
+    $kernel->bootstrap();
+}
 
 $config = new Configuration([
     'updateCheck' => 'never',
@@ -43,9 +59,9 @@ $casters = [
 ];
 
 $existingCasters = [];
-foreach($casters as $castableClass => $casterMethod) {
+foreach ($casters as $castableClass => $casterMethod) {
     list($casterClass, $casterClassMethod) = explode('::', $casterMethod);
-    if(class_exists($castableClass) && method_exists($casterClass, $casterClassMethod)) {
+    if (class_exists($castableClass) && method_exists($casterClass, $casterClassMethod)) {
         $existingCasters[$castableClass] = $casterMethod;
     }
 }
@@ -59,13 +75,13 @@ $shell->setOutput($output);
 $closure = new ExecutionLoopClosure($shell);
 
 $autoloadClassMap = ($projectSettings->vendorRoot ?: __DIR__) . '/vendor/composer/autoload_classmap.php';
-if(class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
+if (class_exists('\Laravel\Tinker\ClassAliasAutoloader')) {
     $loader = ClassAliasAutoloader::register($shell, $autoloadClassMap);
 }
 
 $unsanitizedRunCode = token_get_all($argv[1]);
 $sanitizedRunCode = '';
-foreach($unsanitizedRunCode as $token) {
+foreach ($unsanitizedRunCode as $token) {
     if (!is_string($token)) {
         list($id, $token) = $token;
         if (in_array($id, [T_COMMENT, T_DOC_COMMENT, T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO, T_CLOSE_TAG], true)) {
@@ -77,13 +93,13 @@ foreach($unsanitizedRunCode as $token) {
 }
 
 $shell->addInput($sanitizedRunCode, true);
-if($projectSettings->terminateApp) {
+if ($isLaravelProject && $projectSettings->terminateApp) {
     $shell->addInput('echo "%%END-OUTPUT%%";', true);
     $shell->addInput('app()->terminate();', true);
 }
 $shell->addInput('usleep(250000); throw new \Psy\Exception\BreakException("%%END-OUTPUT%%");', true);
 $closure->execute();
 
-if(isset($loader)) {
+if (isset($loader)) {
     $loader->unregister();
 }
