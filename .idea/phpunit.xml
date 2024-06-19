@@ -4,6 +4,7 @@
     <option name="directories">
       <list>
         <option value="$PROJECT_DIR$/.laravel/tests" />
+        <option value="$PROJECT_DIR$/.oldlaravel/tests" />
       </list>
     </option>
   </component>

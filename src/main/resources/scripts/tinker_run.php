@@ -25,9 +25,13 @@ $config = new Configuration([
     'prompt' => '',
     'theme' => 'compact',
 ]);
-$config->setRawOutput(true);
+if (method_exists($config, 'setRawOutput')) {
+    $config->setRawOutput(true);
+}
+if (method_exists($config, 'setInteractiveMode')) {
+    $config->setInteractiveMode(Configuration::INTERACTIVE_MODE_DISABLED);
+}
 $config->setColorMode(Configuration::COLOR_MODE_FORCED);
-$config->setInteractiveMode(Configuration::INTERACTIVE_MODE_DISABLED);
 
 $casters = [
     'Illuminate\Support\Collection' => 'Laravel\Tinker\TinkerCaster::castCollection',
@@ -63,7 +67,7 @@ $unsanitizedRunCode = token_get_all($argv[1]);
 $sanitizedRunCode = '';
 foreach($unsanitizedRunCode as $token) {
     if (!is_string($token)) {
-        [$id, $token] = $token;
+        list($id, $token) = $token;
         if (in_array($id, [T_COMMENT, T_DOC_COMMENT, T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO, T_CLOSE_TAG], true)) {
             continue;
         }
