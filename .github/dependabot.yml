@@ -4,17 +4,17 @@ updates:
     directory: "/"
     target-branch: "main"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     groups:
-      all:
+      gradle:
         patterns:
           - "*"
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "main"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     groups:
-      all:
+      github-actions:
         patterns:
           - "*"
