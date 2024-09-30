@@ -1,6 +1,6 @@
 [versions]
 # libraries
-annotations = "24.1.0"
+annotations = "25.0.0"
 
 # plugins
 kotlin = "2.0.20"
