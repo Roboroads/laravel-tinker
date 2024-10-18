@@ -50,11 +50,11 @@ class TinkerConsoleUtil(val project: Project) {
         option: ScratchFileService.Option,
         startingText: String = ""
     ): VirtualFile? {
-        getTinkerConsoleFiles()
-
+        val fileName = Strings.get("lt.console.filename")
         return LaravelTinkerConsolesRootType.getInstance()
             .createScratchFile(
                 project,
+                fileName,
                 Strings.get("lt.console.default_content") + startingText,
                 option
             )

@@ -30,12 +30,6 @@ class LaravelTinkerConsolesRootType :
         }
     }
 
-    override fun substituteName(project: Project, file: VirtualFile): String {
-        val matches = Regex("_([0-9]+)$").find(file.nameWithoutExtension)
-        val consoleNum = if (matches != null) " (${matches.groupValues[1]})" else ""
-        return Strings.get("lt.console.name") + consoleNum
-    }
-
     override fun substituteLanguage(project: Project, file: VirtualFile): Language? {
         return ScratchFileService.getInstance().scratchesMapping.getMapping(file)
     }
@@ -47,10 +41,10 @@ class LaravelTinkerConsolesRootType :
     @Suppress("SwallowedException")
     fun createScratchFile(
         project: Project?,
+        fileName:String,
         text: String?,
         option: ScratchFileService.Option
     ): VirtualFile? {
-        val fileName = Strings.get("lt.console.filename")
         return try {
             WriteCommandAction.writeCommandAction(project)
                 .withName(Strings.get("lt.menu.action.open_new_console"))
