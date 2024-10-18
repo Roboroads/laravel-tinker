@@ -21,7 +21,7 @@ class OpenNewConsoleWithSelectionAction : AnAction() {
         val currentEditor: Editor = e.getData(CommonDataKeys.EDITOR) ?: return
         val virtualFile: VirtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
 
-        if (virtualFile.fileType is PhpFileType && currentEditor.selectionModel.hasSelection()) {
+        if (virtualFile.fileType === PhpFileType.INSTANCE && currentEditor.selectionModel.hasSelection()) {
             e.presentation.isVisible = true
         }
     }
