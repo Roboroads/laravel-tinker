@@ -16,3 +16,5 @@ keygen.sh
 /code-inspection.log
 /certs
 .directory
+/.intellijPlatform/
+/.idea/
