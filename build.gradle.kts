@@ -35,8 +35,8 @@ kotlin {
 dependencies {
     implementation("at.favre.lib:bcrypt:0.10.2")
     implementation("de.skuzzle:semantic-version:2.1.1")
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation("org.apache.commons:commons-text:1.12.0")
+    implementation("com.google.code.gson:gson:2.12.1")
+    implementation("org.apache.commons:commons-text:1.13.0")
 }
 //END CUSTOM
 
