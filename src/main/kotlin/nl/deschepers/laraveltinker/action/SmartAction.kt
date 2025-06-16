@@ -67,8 +67,8 @@ class SmartAction : AnAction() {
         // Second action: Open a new console with the selected text
         val currentEditor: Editor? = e.getData(CommonDataKeys.EDITOR)
         val isFile = currentEditor != null && virtualFile != null
-        if (isFile && virtualFile!!.fileType is PhpFileType &&
-            currentEditor!!.selectionModel.hasSelection()
+        if (isFile && virtualFile.fileType is PhpFileType &&
+            currentEditor.selectionModel.hasSelection()
         ) {
             val tinkerConsole =
                 tinkerConsoleUtil.createNewTinkerConsole(
@@ -91,6 +91,6 @@ class SmartAction : AnAction() {
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }
