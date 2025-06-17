@@ -7,7 +7,8 @@ import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.types.LaravelTinkerConsoleType
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 import java.awt.event.MouseEvent
 
 class TinkerRunLineMarkerProvider : LineMarkerProvider {
@@ -16,21 +17,20 @@ class TinkerRunLineMarkerProvider : LineMarkerProvider {
     }
 
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        val tinkerConsoleUtil = TinkerConsoleUtil(element.project)
-        if (tinkerConsoleUtil.isTinkerConsole(element.containingFile.virtualFile) &&
-            element.elementType.toString() == PHP_OPEN_TAG
-        )
+        val consoleFileRepository = ConsoleFileRepository(element.project)
+        if (element.containingFile.virtualFile.fileType is LaravelTinkerConsoleType && element.elementType.toString() == PHP_OPEN_TAG) {
             return LineMarkerInfo(
                 element,
                 element.textRange,
                 IconLoader.getIcon("icons/tinker-run.svg", javaClass),
                 null,
                 { _: MouseEvent, psiElement: PsiElement ->
-                    tinkerConsoleUtil.runTinkerWithFile(psiElement.containingFile.virtualFile)
+                    consoleFileRepository.runFile(psiElement.containingFile.virtualFile)
                 },
                 RIGHT,
                 { Strings.get("lt.run") }
             )
+        }
 
         return null
     }

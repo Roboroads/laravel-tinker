@@ -56,7 +56,7 @@ class GlobalSettingsComponent {
                     JBLabel(Strings.get("lt.settings.support_key")),
                     patreonKeyTextField
                 )
-                .addTooltip(Strings.get("lt.settings.support_key.tooltip", SUPPORT_MESSAGE_EXECUTIONS))
+                .addTooltip(Strings.get("lt.settings.support_key.tooltip"))
                 .addTooltip(Strings.get("lt.settings.support_key.tooltip_support_options"))
                 .addComponentFillVertically(JPanel(), 0)
                 .panel

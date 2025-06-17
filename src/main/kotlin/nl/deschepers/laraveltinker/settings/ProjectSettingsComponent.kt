@@ -15,6 +15,7 @@ class ProjectSettingsComponent {
     private val laravelRootTextField = TextFieldWithBrowseButton()
     private val vendorRootTextField = TextFieldWithBrowseButton()
     private val terminateAppCheckBox = JBCheckBox(Strings.get("lt.settings.terminate_app"))
+    private val tinkerConsoleRootTextField = TextFieldWithBrowseButton()
 
     var laravelRoot: String
         get() = this.laravelRootTextField.text
@@ -32,12 +33,22 @@ class ProjectSettingsComponent {
             this.terminateAppCheckBox.isSelected = value
         }
 
+    var tinkerConsoleRoot: String
+        get() = this.tinkerConsoleRootTextField.text
+        set(value) {
+            this.tinkerConsoleRootTextField.text = value
+        }
+
     init {
         laravelRootTextField.addBrowseFolderListener(
             TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
         )
 
         vendorRootTextField.addBrowseFolderListener(
+            TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
+        )
+
+        tinkerConsoleRootTextField.addBrowseFolderListener(
             TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFolderDescriptor())
         )
 
@@ -54,6 +65,10 @@ class ProjectSettingsComponent {
                 .addTooltip(Strings.get("lt.settings.laravel_root.tooltip1"))
                 .addTooltip(Strings.get("lt.settings.laravel_root.tooltip2"))
                 .addTooltip(Strings.get("lt.settings.laravel_root.tooltip3"))
+                .addLabeledComponent(
+                    JBLabel(Strings.get("lt.settings.console_root")),
+                    tinkerConsoleRootTextField
+                )
                 .addComponent(terminateAppCheckBox)
                 .addComponentFillVertically(JPanel(), 0)
                 .panel
