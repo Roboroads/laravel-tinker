@@ -1,5 +1,6 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
@@ -10,7 +11,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
     name = "nl.deschepers.laraveltinker.settings.AppSettingsState",
     storages = [Storage("laravel-tinker-plugin-settings.xml")]
 )
-class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
+class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState>, Disposable {
     var showExecutionStarted = true
     var showExecutionEnded = true
     var useWordWrapping = true
@@ -29,5 +30,9 @@ class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
 
     override fun loadState(state: GlobalSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
+    }
+
+    override fun dispose() {
+        //
     }
 }

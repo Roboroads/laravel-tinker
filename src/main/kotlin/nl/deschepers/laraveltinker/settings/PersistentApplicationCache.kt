@@ -1,12 +1,13 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
 @State(reloadable = true, name = "laravelTinker", storages = [Storage("laravel-tinker-plugin.xml")])
-class PersistentApplicationCache : PersistentStateComponent<PersistentApplicationCache.State> {
+class PersistentApplicationCache : PersistentStateComponent<PersistentApplicationCache.State>, Disposable {
     companion object {
         val instance: PersistentApplicationCache
             get() =
@@ -27,5 +28,9 @@ class PersistentApplicationCache : PersistentStateComponent<PersistentApplicatio
 
     override fun loadState(state: State) {
         cacheState = state
+    }
+
+    override fun dispose() {
+        //
     }
 }

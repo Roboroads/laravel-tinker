@@ -1,10 +1,11 @@
 package nl.deschepers.laraveltinker.settings
 
+import com.intellij.openapi.extensions.BaseExtensionPointName
 import com.intellij.openapi.options.Configurable
 import nl.deschepers.laraveltinker.Strings
 import javax.swing.JComponent
 
-class GlobalSettingsConfigurable : Configurable {
+class GlobalSettingsConfigurable : Configurable, Configurable.WithEpDependencies {
     private var appSettingsComponent: GlobalSettingsComponent = GlobalSettingsComponent()
 
     override fun createComponent(): JComponent {
@@ -40,5 +41,9 @@ class GlobalSettingsConfigurable : Configurable {
 
     override fun getDisplayName(): String {
         return Strings.getMessage("name")
+    }
+
+    override fun getDependencies(): Collection<BaseExtensionPointName<*>?> {
+        return emptyList()
     }
 }
