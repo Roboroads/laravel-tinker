@@ -108,7 +108,8 @@
             implementationClass="nl.deschepers.laraveltinker.linemarkerprovider.TinkerRunLineMarkerProvider"
             language="PHP"
         />
-        <scratch.rootType implementation="nl.deschepers.laraveltinker.util.LaravelTinkerConsolesRootType"/>
+
+        <fileType name="Tinker console" implementationClass="nl.deschepers.laraveltinker.types.LaravelTinkerConsoleType" patterns="*.tinker.php" language="PHP" fieldName="INSTANCE" />
 
         <toolWindow anchor="right"
             factoryClass="nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory"

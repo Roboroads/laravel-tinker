@@ -9,7 +9,7 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
 /**
  *  The default 1.x tinker action: Opens the last console if none is open or Opens a new console
@@ -25,19 +25,19 @@ class SmartAction : AnAction() {
         e.presentation.text =
             Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_new_console"))
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
 
         e.presentation.isEnabled = true
 
         val virtualFile: VirtualFile? = e.getData(CommonDataKeys.VIRTUAL_FILE)
-        if (virtualFile != null && tinkerConsoleUtil.isTinkerConsole(virtualFile)) {
+        if (virtualFile != null && consoleFileRepository.isConsole(virtualFile)) {
             e.presentation.text =
                 Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.run_console"))
             return
         }
 
         for (editor in FileEditorManager.getInstance(project).selectedEditors) {
-            if (editor.file != null && tinkerConsoleUtil.isTinkerConsole(editor.file!!)) {
+            if (editor.file != null && consoleFileRepository.isConsole(editor.file!!)) {
                 e.presentation.text =
                     Strings.get(
                         "lt.menu.action.smart",
@@ -47,7 +47,7 @@ class SmartAction : AnAction() {
             }
         }
 
-        if (tinkerConsoleUtil.getLastOpenTinkerConsole() != null) {
+        if (consoleFileRepository.getLastModified() != null) {
             e.presentation.text =
                 Strings.get("lt.menu.action.smart", Strings.get("lt.menu.action.open_last_console"))
         }
@@ -55,23 +55,23 @@ class SmartAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
 
         // First smart action - running with a console open: run
         val virtualFile: VirtualFile? = e.getData(CommonDataKeys.VIRTUAL_FILE)
-        if (virtualFile != null && tinkerConsoleUtil.isTinkerConsole(virtualFile) &&
-            tinkerConsoleUtil.runTinkerWithFile(virtualFile)
+        if (virtualFile != null && consoleFileRepository.isConsole(virtualFile) &&
+            consoleFileRepository.runFile(virtualFile)
         )
             return
 
         // Second action: Open a new console with the selected text
         val currentEditor: Editor? = e.getData(CommonDataKeys.EDITOR)
         val isFile = currentEditor != null && virtualFile != null
-        if (isFile && virtualFile!!.fileType is PhpFileType &&
-            currentEditor!!.selectionModel.hasSelection()
+        if (isFile && virtualFile.fileType is PhpFileType &&
+            currentEditor.selectionModel.hasSelection()
         ) {
             val tinkerConsole =
-                tinkerConsoleUtil.createNewTinkerConsole(
+                consoleFileRepository.createNewTinkerConsole(
                     "\n${currentEditor.selectionModel.selectedText!!}\n"
                 )
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
@@ -79,18 +79,18 @@ class SmartAction : AnAction() {
 
         // Third action: Console is open already, just not active
         for (editor in FileEditorManager.getInstance(project).selectedEditors) {
-            if (editor.file != null && tinkerConsoleUtil.isTinkerConsole(editor.file!!)) {
+            if (editor.file != null && consoleFileRepository.isConsole(editor.file!!)) {
                 FileEditorManager.getInstance(project).openFile(editor.file!!, true)
                 return
             }
         }
 
         // Else: (Re)open a tinker console
-        val tinkerConsole = tinkerConsoleUtil.getLastOpenOrCreateTinkerConsole()
+        val tinkerConsole = consoleFileRepository.getLastModifiedOrCreate()
         FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

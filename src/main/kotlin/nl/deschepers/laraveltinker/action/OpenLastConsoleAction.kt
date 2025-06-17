@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.fileEditor.FileEditorManager
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
 /** Always opens a new tinker console */
 class OpenLastConsoleAction : AnAction() {
@@ -15,24 +15,24 @@ class OpenLastConsoleAction : AnAction() {
         e.presentation.isEnabled = false
         e.presentation.text = Strings.get("lt.menu.action.open_last_console")
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
 
-        if (tinkerConsoleUtil.getLastOpenTinkerConsole() != null) {
+        if (consoleFileRepository.getLastModified() != null) {
             e.presentation.isEnabled = true
         }
     }
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
 
-        val tinkerConsole = tinkerConsoleUtil.getLastOpenTinkerConsole()
+        val tinkerConsole = consoleFileRepository.getLastModified()
         if (tinkerConsole != null) {
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
         }
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 import nl.deschepers.laraveltinker.util.isEnabled
 
 /** Always opens a new tinker console */
@@ -21,15 +21,15 @@ class RunConsoleAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
         val (enabled, file) = e.isEnabled()
 
         if (enabled && file != null) {
-            tinkerConsoleUtil.runTinkerWithFile(file)
+            consoleFileRepository.runFile(file)
         }
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

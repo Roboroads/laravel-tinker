@@ -9,7 +9,7 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.jetbrains.php.lang.PhpFileType
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
 /** Always opens a new tinker console */
 class OpenNewConsoleWithSelectionAction : AnAction() {
@@ -28,12 +28,12 @@ class OpenNewConsoleWithSelectionAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
         val currentEditor: Editor = e.getData(CommonDataKeys.EDITOR) ?: return
 
         if (currentEditor.selectionModel.hasSelection()) {
             val tinkerConsole =
-                tinkerConsoleUtil.createNewTinkerConsole(
+                consoleFileRepository.createNewTinkerConsole(
                     "\n${currentEditor.selectionModel.selectedText!!}\n"
                 )
             FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
@@ -41,6 +41,6 @@ class OpenNewConsoleWithSelectionAction : AnAction() {
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }
