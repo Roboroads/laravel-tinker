@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - This has resolved [[#393]](https://github.com/Roboroads/laravel-tinker/issues/393) indirectly as well.
   - This also has solved the confusing 3v4l.org run button above the console.
 - Added per-project configuration option as to where to store the tinker consoles the plugin creates.
+- The output windows now automatically opens/closes when switching to/away from a tinker console. (Thanks [@KamikX](https://github.com/KamikX)!)
+- Added a "clear console" action. (Thanks [@KamikX](https://github.com/KamikX)!)
 
 ### Changed
 
@@ -49,12 +51,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [2.7.1] - 2024-06-17
 
-### Miscellaneous
+### Miscellaneous*
 
 - Reverted the fix for windows users where Cyrillic and Arabic characters would be lost in encoding conversions.
     - Sorry to these users, I'm still waiting response from JetBrains to properly fix this issue. The workaround I implemented for 2.7 brings more issues than it fixes.
 
-## [2.7.0] - 2024-04-09
+## [2.7.0] - 2024-04-09*
 
 ### BREAKING
 

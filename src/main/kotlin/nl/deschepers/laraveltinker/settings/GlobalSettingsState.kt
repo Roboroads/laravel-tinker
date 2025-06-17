@@ -14,6 +14,7 @@ class GlobalSettingsState : PersistentStateComponent<GlobalSettingsState> {
     var showExecutionStarted = true
     var showExecutionEnded = true
     var useWordWrapping = true
+    var autoOpenCloseOutput = true
     var patreonKey = ""
 
     companion object {

@@ -44,8 +44,14 @@
                 class="nl.deschepers.laraveltinker.action.RunConsoleAction"
                 description="Run console"
                 text="Run Console"
-                icon="/icons/tinker-run.svg">
+                icon="AllIcons.Debugger.ThreadRunning">
             </action>
+            <action id="nl.deschepers.laraveltinker.action.ClearConsoleAction"
+                class="nl.deschepers.laraveltinker.action.ClearConsoleAction"
+                description="Clear console"
+                text="Clear Console"
+                icon="AllIcons.Actions.Cancel"
+            />
             <action
                 id="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
                 class="nl.deschepers.laraveltinker.action.CloseAllWindowsAction"
@@ -113,6 +119,10 @@
 
         <notificationGroup id="Laravel Tinker" displayType="BALLOON" key="lt.notification.group.name"/>
     </extensions>
+
+    <applicationListeners>
+        <listener class="nl.deschepers.laraveltinker.listener.TinkerConsoleEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </applicationListeners>
 
     <id>nl.deschepers.laraveltinker</id>
     <name>Laravel Tinker</name>

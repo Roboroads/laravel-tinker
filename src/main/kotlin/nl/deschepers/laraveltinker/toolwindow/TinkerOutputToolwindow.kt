@@ -62,6 +62,14 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
         }
     }
 
+    fun clearOutput() {
+        toolWindow.title = "Output"
+        outputTime = ""
+        outputText = ""
+        toolWindow.show()
+        this.tinkerOutput.text = ""
+    }
+
     fun resetOutput() {
         toolWindow.title = "Output"
         outputTime =
