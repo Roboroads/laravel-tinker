@@ -35,7 +35,7 @@ class ConsoleFileRepository(val project: Project) {
             val newConsole = File(consoleDirectory, "console${suffix}.tinker.php")
             if (!newConsole.exists()) {
                 newConsole.createNewFile()
-                newConsole.writeText(initialContent ?: Strings.getMessage("lt.console.default_content"))
+                newConsole.writeText("<?php\n${initialContent ?: Strings.getMessage("lt.console.default_content")}\n")
                 return VfsUtil.findFileByIoFile(newConsole, true)!!
             }
             followNumber++
