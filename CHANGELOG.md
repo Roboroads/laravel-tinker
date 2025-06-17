@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added file type, `*.tinker.php`. This will allow you to put scripts anywhere in your project and give them custom names.
   - This has resolved [[#393]](https://github.com/Roboroads/laravel-tinker/issues/393) indirectly as well.
+  - This also has solved the confusing 3v4l.org run button above the console.
 - Added per-project configuration option as to where to store the tinker consoles the plugin creates.
 
 ### Changed
