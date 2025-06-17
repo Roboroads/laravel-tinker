@@ -25,7 +25,9 @@ This plugin does work without your code being a laravel project as well - make s
     - [laravel/tinker](https://github.com/laravel/tinker) - The tool this plugin integrates
     - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) - Heavily inspired this plugin
 - [Contributors to this project](https://github.com/Roboroads/laravel-tinker/graphs/contributors)
-    - *I **will** name you seperately if your amount of contributions is exceptional*
+    - [KamikX](https://github.com/KamikX)
+
+> People that made significant contributions to this project will be listed here.
 
 ## Contributing
 
