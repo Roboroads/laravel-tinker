@@ -20,12 +20,12 @@ This plugin does work without your code being a laravel project as well - make s
 ## Credits
 
 - [Robbin "Roboroads" Schepers](https://github.com/Roboroads) - Creating the plugin
-- [Joey "Veritas" de Vries](https://joeyveritas.nl) - Branding (icons & logo's)
-- Other github projects:
-    - [laravel/tinker](https://github.com/laravel/tinker) - The tool this plugin integrates
-    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) - Heavily inspired this plugin
+- [Joey "Veritas" de Vries](https://www.linkedin.com/in/joey-veritas/) - Branding (icons & logo's)
 - [Contributors to this project](https://github.com/Roboroads/laravel-tinker/graphs/contributors)
     - [KamikX](https://github.com/KamikX)
+- Other Github projects:
+    - [laravel/tinker](https://github.com/laravel/tinker) - The tool this plugin integrates
+    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) - Heavily inspired this plugin
 
 > People that made significant contributions to this project will be listed here.
 
