@@ -4,7 +4,6 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.util.IconLoader
 import com.jetbrains.php.lang.PhpLanguage
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 import org.jetbrains.annotations.Nls
 import javax.swing.Icon
 

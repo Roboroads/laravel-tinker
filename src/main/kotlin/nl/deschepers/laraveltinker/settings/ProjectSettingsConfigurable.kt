@@ -3,7 +3,6 @@ package nl.deschepers.laraveltinker.settings
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.options.ConfigurationException
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
 import nl.deschepers.laraveltinker.Strings
 import javax.swing.JComponent
 
