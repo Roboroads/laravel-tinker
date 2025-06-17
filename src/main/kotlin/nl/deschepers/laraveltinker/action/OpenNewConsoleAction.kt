@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.fileEditor.FileEditorManager
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
 /** Always opens a new tinker console */
 class OpenNewConsoleAction : AnAction() {
@@ -20,12 +20,12 @@ class OpenNewConsoleAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
-        val tinkerConsole = tinkerConsoleUtil.createNewTinkerConsole()
+        val consoleFileRepository = ConsoleFileRepository(project)
+        val tinkerConsole = consoleFileRepository.createNewTinkerConsole()
         FileEditorManager.getInstance(project).openFile(tinkerConsole, true)
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

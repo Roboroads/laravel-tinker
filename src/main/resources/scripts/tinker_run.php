@@ -20,9 +20,7 @@ if (!file_exists($psyshComposerJsonFile)) {
     throw new Exception($psyshComposerJsonFile . ' does not exist. Make sure your composer dependencies are installed and laravel/tinker (or, at minimum, psy/psysh) is required.');
 }
 
-$composerJson = json_decode(file_get_contents($composerJsonFile));
-$isLaravelProject = isset($composerJson->require->{"laravel/framework"});
-
+$isLaravelProject = file_exists(($projectSettings->vendorRoot ?: __DIR__) . '/vendor/laravel/framework/composer.json');
 if ($isLaravelProject) {
     define('LARAVEL_START', microtime(true));
 }

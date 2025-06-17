@@ -17,6 +17,7 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
     var laravelRoot = ""
     var vendorRoot = ""
     var terminateApp = false
+    var tinkerConsoleRoot = ".tinker"
 
     companion object {
         fun getInstance(project: Project): ProjectSettingsState {
@@ -42,6 +43,7 @@ class ProjectSettingsState : PersistentStateComponent<ProjectSettingsState> {
         settingsObject.addProperty("laravelRoot", this.laravelRoot)
         settingsObject.addProperty("vendorRoot", this.vendorRoot)
         settingsObject.addProperty("terminateApp", this.terminateApp)
+        settingsObject.addProperty("tinkerConsoleRoot", this.tinkerConsoleRoot)
         return settingsObject
     }
 }

@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.wm.ToolWindowManager
 import nl.deschepers.laraveltinker.Strings
-import nl.deschepers.laraveltinker.util.TinkerConsoleUtil
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
 class CloseAllWindowsAction : AnAction() {
     override fun update(e: AnActionEvent) {
@@ -19,10 +19,10 @@ class CloseAllWindowsAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val tinkerConsoleUtil = TinkerConsoleUtil(project)
+        val consoleFileRepository = ConsoleFileRepository(project)
 
         for (file in FileEditorManager.getInstance(project).openFiles) {
-            if (file != null && tinkerConsoleUtil.isTinkerConsole(file)) {
+            if (file != null && consoleFileRepository.isConsole(file)) {
                 FileEditorManager.getInstance(project).closeFile(file)
             }
         }
@@ -31,6 +31,6 @@ class CloseAllWindowsAction : AnAction() {
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

@@ -5,6 +5,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added file type, `*.tinker.php`. This will allow you to put scripts anywhere in your project and give them custom names.
+  - This has resolved [[#393]](https://github.com/Roboroads/laravel-tinker/issues/393) indirectly as well.
+  - This also has solved the confusing 3v4l.org run button above the console.
+- Added per-project configuration option as to where to store the tinker consoles the plugin creates.
+
+### Changed
+
+- [[#330]](https://github.com/Roboroads/laravel-tinker/issues/330) Tinker consoles are now saved within the project, so you have per-project tinker consoles.
+- [[#364]](https://github.com/Roboroads/laravel-tinker/issues/364) Changed Laravel project detection to use the existence of `venctor/laravel/framework/conposer.json` instead of checking in the composer.json file for the `laravel/framework` package.
+
+### Fixed 
+
+- [[#392]](https://github.com/Roboroads/laravel-tinker/issues/392) Moved tinker actions to the BGT, removing the EDT error.
+- New tinker consoles now always start with the `<?php` tag.
+
+### Removed
+- Laravel Tinker Console from the "Scratches and Consoles" menu. \
+  ⚠️ BREAKING CHANGE: Your old tinker consoles are still available on the file system. You can find them in the `${idea.config.path}/laravel-tinker` directory. Your tinker consoles will *not* be automatically migrated to the new location, because the new location is per-project. You can copy them manually to the new location, or just create new tinker consoles.\
+  _[Where is my idea.config.path?](https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs)_
+
+### Miscellaneous
+
+- Updated dependencies to their latest versions, including the migration to Intellij Platform v2.
+
 ## [2.7.3] - 2024-06-19
 
 ### Fixed

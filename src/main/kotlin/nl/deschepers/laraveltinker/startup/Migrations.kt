@@ -6,7 +6,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.ProjectActivity
 import de.skuzzle.semantic.Version
 import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
-import nl.deschepers.laraveltinker.startup.migrations.MakeSureConsolesHaveExtensions
 
 class Migrations : ProjectActivity {
     override suspend fun execute(project: Project) {
@@ -18,8 +17,8 @@ class Migrations : ProjectActivity {
             )
         if (currentMigrateVersion == currentPluginVersion) return
 
-        if (currentMigrateVersion < Version.parseVersion("2.2.2-beta.3"))
-            MakeSureConsolesHaveExtensions().up()
+//        if (currentMigrateVersion < Version.parseVersion("2.2.2-beta.3"))
+//            MakeSureConsolesHaveExtensions().up()
 
         PersistentApplicationCache.instance.state.migrateVersion = currentPluginVersion.toString()
     }
