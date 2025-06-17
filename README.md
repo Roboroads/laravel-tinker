@@ -3,35 +3,34 @@
 ![Rating](https://img.shields.io/jetbrains/plugin/r/rating/14957-laravel-tinker?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Roboroads/laravel-tinker?label=Release%20Date&style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Roboroads/laravel-tinker?style=flat-square)
+
 <!-- Plugin description -->
-Adds a way to write php in PhpStorm/IDEA and run it directly as if through `laravel artisan tinker` - allowing you to quickly run a piece of code with all your Laravel classes -
-with the added benefit of having your IDE's autocompletion, code colors and error inspections.
+Easily write and execute PHP code directly in PhpStorm/IDEA as if using `laravel artisan tinker`. Enjoy the convenience of running code snippets with full access to your Laravel classes, enhanced by your IDE’s autocompletion, syntax highlighting, and error inspections.
 
-Find all actions under `Tools -> Laravel Tinker` or use the default shortcut `ctrl + Shift + T` to let tinker smartly guess what you want to do (opening/running/etc.).
+Access all plugin actions via `Tools -> Laravel Tinker` or use the default shortcut `ctrl + Shift + T` to let Tinker intelligently determine your intent (open, run, etc.).
 
-- [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): feature requests and bug reports
-- [🙏 Ko-Fi](https://ko-fi.com/roboroads) / [GitHub Sponsors](https://github.com/sponsors/Roboroads): Consider supporting this project if it helped you ❤️
-- [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Get the plugin for PHPStorm (or IDEA if that's your style)
-- [🔗 Share](https://linktr.ee/laraveltinkerplugin): Share the plugin to your network
+- [💡 GitHub Issues](https://github.com/Roboroads/laravel-tinker/issues): Submit feature requests and bug reports
+- [🙏 Ko-Fi](https://ko-fi.com/roboroads) / [GitHub Sponsors](https://github.com/sponsors/Roboroads): Support the project if you find it helpful ❤️
+- [🔌 Plugin Page](https://plugins.jetbrains.com/plugin/14957-laravel-tinker/): Download for PHPStorm or IDEA
+- [🔗 Share](https://linktr.ee/laraveltinkerplugin): Share the plugin with your network
 
-This plugin does work without your code being a laravel project as well - make sure you have psy/psysh required in your project for it to work, though with limited functionality.
+The plugin also works outside Laravel projects - just ensure `psy/psysh` is required in your project for basic functionality (with some limitations).
 <!-- Plugin description end -->
 
 ## Credits
 
-- [Robbin "Roboroads" Schepers](https://github.com/Roboroads) - Creating the plugin
-- [Joey "Veritas" de Vries](https://www.linkedin.com/in/joey-veritas/) - Branding (icons & logo's)
+- [Robbin "Roboroads" Schepers](https://github.com/Roboroads) – Plugin creator
+- [Joey "Veritas" de Vries](https://www.linkedin.com/in/joey-veritas/) – Branding (icons & logos)
 - [Contributors to this project](https://github.com/Roboroads/laravel-tinker/graphs/contributors)
     - [KamikX](https://github.com/KamikX)
-- Other Github projects:
-    - [laravel/tinker](https://github.com/laravel/tinker) - The tool this plugin integrates
-    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) - Heavily inspired this plugin
+- Other GitHub projects:
+    - [laravel/tinker](https://github.com/laravel/tinker) – The tool this plugin integrates
+    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) – Major inspiration for this plugin
 
-> People that made significant contributions to this project will be listed here.
+> Significant contributors will be acknowledged here.
 
 ## Contributing
 
-I do not have a lot of experience with Kotlin, so I kind of *tinkered* (😏) this together. Any tips or feedback is welcome in
-the [Issues Tab](https://github.com/Roboroads/laravel-tinker/issues) - or better, make me a PR!
+My experience with Kotlin is limited, so I *tinkered* (😏) this together. Any tips or feedback are welcome in the [Issues Tab](https://github.com/Roboroads/laravel-tinker/issues) - or even better, submit a PR!
 
-Want to be part of this plugin? Every positive contribution to this project is welcome! 
+Want to contribute? Every positive contribution is appreciated!
