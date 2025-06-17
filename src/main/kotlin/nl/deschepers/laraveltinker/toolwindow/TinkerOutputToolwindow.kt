@@ -1,7 +1,5 @@
 package nl.deschepers.laraveltinker.toolwindow
 
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
@@ -62,16 +60,6 @@ class TinkerOutputToolwindow(private val toolWindow: ToolWindow) : SimpleToolWin
                 horizontalScrollBar.unitIncrement = 1
             })
         }
-
-        // Toolbar
-        val actionManager = ActionManager.getInstance()
-        val actionGroup = DefaultActionGroup("TINKER_GROUP", false)
-        actionGroup.add(ActionManager.getInstance().getAction("nl.deschepers.laraveltinker.action.RunConsoleAction"))
-        actionGroup.add(ActionManager.getInstance().getAction("nl.deschepers.laraveltinker.action.ClearConsoleAction"))
-        val actionToolbar =  actionManager.createActionToolbar("ACTION_TOOLBAR", actionGroup, true)
-        actionToolbar.targetComponent = this
-        toolbar = actionToolbar.component
-
     }
 
     fun clearOutput() {

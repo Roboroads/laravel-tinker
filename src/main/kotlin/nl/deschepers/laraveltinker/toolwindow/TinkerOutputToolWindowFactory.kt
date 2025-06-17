@@ -17,8 +17,10 @@ class TinkerOutputToolWindowFactory : ToolWindowFactory {
         val actionManager = ActionManager.getInstance()
         toolWindow.setTitleActions(
             listOf(
+                actionManager.getAction("nl.deschepers.laraveltinker.action.RunConsoleAction"),
                 actionManager.getAction("nl.deschepers.laraveltinker.action.OpenNewConsoleAction"),
-                actionManager.getAction("nl.deschepers.laraveltinker.action.OpenLastConsoleAction")
+                actionManager.getAction("nl.deschepers.laraveltinker.action.OpenLastConsoleAction"),
+                actionManager.getAction("nl.deschepers.laraveltinker.action.ClearConsoleAction")
             )
         )
 

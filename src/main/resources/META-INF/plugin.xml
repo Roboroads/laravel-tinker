@@ -121,7 +121,7 @@
     </extensions>
 
     <applicationListeners>
-        <listener class="nl.deschepers.laraveltinker.listener.TinkerFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="nl.deschepers.laraveltinker.listener.TinkerConsoleEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
     </applicationListeners>
 
     <id>nl.deschepers.laraveltinker</id>

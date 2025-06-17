@@ -42,8 +42,8 @@ class ConsoleFileRepository(val project: Project) {
         }
     }
 
-    fun isConsole(file: VirtualFile): Boolean {
-        return file.fileType is LaravelTinkerConsoleType
+    fun isConsole(file: VirtualFile?): Boolean {
+        return file?.fileType is LaravelTinkerConsoleType
     }
 
     fun runFile(file: VirtualFile): Boolean {

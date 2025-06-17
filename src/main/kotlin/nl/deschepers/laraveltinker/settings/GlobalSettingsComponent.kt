@@ -15,6 +15,7 @@ class GlobalSettingsComponent {
     private val showExecutionEndedCheckbox =
         JBCheckBox(Strings.get("lt.settings.show_execution_end"))
     private val useWordWrappingCheckbox = JBCheckBox(Strings.get("lt.settings.use_word_wrapping"))
+    private val autoOpenCloseOutputCheckbox = JBCheckBox(Strings.get("lt.settings.automatic_open_and_close_output"))
     private val patreonKeyTextField = JTextField()
 
     var showExecutionStarted: Boolean
@@ -32,6 +33,11 @@ class GlobalSettingsComponent {
         set(value) {
             this.useWordWrappingCheckbox.isSelected = value
         }
+    var autoOpenCloseOutput: Boolean
+        get() = this.autoOpenCloseOutputCheckbox.isSelected
+        set(value) {
+            this.autoOpenCloseOutputCheckbox.isSelected = value
+        }
     var patreonKey: String
         get() = this.patreonKeyTextField.text
         set(value) {
@@ -44,6 +50,7 @@ class GlobalSettingsComponent {
                 .addComponent(showExecutionStartedCheckbox)
                 .addComponent(showExecutionEndedCheckbox)
                 .addComponent(useWordWrappingCheckbox)
+                .addComponent(autoOpenCloseOutputCheckbox)
                 .addComponentFillVertically(JPanel(), 0)
                 .panel
         outputSettingsPanel.border =

@@ -5,9 +5,8 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.toolwindow.TinkerOutputToolWindowFactory
-import nl.deschepers.laraveltinker.util.isEnabled
+import nl.deschepers.laraveltinker.util.getConsole
 
-/** Always opens a new tinker console */
 class ClearConsoleAction : AnAction() {
     override fun update(e: AnActionEvent) {
         super.update(e)
@@ -15,20 +14,20 @@ class ClearConsoleAction : AnAction() {
         e.presentation.isEnabled = false
         e.presentation.text = Strings.get("lt.menu.action.clear_console")
         e.project ?: return
-        val (enabled, _) = e.isEnabled()
-        e.presentation.isEnabled = enabled
+        val console = e.getConsole()
+        e.presentation.isEnabled = console != null
     }
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val (enabled, file) = e.isEnabled()
+        val console = e.getConsole()
 
-        if (enabled && file != null) {
+        if (console != null) {
             TinkerOutputToolWindowFactory.tinkerOutputToolWindow[project]?.clearOutput()
         }
     }
 
     override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
+        return ActionUpdateThread.BGT
     }
 }

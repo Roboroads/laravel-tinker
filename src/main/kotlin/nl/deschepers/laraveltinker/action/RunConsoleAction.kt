@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import nl.deschepers.laraveltinker.Strings
 import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
-import nl.deschepers.laraveltinker.util.isEnabled
+import nl.deschepers.laraveltinker.util.getConsole
 
 /** Always opens a new tinker console */
 class RunConsoleAction : AnAction() {
@@ -15,17 +15,17 @@ class RunConsoleAction : AnAction() {
         e.presentation.isEnabled = false
         e.presentation.text = Strings.get("lt.menu.action.run_console")
         e.project ?: return
-        val (enabled, _) = e.isEnabled()
-        e.presentation.isEnabled = enabled
+        val console = e.getConsole()
+        e.presentation.isEnabled = console != null
     }
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val consoleFileRepository = ConsoleFileRepository(project)
-        val (enabled, file) = e.isEnabled()
+        val console = e.getConsole()
 
-        if (enabled && file != null) {
-            consoleFileRepository.runFile(file)
+        if (console != null) {
+            consoleFileRepository.runFile(console)
         }
     }
 

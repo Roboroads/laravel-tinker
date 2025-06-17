@@ -1,45 +1,26 @@
 package nl.deschepers.laraveltinker.util
 
-import com.intellij.ide.scratch.ScratchFileServiceImpl
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
+import nl.deschepers.laraveltinker.repository.ConsoleFileRepository
 
-fun AnActionEvent.isEnabled(): Pair<Boolean, VirtualFile?> {
-
+fun AnActionEvent.getConsole(): VirtualFile? {
     val project = this.project!!
-    var virtualFile: VirtualFile? = this.getData(PlatformDataKeys.VIRTUAL_FILE)
-    var actionEnabled = false
+    val virtualFile: VirtualFile? = this.getData(PlatformDataKeys.VIRTUAL_FILE)
 
-    // Try opened files
-    if (virtualFile == null) {
-        for (file in FileEditorManager.getInstance(project).openFiles) {
-            if (file != null && isTinkerConsole(file)) {
-                virtualFile = file
-                actionEnabled= true
-                break
-            }
-        }
-    } else {
-        if (isTinkerConsole(virtualFile)) {
-            actionEnabled = true
+    val consoleFileRepository = ConsoleFileRepository(project)
+
+    if (consoleFileRepository.isConsole(virtualFile)) {
+        return virtualFile
+    }
+
+    for (file in FileEditorManager.getInstance(project).openFiles) {
+        if (consoleFileRepository.isConsole(file)) {
+            return file
         }
     }
 
-    return Pair(actionEnabled, virtualFile)
-}
-
-fun isTinkerConsole(file: VirtualFile): Boolean {
-    return getTinkerConsoleFiles()?.contains(file) ?: false
-}
-
-fun getTinkerConsoleFiles(): List<VirtualFile>? {
-    val consolesPath =
-        ScratchFileServiceImpl.getInstance()
-            .getRootPath(LaravelTinkerConsolesRootType.getInstance())
-    val consolesDir = LocalFileSystem.getInstance().findFileByPath(consolesPath)
-
-    return consolesDir?.children?.asList()
+    return null
 }
