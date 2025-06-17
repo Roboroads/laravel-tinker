@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - [[#392]](https://github.com/Roboroads/laravel-tinker/issues/392) Moved tinker actions to the BGT, removing the EDT error.
 - New tinker consoles now always start with the `<?php` tag.
+- Fixed the `OpenNewConsoleWithSelectionAction` using the current editors VirtualFile (Thanks [@KamikX](https://github.com/KamikX)!)
 
 ### Removed
 - Laravel Tinker Console from the "Scratches and Consoles" menu. \
