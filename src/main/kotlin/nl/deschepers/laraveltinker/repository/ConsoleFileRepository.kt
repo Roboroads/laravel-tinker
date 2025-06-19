@@ -57,7 +57,7 @@ class ConsoleFileRepository(val project: Project) {
         return false
     }
 
-    fun getTinkerConsoleFiles(): List<VirtualFile> {
+    private fun getTinkerConsoleFiles(): List<VirtualFile> {
         val files = FileTypeIndex.getFiles(LaravelTinkerConsoleType.INSTANCE, GlobalSearchScope.projectScope(project))
             .sortedByDescending { it.modificationStamp }
         return files

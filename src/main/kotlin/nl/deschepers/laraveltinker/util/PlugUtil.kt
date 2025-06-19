@@ -13,7 +13,7 @@ import nl.deschepers.laraveltinker.settings.PersistentApplicationCache
  * Consider financially supporting me to get a legit key <3
  */
 object PlugUtil {
-    internal const val SUPPORT_MESSAGE_EXECUTIONS = 10
+    private const val SUPPORT_MESSAGE_EXECUTIONS = 10
 
     fun getPlug(): String? {
         if (!hasValidKey()) {
