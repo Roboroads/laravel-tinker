@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-06-19
+
 ### Added
 
 - Added file type, `*.tinker.php`. This will allow you to put scripts anywhere in your project and give them custom names.
@@ -19,13 +21,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [[#330]](https://github.com/Roboroads/laravel-tinker/issues/330) Tinker consoles are now saved within the project, so you have per-project tinker consoles.
 - [[#364]](https://github.com/Roboroads/laravel-tinker/issues/364) Changed Laravel project detection to use the existence of `venctor/laravel/framework/conposer.json` instead of checking in the composer.json file for the `laravel/framework` package.
 
-### Fixed 
+### Fixed
 
 - [[#392]](https://github.com/Roboroads/laravel-tinker/issues/392) Moved tinker actions to the BGT, removing the EDT error.
 - New tinker consoles now always start with the `<?php` tag.
 - Fixed the `OpenNewConsoleWithSelectionAction` using the current editors VirtualFile (Thanks [@KamikX](https://github.com/KamikX)!)
 
 ### Removed
+
 - Laravel Tinker Console from the "Scratches and Consoles" menu. \
   ⚠️ BREAKING CHANGE: Your old tinker consoles are still available on the file system. You can find them in the `${idea.config.path}/laravel-tinker` directory. Your tinker consoles will *not* be automatically migrated to the new location, because the new location is per-project. You can copy them manually to the new location, or just create new tinker consoles.\
   _[Where is my idea.config.path?](https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs)_
@@ -407,7 +410,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Everything.
 
-[Unreleased]: https://github.com/Roboroads/laravel-tinker/compare/v2.7.3...HEAD
+[Unreleased]: https://github.com/Roboroads/laravel-tinker/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/Roboroads/laravel-tinker/compare/v2.7.3...v3.0.0
 [2.7.3]: https://github.com/Roboroads/laravel-tinker/compare/v2.7.2...v2.7.3
 [2.7.2]: https://github.com/Roboroads/laravel-tinker/compare/v2.7.1...v2.7.2
 [2.7.1]: https://github.com/Roboroads/laravel-tinker/compare/v2.7.0...v2.7.1
