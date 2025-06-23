@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: BEFORE YOU REPORT A BUG
+    url: https://github.com/Roboroads/laravel-tinker/discussions/402
+    about: Read the FAQ first, there's a good change you have a bad setting.
+  - name: Submit a feature request
+    url: https://github.com/Roboroads/laravel-tinker/discussions/new?category=feature-requests
+    about: Submit your ideas and feature requests here.
+  - name: Ask a question
+    url: https://github.com/Roboroads/laravel-tinker/discussions/new?category=q-a
+    about: Anything about the plugin
