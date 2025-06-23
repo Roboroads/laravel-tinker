@@ -1,4 +1,4 @@
-![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/laravel-tinker/master/.github/branding/logo-text.png)
+![Laravel Tinker Plugin Logo](https://raw.githubusercontent.com/Roboroads/laravel-tinker/master/.github/branding/logo-text-background.png)
 ![Downloads](https://img.shields.io/jetbrains/plugin/d/14957-laravel-tinker?style=flat-square)
 ![Rating](https://img.shields.io/jetbrains/plugin/r/rating/14957-laravel-tinker?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Roboroads/laravel-tinker?label=Release%20Date&style=flat-square)
@@ -22,10 +22,10 @@ The plugin also works outside Laravel projects - just ensure `psy/psysh` is requ
 - [Robbin "Roboroads" Schepers](https://github.com/Roboroads) – Plugin creator
 - [Joey "Veritas" de Vries](https://www.linkedin.com/in/joey-veritas/) – Branding (icons & logos)
 - [Contributors to this project](https://github.com/Roboroads/laravel-tinker/graphs/contributors)
-    - [KamikX](https://github.com/KamikX)
+  - [KamikX](https://github.com/KamikX)
 - Other GitHub projects:
-    - [laravel/tinker](https://github.com/laravel/tinker) – The tool this plugin integrates
-    - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) – Major inspiration for this plugin
+  - [laravel/tinker](https://github.com/laravel/tinker) – The tool this plugin integrates
+  - [spatie/laravel-web-tinker](https://github.com/spatie/laravel-web-tinker) – Major inspiration for this plugin
 
 > Significant contributors will be acknowledged here.
 
