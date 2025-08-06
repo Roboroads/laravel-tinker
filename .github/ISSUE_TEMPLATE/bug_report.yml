@@ -94,6 +94,8 @@ body:
       multiple: false
       options:
         - Local
+        - Local using WSL1 (Windows)
+        - Local using WSL2 (Windows)
         - Remote
         - Docker (NOT compose)
         - Docker compose
