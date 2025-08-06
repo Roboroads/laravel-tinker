@@ -94,13 +94,16 @@ body:
       multiple: false
       options:
         - Local
-        - Local using WSL1 (Windows)
-        - Local using WSL2 (Windows)
         - Remote
         - Docker (NOT compose)
         - Docker compose
     validations:
       required: true
+  - type: input
+    attributes:
+      label: Aditional interpreter info
+      description: "Any extra info on how you are using PHP? Think about Herd, Sail, WSL, etc."
+      placeholder: "E.g.: Laravel Herd, Laravel Sail, WSL2"
   - type: input
     attributes:
       label: Laravel Version
