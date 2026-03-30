@@ -49,7 +49,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       # Set environment variables
       - name: Export Properties
@@ -84,7 +84,7 @@ jobs:
 
       # Store already-built plugin as an artifact for downloading
       - name: Upload artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./build/distributions/content/*/*
@@ -109,7 +109,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       # Run tests
       - name: Run Tests
@@ -118,14 +118,14 @@ jobs:
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
 
       # Upload the Kover report to CodeCov
       - name: Upload Code Coverage Report
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
 
@@ -194,7 +194,7 @@ jobs:
 #
 #      # Setup Gradle
 #      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v5
+#        uses: gradle/actions/setup-gradle@v6
 #
 #      # Cache Plugin Verifier IDEs
 #      - name: Setup Plugin Verifier IDEs Cache
@@ -210,7 +210,7 @@ jobs:
 #      # Collect Plugin Verifier Result
 #      - name: Collect Plugin Verifier Result
 #        if: ${{ always() }}
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        with:
 #          name: pluginVerifier-result
 #          path: ${{ github.workspace }}/build/reports/pluginVerifier
